@@ -1,24 +1,32 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
+import PublicRoutes from './components/PublicRoutes';
+import PrivateRoutes from './components/PrivateRoutes';
+import { Auth } from 'aws-amplify';
 
 function App() {
+  const [signedIn, setSignedIn] = React.useState(undefined);
+
+  React.useEffect(() => {
+    (async function () {
+      try {
+        const user = await Auth.currentAuthenticatedUser();
+        setSignedIn(user);
+      } catch (error) {
+        setSignedIn(undefined);
+        console.log('use effect log', error);
+      }
+    })();
+  }, []);
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      {signedIn ? (
+        <PrivateRoutes setSignedIn={setSignedIn} signedIn={signedIn} />
+      ) : (
+        <PublicRoutes setSignedIn={setSignedIn} />
+      )}
+      {/* <MapChart></MapChart> */}
     </div>
   );
 }

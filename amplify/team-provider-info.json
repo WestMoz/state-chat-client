@@ -1,0 +1,20 @@
+{
+  "moz": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-statechatclient-moz-145149-authRole",
+      "UnauthRoleArn": "arn:aws:iam::255253513014:role/amplify-statechatclient-moz-145149-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::255253513014:role/amplify-statechatclient-moz-145149-authRole",
+      "Region": "us-east-1",
+      "DeploymentBucketName": "amplify-statechatclient-moz-145149-deployment",
+      "UnauthRoleName": "amplify-statechatclient-moz-145149-unauthRole",
+      "StackName": "amplify-statechatclient-moz-145149",
+      "StackId": "arn:aws:cloudformation:us-east-1:255253513014:stack/amplify-statechatclient-moz-145149/fc4f2000-1172-11eb-bf51-0e30af5d4b9f",
+      "AmplifyAppId": "d3olbjconz3c63"
+    },
+    "categories": {
+      "auth": {
+        "statechatclient9edccc14": {}
+      }
+    }
+  }
+}
