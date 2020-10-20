@@ -39,7 +39,14 @@ const MapChart = () => {
   }
 
   return (
-    <ComposableMap projection="geoAlbersUsa">
+    <ComposableMap
+      projection="geoAlbersUsa"
+      style={{
+        width: '50%',
+        height: 'auto',
+      }}
+      //here is where i can change the map size
+    >
       <Geographies geography={geoUrl}>
         {({ geographies }) => (
           <>
@@ -61,8 +68,8 @@ const MapChart = () => {
                 //not too hard just correlate to an array of popularity values
                 style={{
                   default: { outline: 'none' },
-                  hover: { outline: 'none', fill: 'red', stroke: 'blue' },
-                  pressed: { outline: 'none' },
+                  hover: { outline: 'none', fill: 'lightblue', stroke: 'blue' },
+                  pressed: { outline: 'none', fill: 'green' },
                 }}
                 //removes outline from clicking on state and i can add interactive styles to clicked states
               />
@@ -79,7 +86,8 @@ const MapChart = () => {
                     (Object.keys(offsets).indexOf(cur.id) === -1 ? (
                       <Marker coordinates={centroid}>
                         <text y="2" fontSize={14} textAnchor="middle">
-                          {cur.id}
+                          {/* {cur.id} */}
+                          {/* main state labels */}
                         </text>
                       </Marker>
                     ) : (
