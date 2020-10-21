@@ -42,8 +42,8 @@ const MapChart = () => {
     <ComposableMap
       projection="geoAlbersUsa"
       style={{
-        width: '50%',
-        height: 'auto',
+        width: 'auto',
+        height: '100%',
       }}
       //here is where i can change the map size
     >
