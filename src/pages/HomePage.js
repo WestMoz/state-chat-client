@@ -4,6 +4,7 @@ import Post from '../components/Post';
 import Profile from '../components/Profile';
 import '../styles/home.css';
 import TopNav from '../components/TopNav';
+import StatsBar from '../components/StatsBar';
 
 //STATS PAGE TO DISPLAY SPECIFIC STATS
 //USER STATS ex: NUMBER OF POSTS/COMMENTS
@@ -11,13 +12,13 @@ export default function HomePage() {
   return (
     <div className="home-main">
       <div className="home-left">
-        <Profile />
+        <StatsBar />
       </div>
       {/* This is the home page */}
       <div className="home-right">
-        <div className="top-nav">
+        {/* <div className="top-nav">
           <TopNav />
-        </div>
+        </div> */}
         <div className="home-map">
           <MapChart />
         </div>

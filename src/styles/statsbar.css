@@ -1,0 +1,23 @@
+.stats-main {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  text-align: center;
+  border-right: 1px solid gray;
+  height: 100%;
+}
+
+.stats-title {
+}
+
+.state {
+  border: 1px solid gray;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: left;
+}
+
+p {
+  margin: 5px;
+}

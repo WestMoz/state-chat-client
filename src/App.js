@@ -3,6 +3,7 @@ import './App.css';
 import PublicRoutes from './components/PublicRoutes';
 import PrivateRoutes from './components/PrivateRoutes';
 import { Auth } from 'aws-amplify';
+import Navbar from './components/Navbar';
 
 function App() {
   const [signedIn, setSignedIn] = React.useState(undefined);
@@ -22,7 +23,10 @@ function App() {
   return (
     <div className="App">
       {signedIn ? (
-        <PrivateRoutes setSignedIn={setSignedIn} signedIn={signedIn} />
+        <>
+          <Navbar />
+          <PrivateRoutes setSignedIn={setSignedIn} signedIn={signedIn} />
+        </>
       ) : (
         <PublicRoutes setSignedIn={setSignedIn} />
       )}
