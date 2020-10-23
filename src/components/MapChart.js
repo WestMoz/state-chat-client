@@ -70,7 +70,11 @@ const MapChart = () => {
                 //not too hard just correlate to an array of popularity values
                 style={{
                   default: { outline: 'none' },
-                  hover: { outline: 'none', fill: 'lightblue', stroke: 'blue' },
+                  hover: {
+                    outline: 'none',
+                    fill: 'rebeccapurple',
+                    stroke: 'white',
+                  },
                   pressed: { outline: 'none', fill: 'green' },
                 }}
                 //removes outline from clicking on state and i can add interactive styles to clicked states
@@ -93,16 +97,18 @@ const MapChart = () => {
                         </text>
                       </Marker>
                     ) : (
-                      // <></>
-                      <Annotation
-                        subject={centroid}
-                        dx={offsets[cur.id][0]}
-                        dy={offsets[cur.id][1]}
-                      >
-                        <text x={4} fontSize={14} alignmentBaseline="middle">
-                          {cur.id}
-                        </text>
-                      </Annotation>
+                      <></>
+                      //removed annotation
+                      // <Annotation
+                      //   subject={centroid}
+                      //   dx={offsets[cur.id][0]}
+                      //   dy={offsets[cur.id][1]}
+                      //   fill="lightgray"
+                      // >
+                      //   <text x={4} fontSize={14} alignmentBaseline="middle">
+                      //     {cur.id}
+                      //   </text>
+                      // </Annotation>
                     ))}
                 </g>
               );

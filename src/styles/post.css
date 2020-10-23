@@ -9,13 +9,19 @@
   background-color: rgb(66, 66, 66);
 }
 
+.post-top-cont,
+.post-mid-cont,
+.post-bot-cont {
+  margin-bottom: 1rem;
+}
+
 .post-main-cont:hover {
   border: 1px solid white;
 }
 
 .post-top-cont {
   display: flex;
-  margin: 5px;
+  padding-bottom: 0.5rem;
   border-bottom: 1px solid gray;
 }
 
@@ -23,7 +29,7 @@
   display: flex;
   flex-direction: column;
   text-align: left;
-  margin-left: 20px;
+  margin-left: 2em;
 }
 
 .post-mid-cont {
