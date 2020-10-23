@@ -1,6 +1,6 @@
 {
     "identityPoolName": "statechatclient9edccc14_identitypool_9edccc14",
-    "allowUnauthenticatedIdentities": false,
+    "allowUnauthenticatedIdentities": true,
     "resourceNameTruncated": "statec9edccc14",
     "userPoolName": "statechatclient9edccc14_userpool_9edccc14",
     "autoVerifiedAttributes": [

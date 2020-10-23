@@ -5,6 +5,8 @@ import Profile from '../components/Profile';
 import '../styles/home.css';
 import TopNav from '../components/TopNav';
 
+//STATS PAGE TO DISPLAY SPECIFIC STATS
+//USER STATS ex: NUMBER OF POSTS/COMMENTS
 export default function HomePage() {
   return (
     <div className="home-main">

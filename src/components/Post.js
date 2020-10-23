@@ -1,7 +1,13 @@
+import { navigate } from '@reach/router';
 import React from 'react';
 import '../styles/post.css';
 
 export default function Post({ post }) {
+  // const [numComments, setNumComments] = React.useState(0);
+  //this will load the number of comments on post load
+  //comments button will open post in new page
+  //new page will alow user to read comments and post a comment
+
   return (
     <div className="post-main-cont">
       <div className="post-top-cont">
@@ -15,7 +21,7 @@ export default function Post({ post }) {
         </div>
       </div>
       <div className="post-mid-cont">
-        <div>
+        <p>
           Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
           eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
           minim veniam, quis nostrud exercitation ullamco laboris nisi ut
@@ -23,11 +29,12 @@ export default function Post({ post }) {
           reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
           pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
           culpa qui officia deserunt mollit anim id est laborum.
-        </div>
+        </p>
       </div>
       <div className="post-bot-cont">
         <button>Like</button>
-        <button>Comment</button>
+        <button onClick={() => navigate(post.id)}>Comments</button>
+        {/* onclick will be broken until i pass a real post object */}
       </div>
     </div>
   );

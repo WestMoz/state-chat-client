@@ -6,5 +6,11 @@
       "dependsOn": [],
       "customAuth": false
     }
+  },
+  "storage": {
+    "stateChatBucket": {
+      "service": "S3",
+      "providerPlugin": "awscloudformation"
+    }
   }
 }

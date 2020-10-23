@@ -11,6 +11,7 @@ import {
 } from 'react-simple-maps';
 
 import allStates from '../data/allstates.json';
+import { navigate } from '@reach/router';
 
 const geoUrl = 'https://cdn.jsdelivr.net/npm/us-atlas@3/states-10m.json';
 
@@ -33,8 +34,9 @@ const offsets = {
 };
 
 const MapChart = () => {
-  function onClick() {
+  function onClick(state) {
     console.log('state has been clicked');
+    navigate(`/state/${state}`);
     //here can be my logic for opening forum for specific state
   }
 
@@ -42,8 +44,8 @@ const MapChart = () => {
     <ComposableMap
       projection="geoAlbersUsa"
       style={{
-        width: 'auto',
-        height: '100%',
+        width: '100%',
+        height: '50vh',
       }}
       //here is where i can change the map size
     >
@@ -52,7 +54,7 @@ const MapChart = () => {
           <>
             {geographies.map((geo) => (
               <Geography
-                onClick={() => onClick()}
+                onClick={() => onClick(geo.properties.name)}
                 // ******i can add oncick here to open forum from the state clicked******
                 key={geo.rsmKey}
                 stroke="#FFF"
@@ -61,7 +63,7 @@ const MapChart = () => {
                 geography={geo}
                 // fill="#DDD"
                 fill={
-                  geo.properties.name === 'North Carolina' ? 'green' : 'grey'
+                  geo.properties.name === 'South Carolina' ? 'green' : 'grey'
                 }
                 //the fill is where the states are colored
                 //the fill value can change depending on the popularity of state

@@ -1,0 +1,21 @@
+.nav-main {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  height: 5vh;
+}
+.nav-home {
+  -webkit-touch-callout: none; /* iOS Safari */
+  -webkit-user-select: none; /* Safari */
+  -khtml-user-select: none; /* Konqueror HTML */
+  -moz-user-select: none; /* Old versions of Firefox */
+  -ms-user-select: none; /* Internet Explorer/Edge */
+  user-select: none; /* Non-prefixed version, currently
+                                  supported by Chrome, Edge, Opera and Firefox */
+}
+.nav-home:hover {
+  text-decoration: underline;
+}
+.nav-home:active {
+  color: black;
+}
