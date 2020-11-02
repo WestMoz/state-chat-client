@@ -33,7 +33,7 @@ export default function Post({ post }) {
       </div>
       <div className="post-bot-cont">
         <button>Like</button>
-        <button onClick={() => navigate(post.id)}>Comments</button>
+        <button onClick={() => navigate('/post/1')}>Comments</button>
         {/* onclick will be broken until i pass a real post object */}
       </div>
     </div>

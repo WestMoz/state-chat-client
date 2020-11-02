@@ -4,13 +4,15 @@ import HomePage from '../pages/HomePage';
 import NotFound from '../pages/NotFound';
 import StatePage from '../pages/StatePage';
 import PostPage from '../pages/PostPage';
+import CreatePostPage from '../pages/CreatePostPage';
 
 export default function PrivateRoutes({ signedIn, setSignedIn }) {
   return (
     <Router>
       <HomePage path="/home" signedIn={signedIn} />
       <StatePage path="/state/:state" />
-      <PostPage path="/post/:postId" />
+      <PostPage path="/post/:postId" signedIn={signedIn} />
+      <CreatePostPage path="/create" signedIn={signedIn} />
       <NotFound default />
     </Router>
   );

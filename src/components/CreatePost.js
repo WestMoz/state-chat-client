@@ -13,6 +13,11 @@ export default function CreatePost({ signedIn }) {
       const category = 'South Carolina';
       //NEED TO ADD DROP DOWN FOR SELECTING CATEGORY TO POST IN
 
+      if (!title || !content || !category) {
+        window.alert('missing required fields');
+        return;
+      }
+
       const response = await Axios.post('http://localhost:4000/create-post', {
         token,
         title,

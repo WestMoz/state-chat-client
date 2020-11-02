@@ -1,17 +1,15 @@
 import React from 'react';
+import CreatePost from '../components/CreatePost';
+import Dropdown from '../components/Dropdown';
 import StatsBar from '../components/StatsBar';
-import Post from '../components/Post';
 import '../styles/layout.css';
 
-export default function StatePage({ state }) {
+export default function CreatePostPage({ signedIn }) {
   return (
     <div className="main">
       <div className="left">
-        {state}
-        <Post />
-        <Post />
-        <Post />
-        <Post />
+        <Dropdown />
+        <CreatePost signedIn={signedIn} />
       </div>
       <div className="right">
         <StatsBar />

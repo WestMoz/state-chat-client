@@ -5,13 +5,7 @@ export default function Comment() {
   return (
     <div className="comment-main">
       <div className="comment-top">
-        <div>
-          <img src="" alt="avatar" />
-        </div>
-        <div className="comment-titles">
-          <div>Username</div>
-          <div>Time Commented</div>
-        </div>
+        <div>Commented by - 6 hours ago</div>
       </div>
       <div className="comment-bot">
         <p>

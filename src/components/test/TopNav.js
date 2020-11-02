@@ -1,6 +1,6 @@
 import { navigate } from '@reach/router';
 import React from 'react';
-import '../styles/topNav.css';
+import '../../styles/topNav.css';
 
 export default function TopNav() {
   const [search, setSearch] = React.useState('');

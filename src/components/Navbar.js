@@ -18,6 +18,7 @@ export default function Navbar() {
         >
           Home
         </div>
+        <button onClick={() => navigate('/create')}>Create Post</button>
       </div>
       <div className="nav-mid">
         <input
@@ -30,6 +31,7 @@ export default function Navbar() {
       <div className="nav-right">
         <button>Notifications</button>
         <button>Messages</button>
+        <button>Sign Out</button>
         <img
           src="https://bignokh.files.wordpress.com/2017/02/19c76c9bfacab70a3b9379f3fadc5323.png"
           alt="avatar"
@@ -37,7 +39,7 @@ export default function Navbar() {
           style={{
             borderRadius: '500px',
             backgroundColor: 'lightcoral',
-            border: '1px solid black',
+            border: '1px solid white',
           }}
         ></img>
       </div>

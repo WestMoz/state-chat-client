@@ -13,6 +13,9 @@
 /* outline kind of broken and border messes up the layout */
 
 .nav-left {
+  display: flex;
+  width: 20%;
+  justify-content: space-evenly;
 }
 
 .nav-mid {
