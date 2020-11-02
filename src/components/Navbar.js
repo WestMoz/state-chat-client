@@ -1,3 +1,4 @@
+import { navigate } from '@reach/router';
 import React from 'react';
 import '../styles/navbar.css';
 
@@ -12,6 +13,7 @@ export default function Navbar() {
           className="nav-home"
           onClick={() => {
             console.log('home clicked');
+            navigate('/home');
           }}
         >
           Home

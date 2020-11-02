@@ -8,7 +8,7 @@ import PostPage from '../pages/PostPage';
 export default function PrivateRoutes({ signedIn, setSignedIn }) {
   return (
     <Router>
-      <HomePage path="/home" />
+      <HomePage path="/home" signedIn={signedIn} />
       <StatePage path="/state/:state" />
       <PostPage path="/post/:postId" />
       <NotFound default />

@@ -1,25 +1,29 @@
 .home-main {
   width: 100vw;
   height: 95vh;
-  display: grid;
-  grid-template-columns: 2fr 7fr;
+  display: flex;
+  /* grid-template-columns: 2fr 7fr; */
   /* grid-template-rows: 3fr; */
 }
 
 .home-left {
-  grid-column: 1/2;
+  width: 75%;
+  /* grid-column: 1/2; */
   /* grid-row: 1/3; */
   /* border: 1px solid pink; */
   /* overflow: auto; */
+  overflow: scroll;
+  overflow-x: hidden;
 }
 
 .home-right {
-  grid-column: 2/9;
+  width: 25%;
+  /* grid-column: 2/9; */
   height: 100%;
   /* grid-row: 1/3; */
   /* border: 1px solid blue; */
-  overflow: scroll;
-  overflow-x: hidden;
+  /* overflow: scroll;
+  overflow-x: hidden; */
 }
 
 .top-nav {

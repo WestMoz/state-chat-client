@@ -15,6 +15,11 @@ div {
   font-family: -apple-system, BlinkMacSystemFont, sans-serif;
 }
 
+/* this hides the scroll bar */
+/* ::-webkit-scrollbar {
+  display: none;
+} */
+
 /* .App {
   text-align: center;
 }

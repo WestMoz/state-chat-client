@@ -5,30 +5,34 @@ import Profile from '../components/Profile';
 import '../styles/home.css';
 import TopNav from '../components/TopNav';
 import StatsBar from '../components/StatsBar';
+import CreatePost from '../components/CreatePost';
 
 //STATS PAGE TO DISPLAY SPECIFIC STATS
 //USER STATS ex: NUMBER OF POSTS/COMMENTS
-export default function HomePage() {
+export default function HomePage({ signedIn }) {
   return (
     <div className="home-main">
       <div className="home-left">
-        <StatsBar />
+        <div className="home-map">
+          <MapChart />
+        </div>
+        <p>Trending</p>
+        <CreatePost signedIn={signedIn} />
+        <Post />
+        <Post />
+        <Post />
+        <Post />
+        <Post />
+        <Post />
+
+        {/* <Profile /> */}
       </div>
       {/* This is the home page */}
       <div className="home-right">
         {/* <div className="top-nav">
           <TopNav />
         </div> */}
-        <div className="home-map">
-          <MapChart />
-        </div>
-        <div>Trending</div>
-        <Post />
-        <Post />
-        <Post />
-        <Post />
-        <Post />
-        <Post />
+        <StatsBar />
       </div>
 
       {/* <div style={styles.post}>

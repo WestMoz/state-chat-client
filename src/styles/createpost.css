@@ -1,0 +1,55 @@
+.create-main {
+  width: 70%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: left;
+  margin: 5px;
+  border: 1px solid gray;
+  border-radius: 10px;
+  padding: 10px;
+  margin: 10px;
+  background-color: rgb(66, 66, 66);
+}
+
+.create-top,
+.create-mid,
+.create-bot {
+  margin-bottom: 10px;
+}
+
+.create-top {
+  display: flex;
+  justify-content: space-between;
+}
+
+.create-main textarea {
+  width: 100%;
+  padding: 8px 16px;
+  border-radius: 4px;
+  resize: vertical;
+  overflow: hidden;
+  box-sizing: border-box;
+  /* box sizing allows the container to be sized to include padding so 100% width doesnt break out of main container */
+  background-color: rgb(44, 44, 44);
+  border: 1px solid gray;
+  color: white;
+}
+
+.create-main input {
+  width: 100%;
+  padding: 8px 16px;
+  border-radius: 4px;
+  box-sizing: border-box;
+  /* box sizing allows the container to be sized to include padding so 100% width doesnt break out of main container */
+  background-color: rgb(44, 44, 44);
+  border: 1px solid gray;
+  color: white;
+}
+
+.create-bot {
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}

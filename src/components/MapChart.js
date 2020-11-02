@@ -12,6 +12,7 @@ import {
 
 import allStates from '../data/allstates.json';
 import { navigate } from '@reach/router';
+import statesArray from '../assests/stateArray';
 
 const geoUrl = 'https://cdn.jsdelivr.net/npm/us-atlas@3/states-10m.json';
 
@@ -19,6 +20,13 @@ const geoUrl = 'https://cdn.jsdelivr.net/npm/us-atlas@3/states-10m.json';
 //   SC: 'blue',
 //   CA: 'red',
 //   NY: 'green',
+// };
+
+// const popularity = {
+//   'South Carolina': '1',
+//   California: '.6',
+//   Texas: '.8',
+//   Alaska: '.1',
 // };
 
 const offsets = {
@@ -63,8 +71,13 @@ const MapChart = () => {
                 geography={geo}
                 // fill="#DDD"
                 fill={
-                  geo.properties.name === 'South Carolina' ? 'green' : 'grey'
+                  statesArray[geo.properties.name]
+                    ? `rgb(51, 204, 51, ${statesArray[geo.properties.name]})`
+                    : 'grey'
                 }
+                // fill={
+                //   geo.properties.name === 'South Carolina' ? 'green' : 'grey'
+                // }
                 //the fill is where the states are colored
                 //the fill value can change depending on the popularity of state
                 //not too hard just correlate to an array of popularity values
