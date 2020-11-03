@@ -7,7 +7,12 @@ export default function StatePage({ state }) {
   return (
     <div className="main">
       <div className="left">
-        {state}
+        <div>
+          <p>{state}</p>
+          <button>Trending</button>
+          <button>New</button>
+        </div>
+
         <Post />
         <Post />
         <Post />

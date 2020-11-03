@@ -1,6 +1,7 @@
 import { navigate } from '@reach/router';
 import React from 'react';
 import '../styles/post.css';
+import Vote from './Vote';
 
 export default function Post({ post }) {
   // const [numComments, setNumComments] = React.useState(0);
@@ -12,7 +13,7 @@ export default function Post({ post }) {
     <div className="post-main-cont">
       <div className="post-top-cont">
         <div>
-          <img src="" alt="avatar" />
+          <Vote />
         </div>
         <div className="post-titles">
           <div>Username</div>
@@ -32,7 +33,6 @@ export default function Post({ post }) {
         </p>
       </div>
       <div className="post-bot-cont">
-        <button>Like</button>
         <button onClick={() => navigate('/post/1')}>Comments</button>
         {/* onclick will be broken until i pass a real post object */}
       </div>

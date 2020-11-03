@@ -1,11 +1,11 @@
 .comment-create-main {
   display: flex;
   flex-direction: column;
-  border: 1px solid gray;
+  /* border: 1px solid gray; */
   border-radius: 10px;
   padding: 10px;
   margin: 10px;
-  background-color: rgb(66, 66, 66);
+  /* background-color: rgb(66, 66, 66); */
 }
 
 .comment-create-top,
@@ -25,4 +25,9 @@
   background-color: rgb(44, 44, 44);
   border: 1px solid gray;
   color: white;
+}
+
+.comment-create-bot {
+  /* display: flex;
+  justify-content: flex-end; */
 }
