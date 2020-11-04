@@ -38,6 +38,7 @@
 
 .posted-by:hover {
   text-decoration: underline;
+  cursor: pointer;
 }
 
 .post-mid-cont {

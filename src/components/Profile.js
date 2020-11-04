@@ -12,10 +12,9 @@ export default function Profile() {
       ></img>
       <div>Username</div>
       <div>State</div>
-      {/* <div>About Me</div> */}
-      <button>Notifications</button>
-      <button>Messages</button>
-      <button>Sign Out</button>
+      <div>Number of posts</div>
+      <button>Follow</button>
+      <button>Chat</button>
     </div>
   );
 }

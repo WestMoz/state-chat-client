@@ -14,6 +14,8 @@
   /* overflow: auto; */
   overflow: scroll;
   overflow-x: hidden;
+  padding-left: 10px;
+  padding-right: 10px;
 }
 
 .home-right {

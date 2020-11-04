@@ -1,0 +1,17 @@
+.user-main {
+  width: 100vw;
+  height: 95vh;
+  display: flex;
+}
+
+.user-left {
+  width: 75%;
+  overflow: scroll;
+  overflow-x: hidden;
+}
+
+.user-right {
+  width: 25%;
+  height: 100%;
+  padding-top: 20px;
+}
