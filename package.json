@@ -13,10 +13,13 @@
     "aws-amplify": "^3.3.4",
     "axios": "^0.21.0",
     "d3": "^6.2.0",
+    "faker": "^5.1.0",
+    "lodash": "^4.17.20",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "react-scripts": "3.4.3",
-    "react-simple-maps": "^2.1.2"
+    "react-simple-maps": "^2.1.2",
+    "semantic-ui-react": "^2.0.1"
   },
   "scripts": {
     "start": "react-scripts start",

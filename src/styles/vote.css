@@ -14,3 +14,11 @@
 .downvote-icon:hover {
   color: red;
 }
+
+.upvote-liked {
+  color: rgb(124, 124, 255);
+}
+
+.upvote-disliked {
+  color: rgb(255, 108, 108);
+}

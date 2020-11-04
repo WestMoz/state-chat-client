@@ -19,6 +19,7 @@ export default function HomePage({ signedIn }) {
       setPosts(response.data);
     })();
   }, []);
+  console.log(posts);
 
   return (
     <div className="home-main">
@@ -29,6 +30,8 @@ export default function HomePage({ signedIn }) {
         <p>Trending</p>
         {/* <CreatePost signedIn={signedIn} /> */}
         {posts && <TestPost post={posts[0]} signedIn={signedIn} />}
+        {posts &&
+          posts.map((post) => <TestPost post={post} signedIn={signedIn} />)}
         <Post />
         <Post />
         <Post />

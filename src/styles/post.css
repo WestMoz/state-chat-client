@@ -32,6 +32,16 @@
   margin-left: 2em;
 }
 
+.posted-by {
+  margin-right: 5px;
+}
+
+.posted-by:hover {
+  text-decoration: underline;
+}
+
 .post-mid-cont {
   text-align: left;
+  margin-left: 10px;
+  margin-right: 10px;
 }

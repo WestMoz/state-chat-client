@@ -15,6 +15,14 @@ div {
   font-family: -apple-system, BlinkMacSystemFont, sans-serif;
 }
 
+.text-title {
+  font-size: 20px;
+}
+
+.text-content {
+  font-size: 14px;
+}
+
 /* this hides the scroll bar */
 /* ::-webkit-scrollbar {
   display: none;

@@ -1,0 +1,21 @@
+.dropdown select {
+  background-color: black;
+}
+
+.dropdown option {
+  /* color: white; */
+}
+
+.dropdownComp {
+  background-color: black;
+  color: white;
+}
+
+.item {
+  background-color: black;
+  /* color: white; */
+}
+
+.ui.dropdown.menu > .item {
+  /* color: white; */
+}

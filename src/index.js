@@ -7,6 +7,12 @@ import Amplify from 'aws-amplify';
 import awsExports from './aws-exports';
 Amplify.configure(awsExports);
 
+const styleLink = document.createElement('link');
+styleLink.rel = 'stylesheet';
+styleLink.href =
+  'https://cdn.jsdelivr.net/npm/semantic-ui/dist/semantic.min.css';
+document.head.appendChild(styleLink);
+
 ReactDOM.render(
   <React.StrictMode>
     <App />
