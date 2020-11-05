@@ -29,7 +29,6 @@ export default function HomePage({ signedIn }) {
         </div>
         <p>Trending</p>
         {/* <CreatePost signedIn={signedIn} /> */}
-        {posts && <TestPost post={posts[0]} signedIn={signedIn} />}
         {posts &&
           posts.map((post) => <TestPost post={post} signedIn={signedIn} />)}
         <Post />

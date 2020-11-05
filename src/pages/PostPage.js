@@ -7,7 +7,7 @@ export default function PostPage({ signedIn, postId }) {
   return (
     <div className="main">
       <div className="left">
-        <ViewPost />
+        <ViewPost postId={postId} signedIn={signedIn} />
         {/* <Post />
         <CreateComment signedIn={signedIn} postId={postId} />
         <Comment />

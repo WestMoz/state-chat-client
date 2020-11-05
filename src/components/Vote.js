@@ -9,6 +9,40 @@ export default function Vote({ signedIn, post, isLiked, setIsLiked }) {
   // const [isLiked, setIsLiked] = React.useState(undefined)
   //load whether post passed is liked by current user
   //could also do this in the post compoent and pass isLiked as a prop to this component
+  const [upVotes, setUpVotes] = React.useState(undefined);
+  const [downVotes, setDownVotes] = React.useState(undefined);
+
+  React.useEffect(() => {
+    (async function () {
+      try {
+        const token = signedIn.signInUserSession.idToken.jwtToken;
+        const upVotesResp = await Axios.post(
+          'http://localhost:4000/get-num-votes',
+          {
+            token,
+            postId: post.postId,
+            vote: 1,
+          },
+        );
+        setUpVotes(upVotesResp.data.votes);
+
+        const downVotesResp = await Axios.post(
+          'http://localhost:4000/get-num-votes',
+          {
+            token,
+            postId: post.postId,
+            vote: 0,
+          },
+        );
+        setDownVotes(downVotesResp.data.votes);
+      } catch (error) {
+        console.log(error);
+      }
+    })();
+  }, []);
+
+  console.log(upVotes);
+  console.log(downVotes);
 
   async function deleteVote() {
     try {
@@ -18,7 +52,7 @@ export default function Vote({ signedIn, post, isLiked, setIsLiked }) {
         postId: post.postId,
       });
       setIsLiked(undefined);
-      window.alert('vote was deleted');
+      // window.alert('vote was deleted');
     } catch (error) {
       console.log(error);
     }
@@ -35,7 +69,9 @@ export default function Vote({ signedIn, post, isLiked, setIsLiked }) {
           vote: 1,
         });
         setIsLiked(1);
-        window.alert('post was liked');
+        setDownVotes(downVotes - 1);
+        setUpVotes(upVotes + 1);
+        // window.alert('post was liked');
       } //if post is not voted on or disliked then upvote
       else {
         deleteVote();
@@ -56,7 +92,10 @@ export default function Vote({ signedIn, post, isLiked, setIsLiked }) {
           vote: 0,
         });
         setIsLiked(0);
-        window.alert('post was deleted');
+        setUpVotes(upVotes - 1);
+        setDownVotes(downVotes + 1);
+
+        // window.alert('post was deleted');
       } //if post is not voted on or disliked then upvote
       else {
         deleteVote();
@@ -75,7 +114,7 @@ export default function Vote({ signedIn, post, isLiked, setIsLiked }) {
           className="upvote-icon"
           onClick={() => upVote()}
         />
-        <p>12</p>
+        <p>{upVotes}</p>
       </div>
       <div
         style={{ display: 'flex' }}
@@ -85,7 +124,7 @@ export default function Vote({ signedIn, post, isLiked, setIsLiked }) {
           className="downvote-icon"
           onClick={() => downVote()}
         />
-        <p>4</p>
+        <p>{downVotes}</p>
       </div>
     </div>
   );

@@ -5,43 +5,100 @@ import CreateComment from './CreateComment';
 import Post from './Post';
 import '../styles/viewpost.css';
 import Vote from './Vote';
+import { navigate } from '@reach/router';
+import Axios from 'axios';
 
-export default function ViewPost() {
+export default function ViewPost({ signedIn, postId }) {
+  const [post, setPost] = React.useState(undefined);
+  const [isLiked, setIsLiked] = React.useState(undefined);
+  const [comments, setComments] = React.useState(undefined);
+  React.useEffect(() => {
+    (async function () {
+      try {
+        const token = signedIn.signInUserSession.idToken.jwtToken;
+        const postById = await Axios.post(
+          'http://localhost:4000/get-post-by-id',
+          {
+            token,
+            postId,
+          },
+        );
+        setPost(postById.data);
+
+        const liked = await Axios.post('http://localhost:4000/get-is-liked', {
+          token,
+          postId,
+        });
+        console.log(liked.data);
+        if (liked.data) {
+          setIsLiked(liked.data.vote);
+        }
+
+        const commentsResp = await Axios.post(
+          'http://localhost:4000/get-comments-by-id',
+          {
+            token,
+            postId,
+          },
+        );
+        setComments(commentsResp.data);
+      } catch (error) {
+        console.log(error);
+      }
+    })();
+  }, []);
+
+  console.log(signedIn);
   return (
-    <div className="view-main">
-      <div className="view-top">
-        <div>
-          <Vote />
-        </div>
-        <div className="view-titles">
-          <div>Username</div>
+    <>
+      {post && (
+        <div className="view-main">
+          <div className="view-top">
+            <div>
+              <Vote
+                post={post}
+                signedIn={signedIn}
+                isLiked={isLiked}
+                setIsLiked={setIsLiked}
+              />
+            </div>
+            <div className="view-titles">
+              {/* <div>Username</div>
           <div>Time Posted</div>
-          <div>Category Maybe?</div>
+          <div>Category Maybe?</div> */}
+              <div style={{ display: 'flex' }}>
+                <div
+                  className="posted-by"
+                  onClick={() => navigate(`/user/${post.creator}`)}
+                >
+                  Posted by {post.creator}
+                </div>
+                <div>
+                  {new Date(Math.floor(post.timestamp)).toLocaleDateString()}
+                </div>
+              </div>
+              <div>{post.category}</div>
+            </div>
+          </div>
+          <div className="view-mid">
+            <div>
+              <p className="text-title">{post.title}</p>
+              <p className="text-content">{post.content}</p>
+            </div>
+            <div>
+              <CreateComment postId={post.postId} signedIn={signedIn} />
+            </div>
+          </div>
+          <div className="view-bottom">
+            {comments &&
+              comments.map((comment) => <Comment comment={comment} />)}
+            {/* <Comment comment={comment}/>
+            <Comment />
+            <Comment />
+            <Comment /> */}
+          </div>
         </div>
-      </div>
-      <div className="view-mid">
-        <div>
-          <p>Title Here</p>
-          <p>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-            eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
-            ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-            aliquip ex ea commodo consequat. Duis aute irure dolor in
-            reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
-            pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
-            culpa qui officia deserunt mollit anim id est laborum.
-          </p>
-        </div>
-        <div>
-          <CreateComment />
-        </div>
-      </div>
-      <div className="view-bottom">
-        <Comment />
-        <Comment />
-        <Comment />
-        <Comment />
-      </div>
-    </div>
+      )}
+    </>
   );
 }
