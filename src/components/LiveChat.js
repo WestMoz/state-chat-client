@@ -3,8 +3,8 @@ import PubNub from 'pubnub';
 import { PubNubProvider, PubNubConsumer } from 'pubnub-react';
 
 const pubnub = new PubNub({
-  publishKey: 'pub-c-ee4b9d5f-e464-404d-b4a9-66df43f5903a',
-  subscribeKey: 'sub-c-2dcb98f4-1f81-11eb-b558-be5397d4d556',
+  publishKey: process.env.publishKey,
+  subscribeKey: process.env.subscribeKey,
   uuid: 'Moz',
 });
 //will change uuid based on user signed in
