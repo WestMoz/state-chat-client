@@ -12,7 +12,6 @@ export default function Navbar() {
         <div
           className="nav-home"
           onClick={() => {
-            console.log('home clicked');
             navigate('/home');
           }}
         >

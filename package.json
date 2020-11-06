@@ -15,6 +15,8 @@
     "d3": "^6.2.0",
     "faker": "^5.1.0",
     "lodash": "^4.17.20",
+    "pubnub": "^4.29.9",
+    "pubnub-react": "^2.0.0",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "react-scripts": "3.4.3",
