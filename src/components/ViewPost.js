@@ -81,7 +81,7 @@ export default function ViewPost({ signedIn, postId }) {
             </div>
           </div>
           <div className="view-mid">
-            <div>
+            <div className="view-post">
               <p className="text-title">{post.title}</p>
               <p className="text-content">{post.content}</p>
             </div>

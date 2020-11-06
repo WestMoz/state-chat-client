@@ -12,9 +12,7 @@ export default function Post({ post }) {
   return (
     <div className="post-main-cont">
       <div className="post-top-cont">
-        <div>
-          <Vote />
-        </div>
+        <div>{/* <Vote /> */}</div>
         <div className="post-titles">
           <div>Username</div>
           <div>Time Posted</div>

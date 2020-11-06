@@ -35,6 +35,7 @@ export default function StatsBar() {
         <div>Post Preview</div>
         <div>Post Preview</div>
         <div>Post Preview</div>
+        <div>LIVE CHAT?</div>
       </div>
     </div>
   );

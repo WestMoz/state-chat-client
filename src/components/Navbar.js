@@ -1,10 +1,10 @@
 import { navigate } from '@reach/router';
 import React from 'react';
 import '../styles/navbar.css';
+import SearchBar from './SearchBar';
 
 export default function Navbar() {
-  const [search, setSearch] = React.useState('');
-  console.log(search);
+  // console.log(search);
 
   return (
     <div className="nav-main">
@@ -21,12 +21,13 @@ export default function Navbar() {
         <button onClick={() => navigate('/create')}>Create Post</button>
       </div>
       <div className="nav-mid">
-        <input
+        {/* <input
           onChange={(e) => setSearch(e.target.value)}
           type="text"
           placeholder="Search posts..."
         />
-        <button>Search</button>
+        <button>Search</button> */}
+        <SearchBar />
       </div>
       <div className="nav-right">
         <button>Notifications</button>
@@ -37,7 +38,7 @@ export default function Navbar() {
           alt="avatar"
           height="80%"
           style={{
-            borderRadius: '500px',
+            borderRadius: '10px',
             backgroundColor: 'lightcoral',
             border: '1px solid white',
           }}

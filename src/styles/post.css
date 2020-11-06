@@ -10,8 +10,7 @@
 }
 
 .post-top-cont,
-.post-mid-cont,
-.post-bot-cont {
+.post-mid-cont {
   margin-bottom: 1rem;
 }
 
@@ -43,6 +42,30 @@
 
 .post-mid-cont {
   text-align: left;
-  margin-left: 10px;
-  margin-right: 10px;
+  margin-left: 20px;
+  margin-right: 20px;
+}
+
+.post-bot-cont {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  /* border: 1px solid green; */
+  width: fit-content;
+  padding: 5px;
+}
+
+.post-bot-cont:hover {
+  background-color: rgb(34, 34, 34);
+  cursor: pointer;
+}
+
+.comments-button {
+  display: flex;
+}
+
+.comment-icon {
+  margin-right: 5px;
+  color: darkgray;
+  fontsize: 5px;
 }

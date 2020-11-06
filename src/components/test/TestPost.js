@@ -3,6 +3,7 @@ import Axios from 'axios';
 import React from 'react';
 import '../../styles/post.css';
 import Vote from '../Vote';
+import ChatBubbleIcon from '@material-ui/icons/ChatBubble';
 
 export default function Post({ post, signedIn }) {
   const [numComments, setNumComments] = React.useState(0);
@@ -63,9 +64,13 @@ export default function Post({ post, signedIn }) {
         <p className="text-content">{post.content}</p>
       </div>
       <div className="post-bot-cont">
-        <button onClick={() => navigate(`/post/${post.postId}`)}>
-          {numComments} Comments
-        </button>
+        <div
+          className="comments-button"
+          onClick={() => navigate(`/post/${post.postId}`)}
+        >
+          <ChatBubbleIcon className="comment-icon" />
+          <div>{numComments} Comments</div>
+        </div>
         {/* onclick will be broken until i pass a real post object */}
       </div>
     </div>

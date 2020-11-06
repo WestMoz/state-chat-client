@@ -6,6 +6,7 @@ import StatePage from '../pages/StatePage';
 import PostPage from '../pages/PostPage';
 import CreatePostPage from '../pages/CreatePostPage';
 import ViewUser from '../pages/ViewUser';
+import SearchPage from '../pages/SearchPage';
 
 export default function PrivateRoutes({ signedIn, setSignedIn }) {
   return (
@@ -15,6 +16,7 @@ export default function PrivateRoutes({ signedIn, setSignedIn }) {
       <PostPage path="/post/:postId" signedIn={signedIn} />
       <CreatePostPage path="/create" signedIn={signedIn} />
       <ViewUser path="/user/:user" signedIn={signedIn} />
+      <SearchPage path="/search/:search" signedIn={signedIn} />
       <NotFound default />
     </Router>
   );

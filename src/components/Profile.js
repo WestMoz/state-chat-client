@@ -8,7 +8,11 @@ export default function Profile() {
         src="https://bignokh.files.wordpress.com/2017/02/19c76c9bfacab70a3b9379f3fadc5323.png"
         alt="avatar"
         width="60%"
-        style={{ borderRadius: '500px', backgroundColor: 'lightcoral' }}
+        style={{
+          borderRadius: '20px',
+          backgroundColor: 'lightcoral',
+          border: '1px solid white',
+        }}
       ></img>
       <div>Username</div>
       <div>State</div>

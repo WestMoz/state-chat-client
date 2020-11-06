@@ -12,6 +12,7 @@
 .view-top,
 .view-mid {
   margin-left: 20px;
+  margin-right: 20px;
 }
 
 .view-top {
@@ -27,4 +28,8 @@
   flex-direction: column;
   text-align: left;
   margin-left: 2em;
+}
+
+.view-post {
+  margin-left: 10px;
 }
