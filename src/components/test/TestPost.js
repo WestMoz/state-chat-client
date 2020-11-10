@@ -8,6 +8,7 @@ import ChatBubbleIcon from '@material-ui/icons/ChatBubble';
 export default function Post({ user, post, signedIn }) {
   const [numComments, setNumComments] = React.useState(0);
   const [isLiked, setIsLiked] = React.useState(undefined);
+  const [imageUrl, setImageUrl] = React.useState(undefined);
   //this will load the number of comments on post load
   //comments button will open post in new page
   //new page will alow user to read comments and post a comment
@@ -28,6 +29,18 @@ export default function Post({ user, post, signedIn }) {
       console.log(liked.data);
       if (liked.data) {
         setIsLiked(liked.data.vote);
+      }
+
+      if (post.image) {
+        const imageResp = await Axios.post(
+          'http://localhost:4000/get-s3-image',
+          {
+            token,
+            path: post.image,
+          },
+        );
+        console.log(imageResp);
+        setImageUrl(imageResp.data);
       }
     })();
   }, []);
@@ -62,6 +75,7 @@ export default function Post({ user, post, signedIn }) {
       <div className="post-mid-cont">
         <p className="text-title">{post.title}</p>
         <p className="text-content">{post.content}</p>
+        {post.image && <img src={imageUrl} alt="post image" />}
       </div>
       <div className="post-bot-cont">
         <div
