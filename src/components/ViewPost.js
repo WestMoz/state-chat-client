@@ -12,6 +12,9 @@ export default function ViewPost({ signedIn, postId }) {
   const [post, setPost] = React.useState(undefined);
   const [isLiked, setIsLiked] = React.useState(undefined);
   const [comments, setComments] = React.useState(undefined);
+  const [imageUrl, setImageUrl] = React.useState(undefined);
+  const [newComment, setNewComment] = React.useState(false);
+
   React.useEffect(() => {
     (async function () {
       try {
@@ -42,11 +45,24 @@ export default function ViewPost({ signedIn, postId }) {
           },
         );
         setComments(commentsResp.data);
+
+        await getImage(postById.data, token);
       } catch (error) {
         console.log(error);
       }
     })();
-  }, []);
+  }, [newComment]);
+
+  async function getImage(post, token) {
+    const imageResp = await Axios.post('http://localhost:4000/get-s3-image', {
+      token,
+      path: post.image,
+    });
+    console.log(imageResp);
+    setImageUrl(imageResp.data);
+  }
+
+  console.log(post);
 
   console.log(signedIn);
   return (
@@ -84,9 +100,19 @@ export default function ViewPost({ signedIn, postId }) {
             <div className="view-post">
               <p className="text-title">{post.title}</p>
               <p className="text-content">{post.content}</p>
+              {post.image && (
+                <div style={{ display: 'flex', justifyContent: 'center' }}>
+                  <img className="post-image" src={imageUrl} alt="post image" />
+                </div>
+              )}
             </div>
             <div>
-              <CreateComment postId={post.postId} signedIn={signedIn} />
+              <CreateComment
+                newComment={newComment}
+                setNewComment={setNewComment}
+                postId={post.postId}
+                signedIn={signedIn}
+              />
             </div>
           </div>
           <div className="view-bottom">

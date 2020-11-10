@@ -10,16 +10,20 @@
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.3.2",
     "@testing-library/user-event": "^7.1.2",
-    "aws-amplify": "^3.3.4",
+    "aws-amplify": "^3.3.7",
     "axios": "^0.21.0",
     "d3": "^6.2.0",
     "faker": "^5.1.0",
     "lodash": "^4.17.20",
+    "pubnub": "^4.29.9",
+    "pubnub-react": "^2.0.0",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "react-scripts": "3.4.3",
+    "react-scroll-to-bottom": "^4.0.0",
     "react-simple-maps": "^2.1.2",
-    "semantic-ui-react": "^2.0.1"
+    "semantic-ui-react": "^2.0.1",
+    "uuid": "^8.3.1"
   },
   "scripts": {
     "start": "react-scripts start",

@@ -2,8 +2,12 @@ import React from 'react';
 import '../styles/createpost.css';
 import Dropdown from './Dropdown';
 import Axios from 'axios';
+import { navigate } from '@reach/router';
+import S3PostImage from './S3Components/S3PostImage';
 
 export default function CreatePost({ signedIn }) {
+  const [imagePath, setImagePath] = React.useState(undefined);
+
   async function submitPost(e) {
     e.preventDefault();
     try {
@@ -23,9 +27,11 @@ export default function CreatePost({ signedIn }) {
         title,
         content,
         category,
+        image: imagePath,
       });
       console.log(response);
       window.alert('post succesfully created');
+      navigate(`/user/${signedIn.username}`);
     } catch (error) {
       console.log(error);
     }
@@ -45,6 +51,9 @@ export default function CreatePost({ signedIn }) {
             rows="5"
             placeholder="Content"
           ></textarea>
+        </div>
+        <div>
+          <S3PostImage signedIn={signedIn} setImagePath={setImagePath} />
         </div>
         <div className="create-bot">
           <button type="reset">Cancel</button>

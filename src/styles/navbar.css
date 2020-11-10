@@ -27,3 +27,8 @@
   align-items: center;
   height: 100%;
 }
+
+.nav-home:hover {
+  text-decoration: underline;
+  cursor: pointer;
+}

@@ -14,6 +14,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 import { Auth } from 'aws-amplify';
 import { navigate } from '@reach/router';
+import Axios from 'axios';
 // import axios from 'axios';
 
 function Copyright() {
@@ -78,18 +79,16 @@ export default function ConfirmSignUp({ username, password, setSignedIn }) {
                     currentUser.signInUserSession.idToken.jwtToken;
                   console.log(idToken);
                   setSignedIn(currentUser);
-                  navigate('/home');
+                  // navigate('/home');
                   // const  await Auth.currentAuthenticatedUser());
-                  // await axios
-                  //   .post('http://localhost:4000/create-user', {
-                  //     token: idToken,
-                  //     avatar: 'defaultAvatar/super-mario-run.jpg',
-                  //   })
-                  //   .then(() => {
-                  //     setSignedIn(currentUser);
-                  //     navigate('/home');
-                  //   })
-                  //   .catch((error) => console.log(error));
+                  await Axios.post('http://localhost:4000/create-user', {
+                    token: idToken,
+                  })
+                    .then(() => {
+                      // setSignedIn(currentUser);
+                      navigate('/home');
+                    })
+                    .catch((error) => console.log(error));
                 }
               } catch (error) {
                 console.log('error confirming sign up', error);

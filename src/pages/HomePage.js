@@ -5,6 +5,7 @@ import '../styles/home.css';
 import StatsBar from '../components/StatsBar';
 import TestPost from '../components/test/TestPost';
 import Axios from 'axios';
+import LiveChat from '../components/LiveChat';
 
 //STATS PAGE TO DISPLAY SPECIFIC STATS
 //USER STATS ex: NUMBER OF POSTS/COMMENTS
@@ -39,7 +40,8 @@ export default function HomePage({ signedIn }) {
         <Post />
       </div>
       <div className="home-right">
-        <StatsBar />
+        {/* <StatsBar /> */}
+        <LiveChat signedIn={signedIn} />
       </div>
     </div>
   );

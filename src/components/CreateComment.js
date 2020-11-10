@@ -2,7 +2,12 @@ import React from 'react';
 import Axios from 'axios';
 import '../styles/createcomment.css';
 
-export default function CreateComment({ postId, signedIn }) {
+export default function CreateComment({
+  postId,
+  signedIn,
+  newComment,
+  setNewComment,
+}) {
   async function submitComment(e) {
     e.preventDefault();
     try {
@@ -19,6 +24,7 @@ export default function CreateComment({ postId, signedIn }) {
       );
       console.log(response);
       window.alert('comment succesfully created');
+      setNewComment(!newComment);
     } catch (error) {
       console.log(error);
     }

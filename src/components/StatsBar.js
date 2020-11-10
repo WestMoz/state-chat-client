@@ -1,5 +1,6 @@
 import React from 'react';
 import '../styles/statsbar.css';
+import LiveChat from './LiveChat';
 
 export default function StatsBar() {
   return (
