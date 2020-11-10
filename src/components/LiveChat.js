@@ -3,6 +3,13 @@ import PubNub from 'pubnub';
 import { PubNubProvider, PubNubConsumer } from 'pubnub-react';
 import '../styles/livechat.css';
 
+const pubnub = new PubNub({
+  publishKey: process.env.publishKey,
+  subscribeKey: process.env.subscribeKey,
+  uuid: 'Moz',
+});
+//will change uuid based on user signed in
+
 const channels = ['awesomeChannel'];
 //might set channel to channel create between two users
 
