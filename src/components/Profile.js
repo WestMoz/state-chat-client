@@ -26,20 +26,34 @@ export default function Profile({ signedIn, user }) {
 
   return (
     <div className="profile-main">
-      <img
-        // src="https://bignokh.files.wordpress.com/2017/02/19c76c9bfacab70a3b9379f3fadc5323.png"
-        src={avatarUrl}
-        // src="https://cdn.onlinewebfonts.com/svg/img_568656.png"
-        alt="avatar"
-        width="60%"
-        min-height="90%"
+      <div
         style={{
+          width: '90%',
+          height: '50%',
+          overflow: 'hidden',
           borderRadius: '20px',
           backgroundColor: 'lightcoral',
           border: '1px solid white',
-          padding: '10px',
+          display: 'flex',
         }}
-      ></img>
+      >
+        <img
+          // src="https://bignokh.files.wordpress.com/2017/02/19c76c9bfacab70a3b9379f3fadc5323.png"
+          src={avatarUrl}
+          // src="https://cdn.onlinewebfonts.com/svg/img_568656.png"
+          alt="avatar"
+          width="100%"
+          // min-height="90%"
+          style={{
+            margin: 'auto',
+            // borderRadius: '20px',
+            // backgroundColor: 'lightcoral',
+            // border: '1px solid white',
+            // padding: '10px',
+          }}
+        ></img>
+      </div>
+
       <div>Username</div>
       <div>State</div>
       <div>Number of posts</div>

@@ -90,7 +90,7 @@ export default function LiveChat({ signedIn }) {
             <div
               style={{
                 display: 'flex',
-                flexDirection: 'column',
+                flexDirection: 'column-reverse',
                 backgroundColor: 'white',
                 height: '85%',
                 overflow: 'scroll',
@@ -98,7 +98,7 @@ export default function LiveChat({ signedIn }) {
                 paddingBottom: '5px',
               }}
             >
-              {messages.map((message, messageIndex) => {
+              {[...messages].reverse().map((message, messageIndex) => {
                 return (
                   <div
                     className={

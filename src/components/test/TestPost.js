@@ -47,7 +47,11 @@ export default function Post({ user, post, signedIn }) {
   // console.log(numComments);
   console.log(isLiked);
   return (
-    <div className="post-main-cont">
+    <div
+      className="post-main-cont"
+      // onClick={() => navigate(`/post/${post.postId}`)}
+      //this overrides ability to click posted by
+    >
       <div className="post-top-cont">
         <div>
           <Vote
@@ -75,7 +79,12 @@ export default function Post({ user, post, signedIn }) {
       <div className="post-mid-cont">
         <p className="text-title">{post.title}</p>
         <p className="text-content">{post.content}</p>
-        {post.image && <img src={imageUrl} alt="post image" />}
+
+        {post.image && (
+          <div style={{ display: 'flex', justifyContent: 'center' }}>
+            <img className="post-image" src={imageUrl} alt="post image" />
+          </div>
+        )}
       </div>
       <div className="post-bot-cont">
         <div
