@@ -2,6 +2,7 @@ import React from 'react';
 import '../styles/createpost.css';
 import Dropdown from './Dropdown';
 import Axios from 'axios';
+import { navigate } from '@reach/router';
 
 export default function CreatePost({ signedIn }) {
   async function submitPost(e) {
@@ -26,6 +27,7 @@ export default function CreatePost({ signedIn }) {
       });
       console.log(response);
       window.alert('post succesfully created');
+      navigate(`/user/${signedIn.username}`);
     } catch (error) {
       console.log(error);
     }

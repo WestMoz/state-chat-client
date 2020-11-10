@@ -1,20 +1,21 @@
 import React, { useState } from 'react';
 import PubNub from 'pubnub';
 import { PubNubProvider, PubNubConsumer } from 'pubnub-react';
-
-const pubnub = new PubNub({
-  publishKey: 'pub-c-ee4b9d5f-e464-404d-b4a9-66df43f5903a',
-  subscribeKey: 'sub-c-2dcb98f4-1f81-11eb-b558-be5397d4d556',
-  uuid: 'Moz',
-});
-//will change uuid based on user signed in
+import '../styles/livechat.css';
 
 const channels = ['awesomeChannel'];
 //might set channel to channel create between two users
 
-export default function LiveChat() {
+export default function LiveChat({ signedIn }) {
   const [messages, addMessage] = useState([]);
   const [message, setMessage] = useState('');
+
+  const pubnub = new PubNub({
+    publishKey: 'pub-c-ee4b9d5f-e464-404d-b4a9-66df43f5903a',
+    subscribeKey: 'sub-c-2dcb98f4-1f81-11eb-b558-be5397d4d556',
+    uuid: signedIn.username,
+  });
+  //will change uuid based on user signed in
 
   React.useEffect(() => {
     pubnub.fetchMessages(
@@ -28,9 +29,7 @@ export default function LiveChat() {
         if (!status.error) {
           console.log(response.channels.awesomeChannel);
           // addMessage([...response.channels.awesomeChannel[0]]);
-          const history = response.channels.awesomeChannel.map(
-            (foo) => foo.message,
-          );
+          const history = response.channels.awesomeChannel.map((foo) => foo);
           console.log(history);
           addMessage(history);
         }
@@ -46,6 +45,7 @@ export default function LiveChat() {
       },
       () => setMessage(''),
     );
+    // addMessage(message);
   };
   return (
     <PubNubProvider client={pubnub}>
@@ -62,7 +62,7 @@ export default function LiveChat() {
             {(client) => {
               client.addListener({
                 message: (messageEvent) => {
-                  addMessage([...messages, messageEvent.message]);
+                  addMessage([...messages, messageEvent]);
                 },
               });
               //can change this to add timestamp to message and user posted
@@ -77,9 +77,16 @@ export default function LiveChat() {
               border: '1px solid black',
             }}
           >
-            <div style={{ backgroundColor: 'grey', height: '1.5em' }}>
+            <div
+              style={{
+                backgroundColor: 'grey',
+                height: '1.5em',
+                paddingLeft: '10px',
+              }}
+            >
               Live Chat
             </div>
+
             <div
               style={{
                 display: 'flex',
@@ -88,32 +95,33 @@ export default function LiveChat() {
                 height: '85%',
                 overflow: 'scroll',
                 overflowX: 'hidden',
+                paddingBottom: '5px',
               }}
             >
               {messages.map((message, messageIndex) => {
                 return (
                   <div
+                    className={
+                      message.uuid === signedIn.username ||
+                      message.publisher === signedIn.username
+                        ? 'myMessage'
+                        : 'otherMessage'
+                    }
                     key={`message-${messageIndex}`}
-                    style={{
-                      display: 'inline-block',
-                      float: 'left',
-                      backgroundColor: 'lightblue',
-                      color: 'black',
-                      borderRadius: '20px',
-                      margin: '5px',
-                      padding: '8px 15px',
-                      width: 'fit-content',
-                    }}
                   >
-                    {message}
+                    <p className="chat-username">
+                      {message.uuid ? message.uuid : message.publisher}
+                    </p>
+                    {message.message}
                   </div>
                 );
               })}
             </div>
+
             <div
               style={{
                 display: 'flex',
-                height: '4em',
+                height: '3em',
                 width: '100%',
                 backgroundColor: 'lightgrey',
               }}

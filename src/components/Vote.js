@@ -61,20 +61,24 @@ export default function Vote({ signedIn, post, isLiked, setIsLiked }) {
   async function upVote() {
     try {
       const token = signedIn.signInUserSession.idToken.jwtToken;
-      if (isLiked != 1) {
+      if (isLiked !== 1) {
         await deleteVote();
         await Axios.post('http://localhost:4000/vote', {
           token,
           postId: post.postId,
           vote: 1,
         });
-        setIsLiked(1);
-        setDownVotes(downVotes - 1);
+        if (isLiked !== undefined) {
+          setDownVotes(downVotes - 1);
+        }
         setUpVotes(upVotes + 1);
+        setIsLiked(1);
+
         // window.alert('post was liked');
       } //if post is not voted on or disliked then upvote
       else {
         deleteVote();
+        setUpVotes(upVotes - 1);
       } //if component is liked then delete like
     } catch (error) {
       console.log(error);
@@ -84,21 +88,25 @@ export default function Vote({ signedIn, post, isLiked, setIsLiked }) {
   async function downVote() {
     try {
       const token = signedIn.signInUserSession.idToken.jwtToken;
-      if (isLiked != 0) {
+      if (isLiked !== 0) {
         await deleteVote();
         await Axios.post('http://localhost:4000/vote', {
           token,
           postId: post.postId,
           vote: 0,
         });
+        if (isLiked !== undefined) {
+          setUpVotes(upVotes - 1);
+        }
         setIsLiked(0);
-        setUpVotes(upVotes - 1);
+
         setDownVotes(downVotes + 1);
 
         // window.alert('post was deleted');
       } //if post is not voted on or disliked then upvote
       else {
         deleteVote();
+        setDownVotes(downVotes - 1);
       } //if component is liked then delete like
     } catch (error) {
       console.log(error);

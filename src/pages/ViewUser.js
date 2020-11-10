@@ -33,10 +33,12 @@ export default function ViewUser({ user, signedIn }) {
         <button>New</button>
         <button>Top</button>
         {userPosts &&
-          userPosts.map((post) => <TestPost post={post} signedIn={signedIn} />)}
+          userPosts.map((post) => (
+            <TestPost user={user} post={post} signedIn={signedIn} />
+          ))}
       </div>
       <div className="user-right">
-        <Profile />
+        <Profile signedIn={signedIn} user={user} />
       </div>
     </div>
   );

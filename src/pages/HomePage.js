@@ -41,7 +41,7 @@ export default function HomePage({ signedIn }) {
       </div>
       <div className="home-right">
         {/* <StatsBar /> */}
-        <LiveChat />
+        <LiveChat signedIn={signedIn} />
       </div>
     </div>
   );

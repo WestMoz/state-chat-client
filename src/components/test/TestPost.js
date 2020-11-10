@@ -5,7 +5,7 @@ import '../../styles/post.css';
 import Vote from '../Vote';
 import ChatBubbleIcon from '@material-ui/icons/ChatBubble';
 
-export default function Post({ post, signedIn }) {
+export default function Post({ user, post, signedIn }) {
   const [numComments, setNumComments] = React.useState(0);
   const [isLiked, setIsLiked] = React.useState(undefined);
   //this will load the number of comments on post load
@@ -71,6 +71,7 @@ export default function Post({ post, signedIn }) {
           <ChatBubbleIcon className="comment-icon" />
           <div>{numComments} Comments</div>
         </div>
+        {user === signedIn.username ? <button>Delete</button> : <></>}
         {/* onclick will be broken until i pass a real post object */}
       </div>
     </div>

@@ -24,7 +24,7 @@ function App() {
     <div className="App">
       {signedIn ? (
         <>
-          <Navbar />
+          <Navbar signedIn={signedIn} setSignedIn={setSignedIn} />
           <PrivateRoutes setSignedIn={setSignedIn} signedIn={signedIn} />
         </>
       ) : (
