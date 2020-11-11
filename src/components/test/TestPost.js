@@ -49,7 +49,7 @@ export default function Post({ user, post, signedIn }) {
   return (
     <div
       className="post-main-cont"
-      // onClick={() => navigate(`/post/${post.postId}`)}
+      onClick={() => navigate(`/post/${post.postId}`)}
       //this overrides ability to click posted by
     >
       <div className="post-top-cont">
@@ -65,7 +65,10 @@ export default function Post({ user, post, signedIn }) {
           <div style={{ display: 'flex' }}>
             <div
               className="posted-by"
-              onClick={() => navigate(`/user/${post.creator}`)}
+              onClick={(e) => {
+                e.stopPropagation();
+                navigate(`/user/${post.creator}`);
+              }}
             >
               Posted by {post.creator}
             </div>

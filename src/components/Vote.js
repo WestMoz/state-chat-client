@@ -120,7 +120,10 @@ export default function Vote({ signedIn, post, isLiked, setIsLiked }) {
       >
         <ArrowUpwardRoundedIcon
           className="upvote-icon"
-          onClick={() => upVote()}
+          onClick={(e) => {
+            e.stopPropagation();
+            upVote();
+          }}
         />
         <p>{upVotes}</p>
       </div>
@@ -130,7 +133,10 @@ export default function Vote({ signedIn, post, isLiked, setIsLiked }) {
       >
         <ArrowDownwardRoundedIcon
           className="downvote-icon"
-          onClick={() => downVote()}
+          onClick={(e) => {
+            e.stopPropagation();
+            downVote();
+          }}
         />
         <p>{downVotes}</p>
       </div>
