@@ -11,27 +11,47 @@ import LiveChat from '../components/LiveChat';
 //USER STATS ex: NUMBER OF POSTS/COMMENTS
 export default function HomePage({ signedIn }) {
   const [posts, setPosts] = React.useState(undefined);
+  const [trending, setTrending] = React.useState(undefined);
   React.useEffect(() => {
     (async function () {
-      const token = signedIn.signInUserSession.idToken.jwtToken;
-      const response = await Axios.post('http://localhost:4000/get-all-posts', {
-        token,
-      });
-      setPosts(response.data);
+      try {
+        const token = signedIn.signInUserSession.idToken.jwtToken;
+        const response = await Axios.post(
+          'http://localhost:4000/get-all-posts',
+          {
+            token,
+          },
+        );
+        setPosts(response.data);
+        const trendingResp = await Axios.post(
+          'http://localhost:4000/get-trending-posts',
+          {
+            token,
+          },
+        );
+        setTrending(trendingResp.data);
+      } catch (error) {
+        console.log(error);
+      }
     })();
   }, []);
-  console.log(posts);
+  // console.log(posts);
+  // console.log(trending);
 
   return (
     <div className="home-main">
       <div className="home-left">
         <div className="home-map">
-          <MapChart />
+          <MapChart signedIn={signedIn} />
         </div>
         <p>Trending</p>
         {/* <CreatePost signedIn={signedIn} /> */}
-        {posts &&
-          posts.map((post) => <TestPost post={post} signedIn={signedIn} />)}
+        {trending &&
+          trending.map((post) => (
+            <TestPost key={post.postId} post={post} signedIn={signedIn} />
+          ))}
+        {/* {posts &&
+          posts.map((post) => <TestPost post={post} signedIn={signedIn} />)} */}
         <Post />
         <Post />
         <Post />

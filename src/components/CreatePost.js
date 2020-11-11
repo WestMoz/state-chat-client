@@ -5,7 +5,7 @@ import Axios from 'axios';
 import { navigate } from '@reach/router';
 import S3PostImage from './S3Components/S3PostImage';
 
-export default function CreatePost({ signedIn }) {
+export default function CreatePost({ signedIn, category }) {
   const [imagePath, setImagePath] = React.useState(undefined);
 
   async function submitPost(e) {
@@ -14,9 +14,9 @@ export default function CreatePost({ signedIn }) {
       const token = signedIn.signInUserSession.idToken.jwtToken;
       const title = e.target.elements.title.value;
       const content = e.target.elements.content.value;
-      const category = 'South Carolina';
+      // const state = category;
       //NEED TO ADD DROP DOWN FOR SELECTING CATEGORY TO POST IN
-
+      console.log(category);
       if (!title || !content || !category) {
         window.alert('missing required fields');
         return;

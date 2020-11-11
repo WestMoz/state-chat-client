@@ -15,7 +15,7 @@ export default function CreatePostPage({ signedIn }) {
           style={{ backgroundColor: 'black', color: 'white' }}
           setCategory={setCategory}
         />
-        <CreatePost signedIn={signedIn} />
+        <CreatePost category={category} signedIn={signedIn} />
       </div>
       <div className="right">
         <StatsBar />

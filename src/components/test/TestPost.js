@@ -26,7 +26,7 @@ export default function Post({ user, post, signedIn }) {
         token,
         postId,
       });
-      console.log(liked.data);
+      // console.log(liked.data);
       if (liked.data) {
         setIsLiked(liked.data.vote);
       }
@@ -39,13 +39,13 @@ export default function Post({ user, post, signedIn }) {
             path: post.image,
           },
         );
-        console.log(imageResp);
+        // console.log(imageResp);
         setImageUrl(imageResp.data);
       }
     })();
   }, []);
   // console.log(numComments);
-  console.log(isLiked);
+  // console.log(isLiked);
   return (
     <div
       className="post-main-cont"

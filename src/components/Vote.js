@@ -41,8 +41,8 @@ export default function Vote({ signedIn, post, isLiked, setIsLiked }) {
     })();
   }, []);
 
-  console.log(upVotes);
-  console.log(downVotes);
+  // console.log(upVotes);
+  // console.log(downVotes);
 
   async function deleteVote() {
     try {
