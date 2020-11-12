@@ -11,8 +11,15 @@ export default function StatePage({ state, signedIn }) {
     (async function () {
       try {
         const token = signedIn.signInUserSession.idToken.jwtToken;
+        // const stateResp = await Axios.post(
+        //   'http://localhost:4000/get-posts-by-state',
+        //   {
+        //     token,
+        //     state,
+        //   },
+        // );
         const stateResp = await Axios.post(
-          'http://localhost:4000/get-posts-by-state',
+          'http://localhost:4000/get-state-posts-ranked',
           {
             token,
             state,
@@ -24,17 +31,32 @@ export default function StatePage({ state, signedIn }) {
       }
     })();
   }, []);
-  console.log(posts);
+
+  function sortNew() {
+    setPosts([...posts].sort((a, b) => b.timestamp - a.timestamp));
+  }
+
+  function sortOld() {
+    setPosts([...posts].sort((a, b) => a.timestamp - b.timestamp));
+  }
+
+  function sortTop() {
+    setPosts([...posts].sort((a, b) => b.totalCount - a.totalCount));
+  }
+
   return (
     <div className="main">
       <div className="left">
         <div>
           <p>{state}</p>
-          <button>Trending</button>
-          <button>New</button>
+          <button onClick={() => sortTop()}>Top</button>
+          <button onClick={() => sortNew()}>Newest</button>
+          <button onClick={() => sortOld()}>Oldest</button>
         </div>
         {posts &&
-          posts.map((post) => <TestPost post={post} signedIn={signedIn} />)}
+          posts.map((post) => (
+            <TestPost post={post} signedIn={signedIn} key={post.postId} />
+          ))}
         <Post />
         <Post />
         <Post />

@@ -4,11 +4,13 @@ import React from 'react';
 import '../../styles/post.css';
 import Vote from '../Vote';
 import ChatBubbleIcon from '@material-ui/icons/ChatBubble';
+import DeleteButton from '../DeleteButton';
 
-export default function Post({ user, post, signedIn }) {
+export default function Post({ user, post, signedIn, refresh, setRefresh }) {
   const [numComments, setNumComments] = React.useState(0);
   const [isLiked, setIsLiked] = React.useState(undefined);
   const [imageUrl, setImageUrl] = React.useState(undefined);
+
   //this will load the number of comments on post load
   //comments button will open post in new page
   //new page will alow user to read comments and post a comment
@@ -59,6 +61,7 @@ export default function Post({ user, post, signedIn }) {
             post={post}
             isLiked={isLiked}
             setIsLiked={setIsLiked}
+            key={post.postId}
           />
         </div>
         <div className="post-titles">
@@ -97,7 +100,16 @@ export default function Post({ user, post, signedIn }) {
           <ChatBubbleIcon className="comment-icon" />
           <div>{numComments} Comments</div>
         </div>
-        {user === signedIn.username ? <button>Delete</button> : <></>}
+        {user === signedIn.username ? (
+          <DeleteButton
+            signedIn={signedIn}
+            postId={post.postId}
+            refresh={refresh}
+            setRefresh={setRefresh}
+          />
+        ) : (
+          <></>
+        )}
         {/* onclick will be broken until i pass a real post object */}
       </div>
     </div>
