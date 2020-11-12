@@ -1,13 +1,15 @@
 .dropdown select {
   /* background-color: black; */
+  background-color: rgb(44, 44, 44);
 }
 
 .dropdown option {
   /* color: white; */
+  background-color: rgb(44, 44, 44);
 }
 
 .dropdownComp {
-  background-color: black;
+  background-color: rgb(44, 44, 44);
   color: white;
 }
 

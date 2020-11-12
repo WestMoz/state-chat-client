@@ -2,7 +2,6 @@ import React from 'react';
 import MapChart from '../components/MapChart';
 import Post from '../components/Post';
 import '../styles/home.css';
-import StatsBar from '../components/StatsBar';
 import TestPost from '../components/test/TestPost';
 import Axios from 'axios';
 import LiveChat from '../components/LiveChat';

@@ -33,7 +33,9 @@ export default function CreateComment({
   return (
     <form onSubmit={(e) => submitComment(e)}>
       <div className="comment-create-main">
-        <div className="comment-create-top">Comment as {signedIn.username}</div>
+        <div className="comment-create-top">
+          * Comment as {signedIn.username} *
+        </div>
         <div className="comment-create-mid">
           <textarea
             id="comment"

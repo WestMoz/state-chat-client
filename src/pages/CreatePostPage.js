@@ -1,8 +1,6 @@
 import React from 'react';
 import CreatePost from '../components/CreatePost';
-import Dropdown from '../components/Dropdown';
-import StatsBar from '../components/StatsBar';
-import TestDropdown from '../components/test/TestDropdown';
+import LiveChat from '../components/LiveChat';
 import '../styles/layout.css';
 
 export default function CreatePostPage({ signedIn }) {
@@ -11,14 +9,18 @@ export default function CreatePostPage({ signedIn }) {
     <div className="main">
       <div className="left">
         {/* <Dropdown /> */}
-        <TestDropdown
+        {/* <TestDropdown
           style={{ backgroundColor: 'black', color: 'white' }}
           setCategory={setCategory}
+        /> */}
+        <CreatePost
+          category={category}
+          setCategory={setCategory}
+          signedIn={signedIn}
         />
-        <CreatePost category={category} signedIn={signedIn} />
       </div>
       <div className="right">
-        <StatsBar />
+        <LiveChat signedIn={signedIn} />
       </div>
     </div>
   );

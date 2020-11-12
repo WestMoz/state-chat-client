@@ -3,7 +3,6 @@ import ArrowUpwardRoundedIcon from '@material-ui/icons/ArrowUpwardRounded';
 import ArrowDownwardRoundedIcon from '@material-ui/icons/ArrowDownwardRounded';
 import '../styles/vote.css';
 import Axios from 'axios';
-import ArrowUpwardOutlinedIcon from '@material-ui/icons/ArrowUpwardOutlined';
 
 export default function Vote({ signedIn, post, isLiked, setIsLiked }) {
   // const [isLiked, setIsLiked] = React.useState(undefined)

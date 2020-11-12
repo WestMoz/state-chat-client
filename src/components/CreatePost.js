@@ -1,11 +1,11 @@
 import React from 'react';
 import '../styles/createpost.css';
-import Dropdown from './Dropdown';
 import Axios from 'axios';
 import { navigate } from '@reach/router';
 import S3PostImage from './S3Components/S3PostImage';
+import TestDropdown from './test/TestDropdown';
 
-export default function CreatePost({ signedIn, category }) {
+export default function CreatePost({ signedIn, category, setCategory }) {
   const [imagePath, setImagePath] = React.useState(undefined);
 
   async function submitPost(e) {
@@ -42,7 +42,10 @@ export default function CreatePost({ signedIn, category }) {
       <div className="create-main">
         <div className="create-top">
           <input id="title" type="text" placeholder="Title"></input>
-          {/* <Dropdown /> */}
+          <TestDropdown
+            setCategory={setCategory}
+            style={{ backgroundColor: 'rgb(44, 44, 44)', color: 'white' }}
+          />
         </div>
         <div className="create-mid">
           <textarea

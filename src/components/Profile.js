@@ -26,35 +26,21 @@ export default function Profile({ signedIn, user }) {
 
   return (
     <div className="profile-main">
-      <div
-        style={{
-          width: '90%',
-          height: '50%',
-          overflow: 'hidden',
-          borderRadius: '20px',
-          backgroundColor: 'lightcoral',
-          border: '1px solid white',
-          display: 'flex',
-        }}
-      >
+      <div className="avatar-cont">
         <img
           // src="https://bignokh.files.wordpress.com/2017/02/19c76c9bfacab70a3b9379f3fadc5323.png"
-          src={avatarUrl}
           // src="https://cdn.onlinewebfonts.com/svg/img_568656.png"
+          src={avatarUrl}
           alt="avatar"
-          width="100%"
-          // min-height="90%"
-          style={{
-            margin: 'auto',
-            // borderRadius: '20px',
-            // backgroundColor: 'lightcoral',
-            // border: '1px solid white',
-            // padding: '10px',
-          }}
         ></img>
       </div>
+      {user === signedIn.username ? (
+        <S3AvatarUpload signedIn={signedIn} />
+      ) : (
+        <></>
+      )}
 
-      <div>Username</div>
+      <div>{user}</div>
       <div>State</div>
       <div>Number of posts</div>
       {user !== signedIn.username ? (
@@ -62,12 +48,6 @@ export default function Profile({ signedIn, user }) {
           <button>Follow</button>
           <button>Chat</button>
         </>
-      ) : (
-        <></>
-      )}
-
-      {user === signedIn.username ? (
-        <S3AvatarUpload signedIn={signedIn} />
       ) : (
         <></>
       )}

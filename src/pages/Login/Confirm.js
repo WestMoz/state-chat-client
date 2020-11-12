@@ -15,7 +15,7 @@ import Container from '@material-ui/core/Container';
 import { Auth } from 'aws-amplify';
 import { navigate } from '@reach/router';
 import Axios from 'axios';
-// import axios from 'axios';
+import '../../styles/signin.css';
 
 function Copyright() {
   return (
@@ -54,83 +54,87 @@ export default function ConfirmSignUp({ username, password, setSignedIn }) {
   const classes = useStyles();
 
   return (
-    <Container component="main" maxWidth="xs">
-      <CssBaseline />
-      <div className={classes.paper}>
-        <Avatar className={classes.avatar}>
-          <LockOutlinedIcon />
-        </Avatar>
-        <Typography component="h1" variant="h5">
-          Confirm Sign Up
-        </Typography>
-        <form
-          className={classes.form}
-          noValidate
-          onSubmit={(e) => {
-            e.preventDefault();
-            const code = e.target.elements.code.value;
-            (async function () {
-              try {
-                const resp = await Auth.confirmSignUp(username, code);
-                if (resp === 'SUCCESS') {
-                  const currentUser = await Auth.signIn(username, password);
-                  console.log(currentUser);
-                  const idToken =
-                    currentUser.signInUserSession.idToken.jwtToken;
-                  console.log(idToken);
-                  setSignedIn(currentUser);
-                  // navigate('/home');
-                  // const  await Auth.currentAuthenticatedUser());
-                  await Axios.post('http://localhost:4000/create-user', {
-                    token: idToken,
-                  })
-                    .then(() => {
-                      // setSignedIn(currentUser);
-                      navigate('/home');
+    <div className="sign-cont">
+      <Container component="main" maxWidth="xs">
+        <CssBaseline />
+        <div className={classes.paper}>
+          <Avatar className={classes.avatar}>
+            <LockOutlinedIcon />
+          </Avatar>
+          <Typography component="h1" variant="h5">
+            Confirm Sign Up
+          </Typography>
+          <form
+            className={classes.form}
+            noValidate
+            onSubmit={(e) => {
+              e.preventDefault();
+              const code = e.target.elements.code.value;
+              (async function () {
+                try {
+                  const resp = await Auth.confirmSignUp(username, code);
+                  if (resp === 'SUCCESS') {
+                    const currentUser = await Auth.signIn(username, password);
+                    console.log(currentUser);
+                    const idToken =
+                      currentUser.signInUserSession.idToken.jwtToken;
+                    console.log(idToken);
+                    setSignedIn(currentUser);
+                    // navigate('/home');
+                    // const  await Auth.currentAuthenticatedUser());
+                    await Axios.post('http://localhost:4000/create-user', {
+                      token: idToken,
                     })
-                    .catch((error) => console.log(error));
+                      .then(() => {
+                        // setSignedIn(currentUser);
+                        navigate('/home');
+                      })
+                      .catch((error) => console.log(error));
+                  }
+                } catch (error) {
+                  console.log('error confirming sign up', error);
                 }
-              } catch (error) {
-                console.log('error confirming sign up', error);
-              }
-            })();
-          }}
-        >
-          <Grid container spacing={2}>
-            <Grid item xs={12}>
-              <TextField
-                autoComplete="code"
-                name="code"
-                variant="outlined"
-                required
-                fullWidth
-                id="code"
-                label="code"
-                autoFocus
-              />
-            </Grid>
-            <Grid item xs={12}>
-              <FormControlLabel
-                control={<Checkbox value="allowExtraEmails" color="primary" />}
-                label="I want to receive inspiration, marketing promotions and updates via email."
-              />
-            </Grid>
-          </Grid>
-          <Button
-            type="submit"
-            fullWidth
-            variant="contained"
-            color="primary"
-            className={classes.submit}
+              })();
+            }}
           >
-            Confirm
-          </Button>
-        </form>
-      </div>
-      <Box mt={5}>
-        <Copyright />
-      </Box>
-    </Container>
+            <Grid container spacing={2}>
+              <Grid item xs={12}>
+                <TextField
+                  autoComplete="code"
+                  name="code"
+                  variant="outlined"
+                  required
+                  fullWidth
+                  id="code"
+                  label="code"
+                  autoFocus
+                />
+              </Grid>
+              <Grid item xs={12}>
+                <FormControlLabel
+                  control={
+                    <Checkbox value="allowExtraEmails" color="primary" />
+                  }
+                  label="I want to receive inspiration, marketing promotions and updates via email."
+                />
+              </Grid>
+            </Grid>
+            <Button
+              type="submit"
+              fullWidth
+              variant="contained"
+              color="primary"
+              className={classes.submit}
+            >
+              Confirm
+            </Button>
+          </form>
+        </div>
+        <Box mt={5}>
+          <Copyright />
+        </Box>
+      </Container>
+    </div>
   );
 }
 
