@@ -12,20 +12,26 @@
   height: 80%;
   /* width: 100%; */
   box-sizing: border-box;
-  /* padding: 10px; */
+  padding: 10px;
   /* margin: 10px; */
   /* margin-right: 10px; */
   background-color: whitesmoke;
-  color: purple;
+  color: black;
   border: 1px solid grey;
 }
 
 .followed-user:hover {
   text-decoration: underline;
   cursor: pointer;
+  color: lightcoral;
 }
 
 .following-title {
   color: white;
   background-color: grey;
+  height: 15%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 20px;
 }

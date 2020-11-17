@@ -100,6 +100,7 @@ export default function Navbar({ signedIn, setSignedIn }) {
             </ExitToAppIcon>
           </Tooltip>
         </div>
+
         <img
           // src="https://bignokh.files.wordpress.com/2017/02/19c76c9bfacab70a3b9379f3fadc5323.png"
           src={avatarUrl}
@@ -109,7 +110,7 @@ export default function Navbar({ signedIn, setSignedIn }) {
             borderRadius: '10px',
             backgroundColor: 'lightcoral',
             border: '1px solid white',
-            padding: '4px',
+            // padding: '4px',
           }}
         ></img>
       </div>

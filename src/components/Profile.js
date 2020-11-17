@@ -6,7 +6,7 @@ import S3AvatarUpload from './S3Components/S3AvatarUpload';
 export default function Profile({ signedIn, user }) {
   const [avatarUrl, setAvatarUrl] = React.useState(undefined);
   const [isFollowed, setIsFollowed] = React.useState(false);
-  // console.log(search);
+
   React.useEffect(() => {
     (async function () {
       try {
@@ -35,7 +35,7 @@ export default function Profile({ signedIn, user }) {
         console.log(error);
       }
     })();
-  }, []);
+  }, [user]);
 
   async function follow() {
     try {
@@ -76,35 +76,29 @@ export default function Profile({ signedIn, user }) {
   return (
     <div className="profile-main">
       <div className="avatar-cont">
-        <img
-          // src="https://bignokh.files.wordpress.com/2017/02/19c76c9bfacab70a3b9379f3fadc5323.png"
-          // src="https://cdn.onlinewebfonts.com/svg/img_568656.png"
-          src={avatarUrl}
-          alt="avatar"
-        ></img>
+        <img src={avatarUrl} alt="avatar"></img>
+        {user === signedIn.username ? (
+          <div className="upload-cont">
+            <S3AvatarUpload signedIn={signedIn} />
+          </div>
+        ) : (
+          <></>
+        )}
       </div>
-      {user === signedIn.username ? (
-        <S3AvatarUpload signedIn={signedIn} />
-      ) : (
-        <></>
-      )}
-
-      <div>{user}</div>
-      <div>State</div>
-      <div>Number of posts</div>
-      {user !== signedIn.username ? (
-        <>
-          {isFollowed ? (
-            <button onClick={() => unfollow()}>Unfollow</button>
-          ) : (
-            <button onClick={() => follow()}>Follow</button>
-          )}
-          {/* <button>Follow</button> */}
-          <button>Chat</button>
-        </>
-      ) : (
-        <></>
-      )}
+      <div className="prof-username">{user}</div>
+      <div>
+        {user !== signedIn.username ? (
+          <>
+            {isFollowed ? (
+              <button onClick={() => unfollow()}>Unfollow</button>
+            ) : (
+              <button onClick={() => follow()}>Follow</button>
+            )}
+          </>
+        ) : (
+          <></>
+        )}
+      </div>
     </div>
   );
 }

@@ -3,9 +3,13 @@ import React from 'react';
 import LiveChat from '../components/LiveChat';
 import '../styles/notification.css';
 import MailOutlineIcon from '@material-ui/icons/MailOutline';
+import DraftsIcon from '@material-ui/icons/Drafts';
+import MarkunreadIcon from '@material-ui/icons/Markunread';
+import Tooltip from '@material-ui/core/Tooltip';
 
 export default function NotificationPage({ signedIn }) {
   const [notifications, setNotifications] = React.useState(undefined);
+  const [refresh, setRefresh] = React.useState(false);
   //need to update number of unseen notifcations to display on navbar
   //prolly a piece of state that will be sent from navbar and updated here
   React.useEffect(() => {
@@ -23,7 +27,7 @@ export default function NotificationPage({ signedIn }) {
         console.log(error);
       }
     })();
-  }, []);
+  }, [refresh]);
 
   function getTime(timestamp) {
     const milliSeconds = Date.now() - Number(timestamp);
@@ -39,6 +43,19 @@ export default function NotificationPage({ signedIn }) {
     }
   }
 
+  async function markSeen(notification) {
+    try {
+      const token = signedIn.signInUserSession.idToken.jwtToken;
+      await Axios.post('http://localhost:4000/mark-seen', {
+        token,
+        notificationId: notification.notificationId,
+      });
+      setRefresh(!refresh);
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
   return (
     <div className="main">
       <div className="left">
@@ -47,9 +64,23 @@ export default function NotificationPage({ signedIn }) {
             [...notifications].reverse().map((notification) => {
               return (
                 <div className="notif">
-                  <div style={{ display: 'flex' }}>
-                    <MailOutlineIcon />
-                    <div>{notification.message}</div>
+                  <div className="notif-left">
+                    {notification.seen === 0 ? (
+                      <div className="notif-icon-cont">
+                        <Tooltip title="Mark as Read">
+                          <MarkunreadIcon
+                            color="secondary"
+                            onClick={() => markSeen(notification)}
+                            fontSize="large"
+                          />
+                        </Tooltip>
+                      </div>
+                    ) : (
+                      <div className="notif-icon-cont2">
+                        <DraftsIcon fontSize="large" />
+                      </div>
+                    )}
+                    <div className="notif-message">{notification.message}</div>
                   </div>
                   <div>{getTime(notification.timestamp)}</div>
                 </div>

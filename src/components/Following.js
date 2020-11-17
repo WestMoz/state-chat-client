@@ -4,7 +4,7 @@ import React from 'react';
 import '../styles/following.css';
 
 export default function Following({ signedIn, followedBy }) {
-  const [following, setFollowing] = React.useState(undefined);
+  const [following, setFollowing] = React.useState([]);
   React.useEffect(() => {
     (async function () {
       try {
@@ -22,13 +22,13 @@ export default function Following({ signedIn, followedBy }) {
         console.log(error);
       }
     })();
-  }, []);
+  }, [followedBy]);
 
   return (
     <div className="following-main">
       <div className="following-title">Following</div>
       <div className="following-cont">
-        {following &&
+        {following.length > 0 ? (
           following.map((follow) => {
             return (
               <div
@@ -38,7 +38,10 @@ export default function Following({ signedIn, followedBy }) {
                 {follow.followed}
               </div>
             );
-          })}
+          })
+        ) : (
+          <div>No followed users</div>
+        )}
       </div>
     </div>
   );

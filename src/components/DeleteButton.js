@@ -7,7 +7,6 @@ export default function DeleteButton({
   refresh,
   setRefresh,
 }) {
-  console.log('in delete button', signedIn);
   async function deletePost() {
     try {
       if (window.confirm('Are you sure you want to delete this post?')) {

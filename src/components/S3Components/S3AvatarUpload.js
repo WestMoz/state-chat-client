@@ -2,6 +2,8 @@ import React from 'react';
 import { Storage } from 'aws-amplify';
 import uuid from 'uuid/dist/v4';
 import Axios from 'axios';
+import PhotoCameraIcon from '@material-ui/icons/PhotoCamera';
+import '../../styles/s3avatar.css';
 
 export default function S3AvatarUpload({ signedIn }) {
   const [filename, setFilename] = React.useState(undefined);
@@ -19,9 +21,9 @@ export default function S3AvatarUpload({ signedIn }) {
     }
   }
 
-  function uploadImage() {
+  function uploadImage(file) {
     const myUuid = uuid();
-    Storage.put(`${signedIn.username}/avatar/${myUuid}.png`, filename, {
+    Storage.put(`${signedIn.username}/avatar/${myUuid}.png`, file, {
       contentType: 'image/*',
     })
       .then((result) => {
@@ -31,14 +33,29 @@ export default function S3AvatarUpload({ signedIn }) {
       .catch((err) => console.log(err));
   }
 
-  function onChange(e) {
+  async function onChange(e) {
     setFilename(e.target.files[0]);
+    uploadImage(e.target.files[0]);
   }
 
+  console.log('file object', filename);
+
   return (
-    <div>
-      <input type="file" accept="image/png" onChange={(evt) => onChange(evt)} />
-      <button onClick={() => uploadImage()}>Upload</button>
+    <div className="s3-avatar-main">
+      <div className="s3-upload-icon">
+        <label for="file-input">
+          <PhotoCameraIcon fontSize="large"></PhotoCameraIcon>
+        </label>
+      </div>
+
+      <input
+        id="file-input"
+        type="file"
+        accept="image/png"
+        onChange={(evt) => onChange(evt)}
+      />
+
+      {/* <button onClick={() => uploadImage()}>Upload</button> */}
     </div>
   );
 }

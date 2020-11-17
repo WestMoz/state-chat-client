@@ -39,6 +39,7 @@
 .prof-icon:hover,
 .exit-icon:hover {
   background-color: rgb(51, 50, 50);
+  cursor: pointer;
 }
 
 .nav-left {
@@ -72,4 +73,10 @@
   /* text-decoration: underline; */
   cursor: pointer;
   background-color: rgb(51, 50, 50);
+}
+
+.nav-avatar-cont {
+  height: 80%;
+  border-radius: 5px;
+  background-color: lightcoral;
 }

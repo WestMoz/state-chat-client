@@ -14,13 +14,6 @@ export default function ViewUser({ user, signedIn }) {
       console.log('in use effect');
       try {
         const token = signedIn.signInUserSession.idToken.jwtToken;
-        // const posts = await Axios.post(
-        //   'http://localhost:4000/get-posts-by-user',
-        //   {
-        //     token,
-        //     creator: user,
-        //   },
-        // );
         const posts = await Axios.post(
           'http://localhost:4000/get-user-posts-ranked',
           {
@@ -34,7 +27,7 @@ export default function ViewUser({ user, signedIn }) {
         console.log(error);
       }
     })();
-  }, [refresh]);
+  }, [refresh, user]);
 
   function sortNew() {
     setUserPosts([...userPosts].sort((a, b) => b.timestamp - a.timestamp));

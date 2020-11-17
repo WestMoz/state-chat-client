@@ -1,0 +1,23 @@
+.s3-post-main > input {
+  display: none;
+  width: fit-content;
+}
+
+.s3-post-icon {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: fit-content;
+  padding: 10px;
+  border-radius: 4px;
+}
+
+.s3-post-icon:hover {
+  cursor: pointer;
+  background-color: rgb(51, 50, 50);
+}
+
+.s3-post-icon label:hover {
+  cursor: pointer;
+  background-color: rgb(51, 50, 50);
+}
