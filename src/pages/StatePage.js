@@ -4,6 +4,7 @@ import Post from '../components/Post';
 import '../styles/layout.css';
 import Axios from 'axios';
 import TestPost from '../components/test/TestPost';
+import LiveChat from '../components/LiveChat';
 
 export default function StatePage({ state, signedIn }) {
   const [posts, setPosts] = React.useState(undefined);
@@ -11,8 +12,15 @@ export default function StatePage({ state, signedIn }) {
     (async function () {
       try {
         const token = signedIn.signInUserSession.idToken.jwtToken;
+        // const stateResp = await Axios.post(
+        //   'http://localhost:4000/get-posts-by-state',
+        //   {
+        //     token,
+        //     state,
+        //   },
+        // );
         const stateResp = await Axios.post(
-          'http://localhost:4000/get-posts-by-state',
+          'http://localhost:4000/get-state-posts-ranked',
           {
             token,
             state,
@@ -24,24 +32,55 @@ export default function StatePage({ state, signedIn }) {
       }
     })();
   }, []);
-  console.log(posts);
+
+  function sortNew() {
+    setPosts([...posts].sort((a, b) => b.timestamp - a.timestamp));
+  }
+
+  function sortOld() {
+    setPosts([...posts].sort((a, b) => a.timestamp - b.timestamp));
+  }
+
+  function sortTop() {
+    setPosts([...posts].sort((a, b) => b.totalCount - a.totalCount));
+  }
+
   return (
     <div className="main">
       <div className="left">
         <div>
-          <p>{state}</p>
-          <button>Trending</button>
-          <button>New</button>
+          <div className="state-title">{state} Posts</div>
+          <div class="btn-group" role="group" aria-label="Basic example">
+            <button
+              type="button"
+              class="btn btn-secondary"
+              onClick={() => sortTop()}
+            >
+              Top
+            </button>
+            <button
+              type="button"
+              class="btn btn-secondary"
+              onClick={() => sortNew()}
+            >
+              Newest
+            </button>
+            <button
+              type="button"
+              class="btn btn-secondary"
+              onClick={() => sortOld()}
+            >
+              Oldest
+            </button>
+          </div>
         </div>
         {posts &&
-          posts.map((post) => <TestPost post={post} signedIn={signedIn} />)}
-        <Post />
-        <Post />
-        <Post />
-        <Post />
+          posts.map((post) => (
+            <TestPost post={post} signedIn={signedIn} key={post.postId} />
+          ))}
       </div>
       <div className="right">
-        <StatsBar />
+        <LiveChat signedIn={signedIn} />
       </div>
     </div>
   );

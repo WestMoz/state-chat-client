@@ -3,7 +3,6 @@ import ArrowUpwardRoundedIcon from '@material-ui/icons/ArrowUpwardRounded';
 import ArrowDownwardRoundedIcon from '@material-ui/icons/ArrowDownwardRounded';
 import '../styles/vote.css';
 import Axios from 'axios';
-import ArrowUpwardOutlinedIcon from '@material-ui/icons/ArrowUpwardOutlined';
 
 export default function Vote({ signedIn, post, isLiked, setIsLiked }) {
   // const [isLiked, setIsLiked] = React.useState(undefined)
@@ -41,8 +40,8 @@ export default function Vote({ signedIn, post, isLiked, setIsLiked }) {
     })();
   }, []);
 
-  console.log(upVotes);
-  console.log(downVotes);
+  // console.log(upVotes);
+  // console.log(downVotes);
 
   async function deleteVote() {
     try {
@@ -73,7 +72,11 @@ export default function Vote({ signedIn, post, isLiked, setIsLiked }) {
         }
         setUpVotes(upVotes + 1);
         setIsLiked(1);
-
+        await Axios.post('http://localhost:4000/create-notification', {
+          token,
+          userFor: post.creator,
+          message: `${signedIn.username} has upvoted your post titled: ${post.title}`,
+        });
         // window.alert('post was liked');
       } //if post is not voted on or disliked then upvote
       else {
@@ -99,8 +102,12 @@ export default function Vote({ signedIn, post, isLiked, setIsLiked }) {
           setUpVotes(upVotes - 1);
         }
         setIsLiked(0);
-
         setDownVotes(downVotes + 1);
+        await Axios.post('http://localhost:4000/create-notification', {
+          token,
+          userFor: post.creator,
+          message: `${signedIn.username} has downvoted your post titled: ${post.title}`,
+        });
 
         // window.alert('post was deleted');
       } //if post is not voted on or disliked then upvote
@@ -120,7 +127,10 @@ export default function Vote({ signedIn, post, isLiked, setIsLiked }) {
       >
         <ArrowUpwardRoundedIcon
           className="upvote-icon"
-          onClick={() => upVote()}
+          onClick={(e) => {
+            e.stopPropagation();
+            upVote();
+          }}
         />
         <p>{upVotes}</p>
       </div>
@@ -130,7 +140,10 @@ export default function Vote({ signedIn, post, isLiked, setIsLiked }) {
       >
         <ArrowDownwardRoundedIcon
           className="downvote-icon"
-          onClick={() => downVote()}
+          onClick={(e) => {
+            e.stopPropagation();
+            downVote();
+          }}
         />
         <p>{downVotes}</p>
       </div>

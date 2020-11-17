@@ -1,7 +1,7 @@
 import React from 'react';
-import SignIn from '../pages/SignIn';
-import SignUp from '../pages/SignUp';
-import Confirm from '../pages/Confirm';
+import SignIn from '../pages/Login/SignIn';
+import SignUp from '../pages/Login/SignUp';
+import Confirm from '../pages/Login/Confirm';
 import { Router } from '@reach/router';
 
 export default function PublicRoutes({ setSignedIn }) {

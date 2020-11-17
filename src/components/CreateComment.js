@@ -7,6 +7,7 @@ export default function CreateComment({
   signedIn,
   newComment,
   setNewComment,
+  post,
 }) {
   async function submitComment(e) {
     e.preventDefault();
@@ -14,16 +15,18 @@ export default function CreateComment({
       const token = signedIn.signInUserSession.idToken.jwtToken;
       const comment = e.target.elements.comment.value;
 
-      const response = await Axios.post(
-        'http://localhost:4000/create-comment',
-        {
-          token,
-          postId,
-          comment,
-        },
-      );
-      console.log(response);
-      window.alert('comment succesfully created');
+      await Axios.post('http://localhost:4000/create-comment', {
+        token,
+        postId,
+        comment,
+      });
+      await Axios.post('http://localhost:4000/create-notification', {
+        token,
+        userFor: post.creator,
+        message: `${signedIn.username} has commented on your post titled: ${post.title}`,
+      });
+      // console.log(response);
+      // window.alert('comment succesfully created');
       setNewComment(!newComment);
     } catch (error) {
       console.log(error);
@@ -33,7 +36,9 @@ export default function CreateComment({
   return (
     <form onSubmit={(e) => submitComment(e)}>
       <div className="comment-create-main">
-        <div className="comment-create-top">Comment as {signedIn.username}</div>
+        <div className="comment-create-top">
+          * Comment as {signedIn.username} *
+        </div>
         <div className="comment-create-mid">
           <textarea
             id="comment"

@@ -1,21 +1,38 @@
 .dropdown select {
-  background-color: black;
+  /* background-color: black; */
+  background-color: rgb(44, 44, 44);
 }
 
 .dropdown option {
   /* color: white; */
+  background-color: rgb(44, 44, 44);
 }
 
 .dropdownComp {
-  background-color: black;
+  background-color: rgb(44, 44, 44);
   color: white;
 }
 
 .item {
-  background-color: black;
+  /* background-color: black; */
   /* color: white; */
 }
 
 .ui.dropdown.menu > .item {
   /* color: white; */
+}
+
+.ui.search.selection.dropdown {
+  background-color: white;
+  color: white;
+}
+
+.ui.search.selection.dropdown:hover {
+  background-color: white;
+  color: white;
+}
+
+.ui.search.dropdown.active > input.search,
+.ui.search.dropdown.visible > input.search {
+  color: white;
 }

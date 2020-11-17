@@ -3,11 +3,11 @@ import PubNub from 'pubnub';
 import { PubNubProvider, PubNubConsumer } from 'pubnub-react';
 import '../styles/livechat.css';
 
-const pubnub = new PubNub({
-  publishKey: process.env.publishKey,
-  subscribeKey: process.env.subscribeKey,
-  uuid: 'Moz',
-});
+// const pubnub = new PubNub({
+//   publishKey: process.env.publishKey,
+//   subscribeKey: process.env.subscribeKey,
+//   uuid: 'Moz',
+// });
 //will change uuid based on user signed in
 
 const channels = ['awesomeChannel'];
@@ -81,7 +81,7 @@ export default function LiveChat({ signedIn }) {
             style={{
               width: '100%',
               height: '100%',
-              border: '1px solid black',
+              // border: '1px solid black',
             }}
           >
             <div

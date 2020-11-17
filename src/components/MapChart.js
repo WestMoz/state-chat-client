@@ -13,6 +13,7 @@ import {
 import allStates from '../data/allstates.json';
 import { navigate } from '@reach/router';
 import statesArray from '../assests/stateArray';
+import Axios from 'axios';
 
 const geoUrl = 'https://cdn.jsdelivr.net/npm/us-atlas@3/states-10m.json';
 
@@ -41,11 +42,71 @@ const offsets = {
   DC: [49, 21],
 };
 
-const MapChart = () => {
+const MapChart = ({ signedIn }) => {
+  const [maxActivity, setMaxActivity] = React.useState(undefined);
+  const [statesActivity, setStatesActivity] = React.useState([]);
+  const [activityObj, setActivityObj] = React.useState({});
+
+  React.useEffect(() => {
+    (async function () {
+      const token = signedIn.signInUserSession.idToken.jwtToken;
+      try {
+        const maxResp = await Axios.post(
+          'http://localhost:4000/get-max-activity',
+          {
+            token,
+          },
+        );
+        setMaxActivity(maxResp.data.max);
+
+        const statesActivityResp = await Axios.post(
+          'http://localhost:4000/get-state-activity',
+          {
+            token,
+          },
+        );
+        setStatesActivity(statesActivityResp.data);
+        statesActivityResp.data.map((state) => {
+          activityObj[state.category] = state.totalActivity;
+        });
+      } catch (error) {
+        console.log(error);
+      }
+    })();
+  }, []);
+
+  console.log(activityObj);
+
+  // function buildArray(activity) {
+  //   ({ geographies }.map((geo) => {
+  //     activity.map((state) => {
+  //       if (state.category === geo.properties.name) {
+  //         activityObj[state.category] = '1';
+  //       } else {
+  //         activityObj[state.category] = '0';
+  //       }
+  //     });
+  //   }));
+  // }
+
   function onClick(state) {
     console.log('state has been clicked');
     navigate(`/state/${state}`);
     //here can be my logic for opening forum for specific state
+  }
+
+  function getOpacity(state) {
+    console.log('IN OPACITY FUNCTION');
+    return activityObj[state] / maxActivity + 0.1;
+  }
+
+  function containsState(stateName) {
+    console.log('in contains state', stateName);
+    statesActivity.map((state) => {
+      console.log(state.category === stateName);
+      if (state.category === stateName) return true;
+    });
+    return false;
   }
 
   return (
@@ -70,14 +131,16 @@ const MapChart = () => {
                 // stroke referes to the border color around the state
                 geography={geo}
                 // fill="#DDD"
+                // fill={
+                //   statesArray[geo.properties.name]
+                //     ? `rgb(51, 204, 51, ${statesArray[geo.properties.name]})`
+                //     : 'grey'
+                // }
                 fill={
-                  statesArray[geo.properties.name]
-                    ? `rgb(51, 204, 51, ${statesArray[geo.properties.name]})`
+                  activityObj[geo.properties.name]
+                    ? `rgb(255, 117, 234, ${getOpacity(geo.properties.name)})`
                     : 'grey'
                 }
-                // fill={
-                //   geo.properties.name === 'South Carolina' ? 'green' : 'grey'
-                // }
                 //the fill is where the states are colored
                 //the fill value can change depending on the popularity of state
                 //not too hard just correlate to an array of popularity values

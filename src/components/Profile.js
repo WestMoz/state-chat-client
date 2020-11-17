@@ -5,7 +5,8 @@ import S3AvatarUpload from './S3Components/S3AvatarUpload';
 
 export default function Profile({ signedIn, user }) {
   const [avatarUrl, setAvatarUrl] = React.useState(undefined);
-  // console.log(search);
+  const [isFollowed, setIsFollowed] = React.useState(false);
+
   React.useEffect(() => {
     (async function () {
       try {
@@ -18,59 +19,90 @@ export default function Profile({ signedIn, user }) {
           },
         );
         setAvatarUrl(avatarResponse.data);
+
+        if (user !== signedIn.username) {
+          const followResp = await Axios.post(
+            'http://localhost:4000/get-is-followed',
+            {
+              token,
+              user,
+            },
+          );
+
+          setIsFollowed(followResp.data);
+        }
       } catch (error) {
         console.log(error);
       }
     })();
-  }, []);
+  }, [user]);
+
+  async function follow() {
+    try {
+      const token = signedIn.signInUserSession.idToken.jwtToken;
+      await Axios.post('http://localhost:4000/follow', {
+        token,
+        user,
+      });
+      setIsFollowed(true);
+      await Axios.post('http://localhost:4000/create-notification', {
+        token,
+        userFor: user,
+        message: `${signedIn.username} has started following you`,
+      });
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
+  async function unfollow() {
+    try {
+      const token = signedIn.signInUserSession.idToken.jwtToken;
+      await Axios.post('http://localhost:4000/unfollow', {
+        token,
+        user,
+      });
+      setIsFollowed(false);
+      await Axios.post('http://localhost:4000/create-notification', {
+        token,
+        userFor: user,
+        message: `${signedIn.username} has unfollowed you`,
+      });
+    } catch (error) {
+      console.log(error);
+    }
+  }
 
   return (
     <div className="profile-main">
-      <div
-        style={{
-          width: '90%',
-          height: '50%',
-          overflow: 'hidden',
-          borderRadius: '20px',
-          backgroundColor: 'lightcoral',
-          border: '1px solid white',
-          display: 'flex',
-        }}
-      >
-        <img
-          // src="https://bignokh.files.wordpress.com/2017/02/19c76c9bfacab70a3b9379f3fadc5323.png"
-          src={avatarUrl}
-          // src="https://cdn.onlinewebfonts.com/svg/img_568656.png"
-          alt="avatar"
-          width="100%"
-          // min-height="90%"
-          style={{
-            margin: 'auto',
-            // borderRadius: '20px',
-            // backgroundColor: 'lightcoral',
-            // border: '1px solid white',
-            // padding: '10px',
-          }}
-        ></img>
+      <div className="avatar-cont">
+        <img src={avatarUrl} alt="avatar"></img>
+        {user === signedIn.username ? (
+          <div className="upload-cont">
+            <S3AvatarUpload signedIn={signedIn} />
+          </div>
+        ) : (
+          <></>
+        )}
       </div>
-
-      <div>Username</div>
-      <div>State</div>
-      <div>Number of posts</div>
-      {user !== signedIn.username ? (
-        <>
-          <button>Follow</button>
-          <button>Chat</button>
-        </>
-      ) : (
-        <></>
-      )}
-
-      {user === signedIn.username ? (
-        <S3AvatarUpload signedIn={signedIn} />
-      ) : (
-        <></>
-      )}
+      <div className="prof-username">{user}</div>
+      <div>
+        {user !== signedIn.username ? (
+          <>
+            {isFollowed ? (
+              <button class="btn btn-info" onClick={() => unfollow()}>
+                Unfollow
+              </button>
+            ) : (
+              <button class="btn btn-info" onClick={() => follow()}>
+                Follow
+              </button>
+            )}
+          </>
+        ) : (
+          <></>
+        )}
+      </div>
     </div>
   );
 }

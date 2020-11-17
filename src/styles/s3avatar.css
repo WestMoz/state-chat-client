@@ -1,0 +1,27 @@
+.s3-avatar-main > input {
+  display: none;
+}
+
+.s3-avatar-main:hover {
+  cursor: pointer;
+}
+
+.s3-avatar-main > div:hover {
+  cursor: pointer;
+}
+
+.s3-upload-icon {
+  padding-top: 4px;
+  height: 40px;
+  width: 40px;
+  display: flex;
+  /* flex-direction: column; */
+  justify-content: center;
+  align-items: center;
+  border-top-left-radius: 4px;
+}
+
+.s3-upload-icon:hover {
+  cursor: pointer;
+  background-color: rgb(51, 50, 50);
+}

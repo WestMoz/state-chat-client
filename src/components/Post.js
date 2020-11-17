@@ -1,7 +1,6 @@
 import { navigate } from '@reach/router';
 import React from 'react';
 import '../styles/post.css';
-import Vote from './Vote';
 
 export default function Post({ post }) {
   // const [numComments, setNumComments] = React.useState(0);

@@ -14,6 +14,11 @@
   margin-bottom: 10px;
 }
 
+.comment-create-top {
+  font-style: italic;
+  font-weight: bold;
+}
+
 .comment-create-main textarea {
   width: 100%;
   padding: 8px 16px;

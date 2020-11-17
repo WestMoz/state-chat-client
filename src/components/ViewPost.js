@@ -112,12 +112,15 @@ export default function ViewPost({ signedIn, postId }) {
                 setNewComment={setNewComment}
                 postId={post.postId}
                 signedIn={signedIn}
+                post={post}
               />
             </div>
           </div>
           <div className="view-bottom">
             {comments &&
-              comments.map((comment) => <Comment comment={comment} />)}
+              [...comments]
+                .reverse()
+                .map((comment) => <Comment comment={comment} />)}
             {/* <Comment comment={comment}/>
             <Comment />
             <Comment />

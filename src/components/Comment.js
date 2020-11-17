@@ -9,6 +9,8 @@ export default function Comment({ comment }) {
       return `${Math.floor(hours * 60)} minutes ago`;
     } else if (hours > 24) {
       return `${Math.floor(hours / 24)} days ago`;
+    } else if (hours < 2) {
+      return `${Math.floor(hours)} hour ago`;
     } else {
       return `${Math.floor(hours)} hours ago`;
     }

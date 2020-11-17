@@ -8,17 +8,24 @@ const addressDefinitions = faker.definitions.address;
 const stateOptions = _.map(addressDefinitions.state, (state, index) => ({
   key: addressDefinitions.state_abbr[index],
   text: state,
-  value: addressDefinitions.state_abbr[index],
+  value: state,
 }));
 
 const TestDropdown = ({ setCategory }) => (
   <Dropdown
-    style={{ backgroundColor: 'black', color: 'white' }}
+    style={{
+      backgroundColor: 'rgb(44, 44, 44)',
+      color: 'white',
+      border: '1px solid grey',
+    }}
     placeholder="State"
     search
     selection
     options={stateOptions}
-    onChange={(e) => setCategory(e.target.textContext)}
+    onChange={(e, data) => {
+      // console.log('in on change', data);
+      setCategory(data.value);
+    }}
   />
 );
 export default TestDropdown;

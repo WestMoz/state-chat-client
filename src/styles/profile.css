@@ -2,8 +2,41 @@
   display: flex;
   flex-direction: column;
   width: 100%;
-  height: 50%;
+  /* height: 40%; */
+  margin-bottom: 20px;
   /* justify-content: center; */
   align-items: center;
-  border: 1px solid green;
+  /* border: 1px solid green; */
+}
+
+.upload-cont {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  padding-top: 4px;
+}
+
+.avatar-cont {
+  /* width: 90%;
+  height: 50%; */
+  width: 200px;
+  height: 200px;
+  overflow: hidden;
+  border-radius: 20px;
+  background-color: lightcoral;
+  border: 1px solid white;
+  position: relative;
+  margin-bottom: 10px;
+  /* display: flex; */
+}
+
+.avatar-cont img {
+  margin: auto;
+  width: 100%;
+}
+
+.prof-username {
+  font-size: 40px;
+  height: fit-content;
+  margin-bottom: 20px;
 }
