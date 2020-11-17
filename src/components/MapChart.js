@@ -12,7 +12,7 @@ import {
 
 import allStates from '../data/allstates.json';
 import { navigate } from '@reach/router';
-// import statesArray from '../assests/stateArray';
+import statesArray from '../assests/stateArray';
 import Axios from 'axios';
 
 const geoUrl = 'https://cdn.jsdelivr.net/npm/us-atlas@3/states-10m.json';

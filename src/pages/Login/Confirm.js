@@ -80,10 +80,12 @@ export default function ConfirmSignUp({ username, password, setSignedIn }) {
                       currentUser.signInUserSession.idToken.jwtToken;
                     console.log(idToken);
                     setSignedIn(currentUser);
+                    const state = e.target.elements.password.state;
                     // navigate('/home');
                     // const  await Auth.currentAuthenticatedUser());
                     await Axios.post('http://localhost:4000/create-user', {
                       token: idToken,
+                      state,
                     })
                       .then(() => {
                         // setSignedIn(currentUser);
@@ -111,11 +113,14 @@ export default function ConfirmSignUp({ username, password, setSignedIn }) {
                 />
               </Grid>
               <Grid item xs={12}>
-                <FormControlLabel
-                  control={
-                    <Checkbox value="allowExtraEmails" color="primary" />
-                  }
-                  label="I want to receive inspiration, marketing promotions and updates via email."
+                <TextField
+                  variant="outlined"
+                  required
+                  fullWidth
+                  id="state"
+                  label="Home State"
+                  name="state"
+                  autoComplete="state"
                 />
               </Grid>
             </Grid>

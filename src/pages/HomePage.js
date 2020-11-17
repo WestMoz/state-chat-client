@@ -5,6 +5,7 @@ import '../styles/home.css';
 import TestPost from '../components/test/TestPost';
 import Axios from 'axios';
 import LiveChat from '../components/LiveChat';
+import Following from '../components/Following';
 
 //STATS PAGE TO DISPLAY SPECIFIC STATS
 //USER STATS ex: NUMBER OF POSTS/COMMENTS
@@ -49,17 +50,8 @@ export default function HomePage({ signedIn }) {
           trending.map((post) => (
             <TestPost key={post.postId} post={post} signedIn={signedIn} />
           ))}
-        {/* {posts &&
-          posts.map((post) => <TestPost post={post} signedIn={signedIn} />)} */}
-        <Post />
-        <Post />
-        <Post />
-        <Post />
-        <Post />
-        <Post />
       </div>
       <div className="home-right">
-        {/* <StatsBar /> */}
         <LiveChat signedIn={signedIn} />
       </div>
     </div>

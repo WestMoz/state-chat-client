@@ -3,6 +3,7 @@ import React from 'react';
 import TestPost from '../components/test/TestPost';
 import Profile from '../components/Profile';
 import '../styles/viewuser.css';
+import Following from '../components/Following';
 
 export default function ViewUser({ user, signedIn }) {
   const [userPosts, setUserPosts] = React.useState(undefined);
@@ -70,6 +71,7 @@ export default function ViewUser({ user, signedIn }) {
       </div>
       <div className="user-right">
         <Profile signedIn={signedIn} user={user} />
+        <Following signedIn={signedIn} followedBy={user} />
       </div>
     </div>
   );

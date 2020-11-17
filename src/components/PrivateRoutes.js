@@ -7,6 +7,7 @@ import PostPage from '../pages/PostPage';
 import CreatePostPage from '../pages/CreatePostPage';
 import ViewUser from '../pages/ViewUser';
 import SearchPage from '../pages/SearchPage';
+import NotificationPage from '../pages/NotificationPage';
 
 export default function PrivateRoutes({ signedIn, setSignedIn }) {
   return (
@@ -17,6 +18,7 @@ export default function PrivateRoutes({ signedIn, setSignedIn }) {
       <CreatePostPage path="/create" signedIn={signedIn} />
       <ViewUser path="/user/:user" signedIn={signedIn} />
       <SearchPage path="/search/:search" signedIn={signedIn} />
+      <NotificationPage path="/notifications" signedIn={signedIn} />
       <NotFound default />
     </Router>
   );

@@ -72,7 +72,11 @@ export default function Vote({ signedIn, post, isLiked, setIsLiked }) {
         }
         setUpVotes(upVotes + 1);
         setIsLiked(1);
-
+        await Axios.post('http://localhost:4000/create-notification', {
+          token,
+          userFor: post.creator,
+          message: `${signedIn.username} has upvoted your post titled: ${post.title}`,
+        });
         // window.alert('post was liked');
       } //if post is not voted on or disliked then upvote
       else {
@@ -98,8 +102,12 @@ export default function Vote({ signedIn, post, isLiked, setIsLiked }) {
           setUpVotes(upVotes - 1);
         }
         setIsLiked(0);
-
         setDownVotes(downVotes + 1);
+        await Axios.post('http://localhost:4000/create-notification', {
+          token,
+          userFor: post.creator,
+          message: `${signedIn.username} has downvoted your post titled: ${post.title}`,
+        });
 
         // window.alert('post was deleted');
       } //if post is not voted on or disliked then upvote

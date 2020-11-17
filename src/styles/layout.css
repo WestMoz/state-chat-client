@@ -13,6 +13,10 @@
   overflow-x: hidden;
 }
 
+.left::-webkit-scrollbar {
+  background-color: lightgray;
+}
+
 .right {
   width: 25%;
   height: 100%;
