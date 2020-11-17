@@ -6,24 +6,19 @@
   cursor: pointer;
 }
 
-.s3-avatar-main > label:hover {
+.s3-avatar-main > div:hover {
   cursor: pointer;
 }
 
-.s3-avatar-main {
-  /* padding-top: 4px; */
-}
-
 .s3-upload-icon {
+  padding-top: 4px;
   height: 40px;
   width: 40px;
   display: flex;
+  /* flex-direction: column; */
   justify-content: center;
   align-items: center;
   border-top-left-radius: 4px;
-  /* position: absolute;
-  top: 250px;
-  right: 50px; */
 }
 
 .s3-upload-icon:hover {

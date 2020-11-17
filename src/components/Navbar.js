@@ -11,7 +11,7 @@ import BorderColorIcon from '@material-ui/icons/BorderColor';
 import PersonIcon from '@material-ui/icons/Person';
 import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 
-export default function Navbar({ signedIn, setSignedIn }) {
+export default function Navbar({ signedIn, setSignedIn, navRefresh }) {
   const [avatarUrl, setAvatarUrl] = React.useState(undefined);
   const [newNotifs, setNewNotifs] = React.useState(0);
 

@@ -23,11 +23,16 @@
   background-color: lightgray;
 }
 
+.home-title {
+  font-size: 20px;
+  text-align: center;
+}
+
 .home-right {
   width: 25%;
   /* grid-column: 2/9; */
   height: 100%;
-  padding: 5px;
+  /* padding: 5px; */
   display: flex;
   flex-direction: column;
   justify-content: space-between;

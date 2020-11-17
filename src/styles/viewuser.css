@@ -8,6 +8,8 @@
   width: 75%;
   overflow: scroll;
   overflow-x: hidden;
+  padding-left: 10px;
+  padding-right: 10px;
 }
 
 .user-right {
@@ -23,4 +25,22 @@
 
 .user-left::-webkit-scrollbar {
   background-color: lightgray;
+}
+
+.toggle-button {
+  background-color: lightcoral;
+}
+
+div.btn-group {
+  padding: 10px;
+  margin-left: 20px;
+  padding-top: 20px;
+}
+
+button.btn.btn-secondary {
+  background-color: rgb(66, 66, 66);
+}
+
+button.btn.btn-secondary:focus {
+  background-color: lightcoral;
 }

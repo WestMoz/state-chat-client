@@ -79,16 +79,16 @@ export default function ConfirmSignUp({ username, password, setSignedIn }) {
                     const idToken =
                       currentUser.signInUserSession.idToken.jwtToken;
                     console.log(idToken);
-                    setSignedIn(currentUser);
-                    const state = e.target.elements.password.state;
+                    // setSignedIn(currentUser);
+                    // const state = e.target.elements.state.value;
                     // navigate('/home');
                     // const  await Auth.currentAuthenticatedUser());
                     await Axios.post('http://localhost:4000/create-user', {
                       token: idToken,
-                      state,
+                      state: '',
                     })
                       .then(() => {
-                        // setSignedIn(currentUser);
+                        setSignedIn(currentUser);
                         navigate('/home');
                       })
                       .catch((error) => console.log(error));
@@ -112,7 +112,7 @@ export default function ConfirmSignUp({ username, password, setSignedIn }) {
                   autoFocus
                 />
               </Grid>
-              <Grid item xs={12}>
+              {/* <Grid item xs={12}>
                 <TextField
                   variant="outlined"
                   required
@@ -122,7 +122,7 @@ export default function ConfirmSignUp({ username, password, setSignedIn }) {
                   name="state"
                   autoComplete="state"
                 />
-              </Grid>
+              </Grid> */}
             </Grid>
             <Button
               type="submit"

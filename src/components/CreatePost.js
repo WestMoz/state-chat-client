@@ -59,9 +59,13 @@ export default function CreatePost({ signedIn, category, setCategory }) {
           <S3PostImage signedIn={signedIn} setImagePath={setImagePath} />
         </div>
         <div className="create-bot">
-          <button type="reset">Cancel</button>
+          <button type="reset" class="btn btn-warning">
+            Cancel
+          </button>
           {/* not sure what type cancel needs to be to not submit form */}
-          <button type="submit">Post</button>
+          <button type="submit" class="btn btn-primary">
+            Post
+          </button>
         </div>
       </div>
     </form>

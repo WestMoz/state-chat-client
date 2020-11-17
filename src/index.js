@@ -13,6 +13,12 @@ styleLink.href =
   'https://cdn.jsdelivr.net/npm/semantic-ui/dist/semantic.min.css';
 document.head.appendChild(styleLink);
 
+const bootstrap = document.createElement('link');
+bootstrap.rel = 'stylesheet';
+bootstrap.href =
+  'https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css';
+document.head.appendChild(bootstrap);
+
 ReactDOM.render(
   <React.StrictMode>
     <App />

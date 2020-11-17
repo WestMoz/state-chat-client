@@ -90,9 +90,13 @@ export default function Profile({ signedIn, user }) {
         {user !== signedIn.username ? (
           <>
             {isFollowed ? (
-              <button onClick={() => unfollow()}>Unfollow</button>
+              <button class="btn btn-info" onClick={() => unfollow()}>
+                Unfollow
+              </button>
             ) : (
-              <button onClick={() => follow()}>Follow</button>
+              <button class="btn btn-info" onClick={() => follow()}>
+                Follow
+              </button>
             )}
           </>
         ) : (

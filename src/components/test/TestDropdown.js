@@ -13,7 +13,11 @@ const stateOptions = _.map(addressDefinitions.state, (state, index) => ({
 
 const TestDropdown = ({ setCategory }) => (
   <Dropdown
-    style={{ backgroundColor: 'black', color: 'white' }}
+    style={{
+      backgroundColor: 'rgb(44, 44, 44)',
+      color: 'white',
+      border: '1px solid grey',
+    }}
     placeholder="State"
     search
     selection

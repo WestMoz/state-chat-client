@@ -4,6 +4,7 @@ import Post from '../components/Post';
 import '../styles/layout.css';
 import Axios from 'axios';
 import TestPost from '../components/test/TestPost';
+import LiveChat from '../components/LiveChat';
 
 export default function StatePage({ state, signedIn }) {
   const [posts, setPosts] = React.useState(undefined);
@@ -48,22 +49,38 @@ export default function StatePage({ state, signedIn }) {
     <div className="main">
       <div className="left">
         <div>
-          <p>{state}</p>
-          <button onClick={() => sortTop()}>Top</button>
-          <button onClick={() => sortNew()}>Newest</button>
-          <button onClick={() => sortOld()}>Oldest</button>
+          <div className="state-title">{state} Posts</div>
+          <div class="btn-group" role="group" aria-label="Basic example">
+            <button
+              type="button"
+              class="btn btn-secondary"
+              onClick={() => sortTop()}
+            >
+              Top
+            </button>
+            <button
+              type="button"
+              class="btn btn-secondary"
+              onClick={() => sortNew()}
+            >
+              Newest
+            </button>
+            <button
+              type="button"
+              class="btn btn-secondary"
+              onClick={() => sortOld()}
+            >
+              Oldest
+            </button>
+          </div>
         </div>
         {posts &&
           posts.map((post) => (
             <TestPost post={post} signedIn={signedIn} key={post.postId} />
           ))}
-        <Post />
-        <Post />
-        <Post />
-        <Post />
       </div>
       <div className="right">
-        <StatsBar />
+        <LiveChat signedIn={signedIn} />
       </div>
     </div>
   );

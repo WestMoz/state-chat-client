@@ -22,3 +22,22 @@
   height: 100%;
   box-sizing: border-box;
 }
+
+div.btn-group {
+  padding: 10px;
+  margin-left: 20px;
+}
+
+button.btn.btn-secondary {
+  background-color: rgb(66, 66, 66);
+}
+
+button.btn.btn-secondary:focus {
+  background-color: lightcoral;
+}
+
+.state-title {
+  font-size: 20px;
+  margin-left: 20px;
+  text-align: center;
+}

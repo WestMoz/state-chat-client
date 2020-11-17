@@ -44,7 +44,7 @@ export default function HomePage({ signedIn }) {
         <div className="home-map">
           <MapChart signedIn={signedIn} />
         </div>
-        <p>Trending</p>
+        <div className="home-title">Trending Posts</div>
         {/* <CreatePost signedIn={signedIn} /> */}
         {trending &&
           trending.map((post) => (

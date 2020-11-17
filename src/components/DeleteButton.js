@@ -32,6 +32,7 @@ export default function DeleteButton({
           e.stopPropagation();
           deletePost();
         }}
+        class="btn btn-danger"
       >
         Delete
       </button>
