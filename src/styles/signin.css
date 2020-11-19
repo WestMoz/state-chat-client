@@ -2,6 +2,12 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: lightgray;
+  /* background-color: lightgray; */
+  background-color: rgb(28, 125, 133);
   height: 100vh;
+  color: white;
+}
+
+.sign-cont.MuiInputBase-root {
+  color: whitesmoke;
 }

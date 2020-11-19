@@ -60,7 +60,7 @@ export default function NotificationPage({ signedIn }) {
     <div className="main">
       <div className="left">
         <div className="notif-cont">
-          {notifications &&
+          {notifications && notifications.length > 0 ? (
             [...notifications].reverse().map((notification) => {
               return (
                 <div className="notif">
@@ -85,7 +85,12 @@ export default function NotificationPage({ signedIn }) {
                   <div>{getTime(notification.timestamp)}</div>
                 </div>
               );
-            })}
+            })
+          ) : (
+            <div style={{ fontSize: '16px', textAlign: 'center' }}>
+              No notifications...
+            </div>
+          )}
         </div>
       </div>
       <div className="right">

@@ -48,7 +48,13 @@ export default function CreateComment({
           ></textarea>
         </div>
         <div className="comment-create-bot">
-          <button type="submit">Comment</button>
+          <button
+            class="btn btn-primary"
+            type="submit"
+            style={{ width: '100px' }}
+          >
+            Comment
+          </button>
         </div>
       </div>
     </form>

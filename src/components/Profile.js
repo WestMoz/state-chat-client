@@ -6,6 +6,7 @@ import S3AvatarUpload from './S3Components/S3AvatarUpload';
 export default function Profile({ signedIn, user }) {
   const [avatarUrl, setAvatarUrl] = React.useState(undefined);
   const [isFollowed, setIsFollowed] = React.useState(false);
+  const [refresh, setRefresh] = React.useState(false);
 
   React.useEffect(() => {
     (async function () {
@@ -35,7 +36,7 @@ export default function Profile({ signedIn, user }) {
         console.log(error);
       }
     })();
-  }, [user]);
+  }, [user, refresh]);
 
   async function follow() {
     try {
@@ -79,7 +80,11 @@ export default function Profile({ signedIn, user }) {
         <img src={avatarUrl} alt="avatar"></img>
         {user === signedIn.username ? (
           <div className="upload-cont">
-            <S3AvatarUpload signedIn={signedIn} />
+            <S3AvatarUpload
+              signedIn={signedIn}
+              setRefresh={setRefresh}
+              refresh={refresh}
+            />
           </div>
         ) : (
           <></>

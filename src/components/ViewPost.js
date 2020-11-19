@@ -101,7 +101,15 @@ export default function ViewPost({ signedIn, postId }) {
               <p className="text-title">{post.title}</p>
               <p className="text-content">{post.content}</p>
               {post.image && (
-                <div style={{ display: 'flex', justifyContent: 'center' }}>
+                <div
+                  style={{
+                    display: 'flex',
+                    justifyContent: 'center',
+                    // maxHeight: '400px',
+                    // width: 'auto',
+                    // height: '500px',
+                  }}
+                >
                   <img className="post-image" src={imageUrl} alt="post image" />
                 </div>
               )}

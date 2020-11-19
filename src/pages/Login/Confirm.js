@@ -40,6 +40,10 @@ const useStyles = makeStyles((theme) => ({
   avatar: {
     margin: theme.spacing(1),
     backgroundColor: theme.palette.secondary.main,
+    width: '100px',
+    height: '100px',
+    fontSize: '30px',
+    textAlign: 'center',
   },
   form: {
     width: '100%', // Fix IE 11 issue.
@@ -47,6 +51,9 @@ const useStyles = makeStyles((theme) => ({
   },
   submit: {
     margin: theme.spacing(3, 0, 2),
+  },
+  input: {
+    color: 'white',
   },
 }));
 
@@ -58,9 +65,7 @@ export default function ConfirmSignUp({ username, password, setSignedIn }) {
       <Container component="main" maxWidth="xs">
         <CssBaseline />
         <div className={classes.paper}>
-          <Avatar className={classes.avatar}>
-            <LockOutlinedIcon />
-          </Avatar>
+          <Avatar className={classes.avatar}>State Chat</Avatar>
           <Typography component="h1" variant="h5">
             Confirm Sign Up
           </Typography>
@@ -110,6 +115,7 @@ export default function ConfirmSignUp({ username, password, setSignedIn }) {
                   id="code"
                   label="code"
                   autoFocus
+                  InputProps={{ className: classes.input }}
                 />
               </Grid>
               {/* <Grid item xs={12}>

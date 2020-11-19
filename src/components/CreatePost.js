@@ -51,7 +51,7 @@ export default function CreatePost({ signedIn, category, setCategory }) {
           <textarea
             id="content"
             cols="40"
-            rows="5"
+            rows="6"
             placeholder="Content"
           ></textarea>
         </div>

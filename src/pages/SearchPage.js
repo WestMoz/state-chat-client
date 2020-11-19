@@ -4,6 +4,7 @@ import Post from '../components/Post';
 import StatsBar from '../components/StatsBar';
 import TestPost from '../components/test/TestPost';
 import '../styles/layout.css';
+import LiveChat from '../components/LiveChat';
 
 export default function SearchPage({ search, signedIn }) {
   const [posts, setPosts] = React.useState(undefined);
@@ -32,17 +33,9 @@ export default function SearchPage({ search, signedIn }) {
         ) : (
           <div> sorry none found</div>
         )}
-        <Post />
-        <Post />
-        <Post />
-        <Post />
-        <Post />
-        <Post />
-        <Post />
-        <Post />
       </div>
       <div className="right">
-        <StatsBar />
+        <LiveChat signedIn={signedIn} />
       </div>
     </div>
   );

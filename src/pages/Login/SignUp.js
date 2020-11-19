@@ -37,6 +37,10 @@ const useStyles = makeStyles((theme) => ({
   avatar: {
     margin: theme.spacing(1),
     backgroundColor: theme.palette.secondary.main,
+    width: '100px',
+    height: '100px',
+    fontSize: '30px',
+    textAlign: 'center',
   },
   form: {
     width: '100%', // Fix IE 11 issue.
@@ -44,6 +48,9 @@ const useStyles = makeStyles((theme) => ({
   },
   submit: {
     margin: theme.spacing(3, 0, 2),
+  },
+  input: {
+    color: 'white',
   },
 }));
 
@@ -55,9 +62,7 @@ export default function SignUp({ setUsername, setPassword }) {
       <Container component="main" maxWidth="xs">
         <CssBaseline />
         <div className={classes.paper}>
-          <Avatar className={classes.avatar}>
-            <LockOutlinedIcon />
-          </Avatar>
+          <Avatar className={classes.avatar}>State Chat</Avatar>
           <Typography component="h1" variant="h5">
             Sign up
           </Typography>
@@ -102,6 +107,7 @@ export default function SignUp({ setUsername, setPassword }) {
                   id="username"
                   label="Username"
                   autoFocus
+                  InputProps={{ className: classes.input }}
                 />
               </Grid>
               <Grid item xs={12}>
@@ -113,6 +119,7 @@ export default function SignUp({ setUsername, setPassword }) {
                   label="Email Address"
                   name="email"
                   autoComplete="email"
+                  InputProps={{ className: classes.input }}
                 />
               </Grid>
               <Grid item xs={12}>
@@ -125,6 +132,7 @@ export default function SignUp({ setUsername, setPassword }) {
                   type="password"
                   id="password"
                   autoComplete="current-password"
+                  InputProps={{ className: classes.input }}
                 />
               </Grid>
               <Grid item xs={12}></Grid>
@@ -140,7 +148,7 @@ export default function SignUp({ setUsername, setPassword }) {
             </Button>
             <Grid container justify="flex-end">
               <Grid item>
-                <ReachRouterLink to="/signin">
+                <ReachRouterLink style={{ color: 'white' }} to="/signin">
                   Already have an account? Sign in
                 </ReachRouterLink>
               </Grid>

@@ -10,7 +10,7 @@ import '../styles/livechat.css';
 // });
 //will change uuid based on user signed in
 
-const channels = ['awesomeChannel'];
+const channels = ['stateChatGlobal'];
 //might set channel to channel create between two users
 
 export default function LiveChat({ signedIn }) {
@@ -18,25 +18,30 @@ export default function LiveChat({ signedIn }) {
   const [message, setMessage] = useState('');
 
   const pubnub = new PubNub({
-    publishKey: 'pub-c-ee4b9d5f-e464-404d-b4a9-66df43f5903a',
-    subscribeKey: 'sub-c-2dcb98f4-1f81-11eb-b558-be5397d4d556',
+    publishKey: 'pub-c-3b969d48-b57c-43b1-bb5b-fa1906e85ce6',
+    subscribeKey: 'sub-c-b20074f0-1f81-11eb-aa70-46ca21c7ec50',
     uuid: signedIn.username,
   });
+  // const pubnub = new PubNub({
+  //   publishKey: 'pub-c-ee4b9d5f-e464-404d-b4a9-66df43f5903a',
+  //   subscribeKey: 'sub-c-2dcb98f4-1f81-11eb-b558-be5397d4d556',
+  //   uuid: signedIn.username,
+  // });
   //will change uuid based on user signed in
 
   React.useEffect(() => {
     pubnub.fetchMessages(
       {
-        channels: ['awesomeChannel'],
+        channels: ['stateChatGlobal'],
         end: Date.now(),
         count: 25, // default/max is 25
       },
       function (status, response) {
         console.log(status, response);
         if (!status.error) {
-          console.log(response.channels.awesomeChannel);
+          // console.log(response.channels.awesomeChannel);
           // addMessage([...response.channels.awesomeChannel[0]]);
-          const history = response.channels.awesomeChannel.map((foo) => foo);
+          const history = response.channels.stateChatGlobal.map((foo) => foo);
           console.log(history);
           addMessage(history);
         }
@@ -147,12 +152,13 @@ export default function LiveChat({ signedIn }) {
               />
               <button
                 style={{
-                  backgroundColor: 'blue',
+                  // backgroundColor: 'blue',
                   color: 'white',
                   borderRadius: '5px',
                   fontSize: '16px',
                   width: '30%',
                 }}
+                class="btn btn-primary"
                 onClick={(e) => {
                   e.preventDefault();
                   sendMessage(message);

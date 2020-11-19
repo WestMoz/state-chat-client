@@ -136,9 +136,14 @@ const MapChart = ({ signedIn }) => {
                 //     ? `rgb(51, 204, 51, ${statesArray[geo.properties.name]})`
                 //     : 'grey'
                 // }
+                // fill={
+                //   activityObj[geo.properties.name]
+                //     ? `rgb(255, 117, 234, ${getOpacity(geo.properties.name)})`
+                //     : 'grey'
+                // }
                 fill={
                   activityObj[geo.properties.name]
-                    ? `rgb(255, 117, 234, ${getOpacity(geo.properties.name)})`
+                    ? `rgb(51, 204, 51, ${getOpacity(geo.properties.name)})`
                     : 'grey'
                 }
                 //the fill is where the states are colored

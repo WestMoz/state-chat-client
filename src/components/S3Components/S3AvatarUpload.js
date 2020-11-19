@@ -5,7 +5,7 @@ import Axios from 'axios';
 import PhotoCameraIcon from '@material-ui/icons/PhotoCamera';
 import '../../styles/s3avatar.css';
 
-export default function S3AvatarUpload({ signedIn }) {
+export default function S3AvatarUpload({ signedIn, setRefresh, refresh }) {
   const [filename, setFilename] = React.useState(undefined);
 
   async function updateAvatar(avatarPath) {
@@ -16,6 +16,7 @@ export default function S3AvatarUpload({ signedIn }) {
         avatarPath,
       });
       console.log('SUCCESS UPLOAD', resp);
+      setRefresh(!refresh);
     } catch (error) {
       console.log(error);
     }

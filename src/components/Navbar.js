@@ -76,7 +76,10 @@ export default function Navbar({ signedIn, setSignedIn, navRefresh }) {
         </div>
         <div className="prof-icon">
           <Tooltip title="Profile">
-            <PersonIcon onClick={() => navigate(`/user/${signedIn.username}`)}>
+            <PersonIcon
+              fontSize="large"
+              onClick={() => navigate(`/user/${signedIn.username}`)}
+            >
               Profile
             </PersonIcon>
           </Tooltip>
@@ -84,6 +87,7 @@ export default function Navbar({ signedIn, setSignedIn, navRefresh }) {
         <div className="exit-icon">
           <Tooltip title="Sign Out">
             <ExitToAppIcon
+              fontSize="large"
               onClick={() => {
                 (async function () {
                   try {

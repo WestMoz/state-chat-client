@@ -74,10 +74,15 @@ export default function StatePage({ state, signedIn }) {
             </button>
           </div>
         </div>
-        {posts &&
+        {posts && posts.length > 0 ? (
           posts.map((post) => (
             <TestPost post={post} signedIn={signedIn} key={post.postId} />
-          ))}
+          ))
+        ) : (
+          <div style={{ fontSize: '16px', textAlign: 'center' }}>
+            No posts for this state...
+          </div>
+        )}
       </div>
       <div className="right">
         <LiveChat signedIn={signedIn} />

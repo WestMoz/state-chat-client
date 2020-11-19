@@ -2,6 +2,7 @@ import React from 'react';
 import StatsBar from '../components/StatsBar';
 import '../styles/layout.css';
 import ViewPost from '../components/ViewPost';
+import LiveChat from '../components/LiveChat';
 
 export default function PostPage({ signedIn, postId }) {
   return (
@@ -15,7 +16,7 @@ export default function PostPage({ signedIn, postId }) {
         <Comment /> */}
       </div>
       <div className="right">
-        <StatsBar />
+        <LiveChat signedIn={signedIn} />
       </div>
     </div>
   );
