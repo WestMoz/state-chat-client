@@ -10,17 +10,16 @@ import Tooltip from '@material-ui/core/Tooltip';
 export default function NotificationPage({ signedIn }) {
   const [notifications, setNotifications] = React.useState(undefined);
   const [refresh, setRefresh] = React.useState(false);
+  console.log(signedIn);
   //need to update number of unseen notifcations to display on navbar
   //prolly a piece of state that will be sent from navbar and updated here
   React.useEffect(() => {
     (async function () {
       try {
         const token = signedIn.signInUserSession.idToken.jwtToken;
-        const notificationsResp = await Axios.post(
+        const notificationsResp = await Axios.get(
           'http://localhost:4000/get-notifications',
-          {
-            token,
-          },
+          { params: { username: signedIn.username } },
         );
         setNotifications(notificationsResp.data);
       } catch (error) {
@@ -46,7 +45,7 @@ export default function NotificationPage({ signedIn }) {
   async function markSeen(notification) {
     try {
       const token = signedIn.signInUserSession.idToken.jwtToken;
-      await Axios.post('http://localhost:4000/mark-seen', {
+      await Axios.put('http://localhost:4000/mark-seen', {
         token,
         notificationId: notification.notificationId,
       });
@@ -60,7 +59,7 @@ export default function NotificationPage({ signedIn }) {
     <div className="main">
       <div className="left">
         <div className="notif-cont">
-          {notifications &&
+          {notifications && notifications.length > 0 ? (
             [...notifications].reverse().map((notification) => {
               return (
                 <div className="notif">
@@ -85,7 +84,12 @@ export default function NotificationPage({ signedIn }) {
                   <div>{getTime(notification.timestamp)}</div>
                 </div>
               );
-            })}
+            })
+          ) : (
+            <div style={{ fontSize: '16px', textAlign: 'center' }}>
+              No notifications...
+            </div>
+          )}
         </div>
       </div>
       <div className="right">

@@ -6,26 +6,30 @@ import S3AvatarUpload from './S3Components/S3AvatarUpload';
 export default function Profile({ signedIn, user }) {
   const [avatarUrl, setAvatarUrl] = React.useState(undefined);
   const [isFollowed, setIsFollowed] = React.useState(false);
+  const [refresh, setRefresh] = React.useState(false);
 
   React.useEffect(() => {
     (async function () {
       try {
         const token = signedIn.signInUserSession.idToken.jwtToken;
-        const avatarResponse = await Axios.post(
+        const avatarResponse = await Axios.get(
           'http://localhost:4000/get-avatar-url',
           {
-            token,
-            user,
+            params: {
+              username: user,
+            },
           },
         );
         setAvatarUrl(avatarResponse.data);
 
         if (user !== signedIn.username) {
-          const followResp = await Axios.post(
+          const followResp = await Axios.get(
             'http://localhost:4000/get-is-followed',
             {
-              token,
-              user,
+              params: {
+                followedBy: signedIn.username,
+                followed: user,
+              },
             },
           );
 
@@ -35,7 +39,7 @@ export default function Profile({ signedIn, user }) {
         console.log(error);
       }
     })();
-  }, [user]);
+  }, [user, refresh]);
 
   async function follow() {
     try {
@@ -58,7 +62,7 @@ export default function Profile({ signedIn, user }) {
   async function unfollow() {
     try {
       const token = signedIn.signInUserSession.idToken.jwtToken;
-      await Axios.post('http://localhost:4000/unfollow', {
+      await Axios.put('http://localhost:4000/unfollow', {
         token,
         user,
       });
@@ -79,7 +83,11 @@ export default function Profile({ signedIn, user }) {
         <img src={avatarUrl} alt="avatar"></img>
         {user === signedIn.username ? (
           <div className="upload-cont">
-            <S3AvatarUpload signedIn={signedIn} />
+            <S3AvatarUpload
+              signedIn={signedIn}
+              setRefresh={setRefresh}
+              refresh={refresh}
+            />
           </div>
         ) : (
           <></>

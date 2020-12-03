@@ -11,19 +11,12 @@ export default function StatePage({ state, signedIn }) {
   React.useEffect(() => {
     (async function () {
       try {
-        const token = signedIn.signInUserSession.idToken.jwtToken;
-        // const stateResp = await Axios.post(
-        //   'http://localhost:4000/get-posts-by-state',
-        //   {
-        //     token,
-        //     state,
-        //   },
-        // );
-        const stateResp = await Axios.post(
+        const stateResp = await Axios.get(
           'http://localhost:4000/get-state-posts-ranked',
           {
-            token,
-            state,
+            params: {
+              state,
+            },
           },
         );
         setPosts(stateResp.data);
@@ -74,10 +67,15 @@ export default function StatePage({ state, signedIn }) {
             </button>
           </div>
         </div>
-        {posts &&
+        {posts && posts.length > 0 ? (
           posts.map((post) => (
             <TestPost post={post} signedIn={signedIn} key={post.postId} />
-          ))}
+          ))
+        ) : (
+          <div style={{ fontSize: '16px', textAlign: 'center' }}>
+            No posts for this state...
+          </div>
+        )}
       </div>
       <div className="right">
         <LiveChat signedIn={signedIn} />

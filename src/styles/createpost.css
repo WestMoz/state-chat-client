@@ -8,6 +8,7 @@
   border: 1px solid gray;
   border-radius: 10px;
   padding: 10px;
+  margin-right: 10px;
   /* margin: 10px; */
   background-color: rgb(66, 66, 66);
 }
@@ -56,4 +57,17 @@
   display: flex;
   justify-content: flex-end;
   align-items: center;
+}
+
+button.btn.btn-warning {
+  background-color: lightgray;
+  border: 1px solid black;
+  margin-right: 10px;
+  width: 80px;
+  font-size: 16px;
+}
+
+button.btn.btn-primary {
+  width: 80px;
+  font-size: 16px;
 }

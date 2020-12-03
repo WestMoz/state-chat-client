@@ -20,19 +20,22 @@ export default function Navbar({ signedIn, setSignedIn, navRefresh }) {
       try {
         const token = signedIn.signInUserSession.idToken.jwtToken;
 
-        const avatarResponse = await Axios.post(
+        const avatarResponse = await Axios.get(
           'http://localhost:4000/get-avatar-url',
           {
-            token,
-            user: signedIn.username,
+            params: {
+              username: signedIn.username,
+            },
           },
         );
         setAvatarUrl(avatarResponse.data);
 
-        const notifsResp = await Axios.post(
+        const notifsResp = await Axios.get(
           'http://localhost:4000/get-num-notifications',
           {
-            token,
+            params: {
+              username: signedIn.username,
+            },
           },
         );
         setNewNotifs(notifsResp.data.count);
@@ -76,7 +79,10 @@ export default function Navbar({ signedIn, setSignedIn, navRefresh }) {
         </div>
         <div className="prof-icon">
           <Tooltip title="Profile">
-            <PersonIcon onClick={() => navigate(`/user/${signedIn.username}`)}>
+            <PersonIcon
+              fontSize="large"
+              onClick={() => navigate(`/user/${signedIn.username}`)}
+            >
               Profile
             </PersonIcon>
           </Tooltip>
@@ -84,6 +90,7 @@ export default function Navbar({ signedIn, setSignedIn, navRefresh }) {
         <div className="exit-icon">
           <Tooltip title="Sign Out">
             <ExitToAppIcon
+              fontSize="large"
               onClick={() => {
                 (async function () {
                   try {

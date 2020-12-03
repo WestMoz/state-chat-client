@@ -16,17 +16,16 @@ export default function Post({ user, post, signedIn, refresh, setRefresh }) {
   //new page will alow user to read comments and post a comment
   React.useEffect(() => {
     (async function () {
-      const token = signedIn.signInUserSession.idToken.jwtToken;
       const postId = post.postId;
-      const num = await Axios.post('http://localhost:4000/get-num-comments', {
-        token,
-        postId,
+      const num = await Axios.get('http://localhost:4000/get-num-comments', {
+        params: {
+          postId,
+        },
       });
       setNumComments(num.data.count);
 
-      const liked = await Axios.post('http://localhost:4000/get-is-liked', {
-        token,
-        postId,
+      const liked = await Axios.get('http://localhost:4000/get-is-liked', {
+        params: { username: signedIn.username, postId },
       });
       // console.log(liked.data);
       if (liked.data) {
@@ -34,25 +33,23 @@ export default function Post({ user, post, signedIn, refresh, setRefresh }) {
       }
 
       if (post.image) {
-        const imageResp = await Axios.post(
+        const imageResp = await Axios.get(
           'http://localhost:4000/get-s3-image',
           {
-            token,
-            path: post.image,
+            params: {
+              path: post.image,
+            },
           },
         );
-        // console.log(imageResp);
         setImageUrl(imageResp.data);
       }
     })();
   }, []);
-  // console.log(numComments);
-  // console.log(isLiked);
+
   return (
     <div
       className="post-main-cont"
       onClick={() => navigate(`/post/${post.postId}`)}
-      //this overrides ability to click posted by
     >
       <div className="post-top-cont">
         <div>

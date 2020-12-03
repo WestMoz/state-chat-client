@@ -40,3 +40,8 @@
   height: fit-content;
   margin-bottom: 20px;
 }
+
+button.btn.btn-info {
+  font-size: 16px;
+  width: 100px;
+}

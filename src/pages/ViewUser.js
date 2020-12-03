@@ -15,12 +15,12 @@ export default function ViewUser({ user, signedIn }) {
     (async function () {
       console.log('in use effect');
       try {
-        const token = signedIn.signInUserSession.idToken.jwtToken;
-        const posts = await Axios.post(
+        const posts = await Axios.get(
           'http://localhost:4000/get-user-posts-ranked',
           {
-            token,
-            creator: user,
+            params: {
+              creator: user,
+            },
           },
         );
 

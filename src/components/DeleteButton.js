@@ -11,9 +11,8 @@ export default function DeleteButton({
     try {
       if (window.confirm('Are you sure you want to delete this post?')) {
         const token = signedIn.signInUserSession.idToken.jwtToken;
-        await Axios.post('http://localhost:4000/delete-post', {
-          token,
-          postId,
+        await Axios.delete('http://localhost:4000/delete-post', {
+          params: { token, postId },
         });
         window.alert('Post was deleted');
         setRefresh(!refresh);
