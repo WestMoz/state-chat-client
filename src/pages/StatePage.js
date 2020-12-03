@@ -11,19 +11,12 @@ export default function StatePage({ state, signedIn }) {
   React.useEffect(() => {
     (async function () {
       try {
-        const token = signedIn.signInUserSession.idToken.jwtToken;
-        // const stateResp = await Axios.post(
-        //   'http://localhost:4000/get-posts-by-state',
-        //   {
-        //     token,
-        //     state,
-        //   },
-        // );
-        const stateResp = await Axios.post(
+        const stateResp = await Axios.get(
           'http://localhost:4000/get-state-posts-ranked',
           {
-            token,
-            state,
+            params: {
+              state,
+            },
           },
         );
         setPosts(stateResp.data);

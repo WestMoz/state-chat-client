@@ -29,25 +29,25 @@ export default function LiveChat({ signedIn }) {
   // });
   //will change uuid based on user signed in
 
-  React.useEffect(() => {
-    pubnub.fetchMessages(
-      {
-        channels: ['stateChatGlobal'],
-        end: Date.now(),
-        count: 25, // default/max is 25
-      },
-      function (status, response) {
-        console.log(status, response);
-        if (!status.error) {
-          // console.log(response.channels.awesomeChannel);
-          // addMessage([...response.channels.awesomeChannel[0]]);
-          const history = response.channels.stateChatGlobal.map((foo) => foo);
-          console.log(history);
-          addMessage(history);
-        }
-      },
-    );
-  }, []);
+  // React.useEffect(() => {
+  //   pubnub.fetchMessages(
+  //     {
+  //       channels: ['stateChatGlobal'],
+  //       end: Date.now(),
+  //       count: 25, // default/max is 25
+  //     },
+  //     function (status, response) {
+  //       console.log(status, response);
+  //       if (!status.error) {
+  //         // console.log(response.channels.awesomeChannel);
+  //         // addMessage([...response.channels.awesomeChannel[0]]);
+  //         const history = response.channels.stateChatGlobal.map((foo) => foo);
+  //         console.log(history);
+  //         addMessage(history);
+  //       }
+  //     },
+  //   );
+  // }, []);
 
   const sendMessage = (message) => {
     pubnub.publish(

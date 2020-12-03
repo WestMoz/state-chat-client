@@ -14,23 +14,24 @@ export default function Vote({ signedIn, post, isLiked, setIsLiked }) {
   React.useEffect(() => {
     (async function () {
       try {
-        const token = signedIn.signInUserSession.idToken.jwtToken;
-        const upVotesResp = await Axios.post(
+        const upVotesResp = await Axios.get(
           'http://localhost:4000/get-num-votes',
           {
-            token,
-            postId: post.postId,
-            vote: 1,
+            params: {
+              postId: post.postId,
+              vote: 1,
+            },
           },
         );
         setUpVotes(upVotesResp.data.votes);
 
-        const downVotesResp = await Axios.post(
+        const downVotesResp = await Axios.get(
           'http://localhost:4000/get-num-votes',
           {
-            token,
-            postId: post.postId,
-            vote: 0,
+            params: {
+              postId: post.postId,
+              vote: 0,
+            },
           },
         );
         setDownVotes(downVotesResp.data.votes);
@@ -46,9 +47,8 @@ export default function Vote({ signedIn, post, isLiked, setIsLiked }) {
   async function deleteVote() {
     try {
       const token = signedIn.signInUserSession.idToken.jwtToken;
-      await Axios.post('http://localhost:4000/delete-vote', {
-        token,
-        postId: post.postId,
+      await Axios.delete('http://localhost:4000/delete-vote', {
+        params: { token, postId: post.postId },
       });
       setIsLiked(undefined);
       // window.alert('vote was deleted');

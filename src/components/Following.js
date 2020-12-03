@@ -9,11 +9,12 @@ export default function Following({ signedIn, followedBy }) {
     (async function () {
       try {
         const token = signedIn.signInUserSession.idToken.jwtToken;
-        const followingResp = await Axios.post(
+        const followingResp = await Axios.get(
           'http://localhost:4000/get-followed',
           {
-            token,
-            followedBy,
+            params: {
+              followedBy,
+            },
           },
         );
         console.log(followingResp.data);

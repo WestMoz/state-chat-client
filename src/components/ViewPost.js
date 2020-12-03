@@ -19,46 +19,50 @@ export default function ViewPost({ signedIn, postId }) {
     (async function () {
       try {
         const token = signedIn.signInUserSession.idToken.jwtToken;
-        const postById = await Axios.post(
+        const postById = await Axios.get(
           'http://localhost:4000/get-post-by-id',
           {
-            token,
-            postId,
+            params: {
+              postId,
+            },
           },
         );
         setPost(postById.data);
 
-        const liked = await Axios.post('http://localhost:4000/get-is-liked', {
-          token,
-          postId,
+        const liked = await Axios.get('http://localhost:4000/get-is-liked', {
+          params: {
+            username: signedIn.username,
+            postId,
+          },
         });
         console.log(liked.data);
         if (liked.data) {
           setIsLiked(liked.data.vote);
         }
 
-        const commentsResp = await Axios.post(
+        const commentsResp = await Axios.get(
           'http://localhost:4000/get-comments-by-id',
           {
-            token,
-            postId,
+            params: {
+              postId,
+            },
           },
         );
         setComments(commentsResp.data);
 
-        await getImage(postById.data, token);
+        await getImage(postById.data);
       } catch (error) {
         console.log(error);
       }
     })();
   }, [newComment]);
 
-  async function getImage(post, token) {
-    const imageResp = await Axios.post('http://localhost:4000/get-s3-image', {
-      token,
-      path: post.image,
+  async function getImage(post) {
+    const imageResp = await Axios.get('http://localhost:4000/get-s3-image', {
+      params: {
+        path: post.image,
+      },
     });
-    console.log(imageResp);
     setImageUrl(imageResp.data);
   }
 
@@ -79,9 +83,6 @@ export default function ViewPost({ signedIn, postId }) {
               />
             </div>
             <div className="view-titles">
-              {/* <div>Username</div>
-          <div>Time Posted</div>
-          <div>Category Maybe?</div> */}
               <div style={{ display: 'flex' }}>
                 <div
                   className="posted-by"
@@ -105,9 +106,6 @@ export default function ViewPost({ signedIn, postId }) {
                   style={{
                     display: 'flex',
                     justifyContent: 'center',
-                    // maxHeight: '400px',
-                    // width: 'auto',
-                    // height: '500px',
                   }}
                 >
                   <img className="post-image" src={imageUrl} alt="post image" />
@@ -129,10 +127,6 @@ export default function ViewPost({ signedIn, postId }) {
               [...comments]
                 .reverse()
                 .map((comment) => <Comment comment={comment} />)}
-            {/* <Comment comment={comment}/>
-            <Comment />
-            <Comment />
-            <Comment /> */}
           </div>
         </div>
       )}

@@ -51,29 +51,30 @@ const MapChart = ({ signedIn }) => {
     (async function () {
       const token = signedIn.signInUserSession.idToken.jwtToken;
       try {
-        const maxResp = await Axios.post(
+        const maxResp = await Axios.get(
           'http://localhost:4000/get-max-activity',
-          {
-            token,
-          },
         );
         setMaxActivity(maxResp.data.max);
 
-        const statesActivityResp = await Axios.post(
+        const statesActivityResp = await Axios.get(
           'http://localhost:4000/get-state-activity',
-          {
-            token,
-          },
         );
         setStatesActivity(statesActivityResp.data);
+        const tempActivity = {};
         statesActivityResp.data.map((state) => {
-          activityObj[state.category] = state.totalActivity;
+          tempActivity[state.category] = state.totalActivity;
         });
+        setActivityObj({ ...tempActivity });
+        // statesActivityResp.data.map((state) => {
+        //   activityObj[state.category] = state.totalActivity;
+        // });
       } catch (error) {
         console.log(error);
       }
     })();
   }, []);
+
+  React.useEffect(() => {}, [activityObj]);
 
   console.log(activityObj);
 

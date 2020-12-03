@@ -10,24 +10,12 @@ import Following from '../components/Following';
 //STATS PAGE TO DISPLAY SPECIFIC STATS
 //USER STATS ex: NUMBER OF POSTS/COMMENTS
 export default function HomePage({ signedIn }) {
-  const [posts, setPosts] = React.useState(undefined);
   const [trending, setTrending] = React.useState(undefined);
   React.useEffect(() => {
     (async function () {
       try {
-        const token = signedIn.signInUserSession.idToken.jwtToken;
-        const response = await Axios.post(
-          'http://localhost:4000/get-all-posts',
-          {
-            token,
-          },
-        );
-        setPosts(response.data);
-        const trendingResp = await Axios.post(
+        const trendingResp = await Axios.get(
           'http://localhost:4000/get-trending-posts',
-          {
-            token,
-          },
         );
         setTrending(trendingResp.data);
       } catch (error) {

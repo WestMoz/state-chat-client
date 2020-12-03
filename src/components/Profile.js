@@ -12,21 +12,24 @@ export default function Profile({ signedIn, user }) {
     (async function () {
       try {
         const token = signedIn.signInUserSession.idToken.jwtToken;
-        const avatarResponse = await Axios.post(
+        const avatarResponse = await Axios.get(
           'http://localhost:4000/get-avatar-url',
           {
-            token,
-            user,
+            params: {
+              username: user,
+            },
           },
         );
         setAvatarUrl(avatarResponse.data);
 
         if (user !== signedIn.username) {
-          const followResp = await Axios.post(
+          const followResp = await Axios.get(
             'http://localhost:4000/get-is-followed',
             {
-              token,
-              user,
+              params: {
+                followedBy: signedIn.username,
+                followed: user,
+              },
             },
           );
 
@@ -59,7 +62,7 @@ export default function Profile({ signedIn, user }) {
   async function unfollow() {
     try {
       const token = signedIn.signInUserSession.idToken.jwtToken;
-      await Axios.post('http://localhost:4000/unfollow', {
+      await Axios.put('http://localhost:4000/unfollow', {
         token,
         user,
       });
