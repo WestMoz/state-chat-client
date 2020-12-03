@@ -51,7 +51,7 @@ export default function Navbar({ signedIn, setSignedIn, navRefresh }) {
         <div
           className="nav-home"
           onClick={() => {
-            navigate('/home');
+            navigate('/');
           }}
         >
           Home

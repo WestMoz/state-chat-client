@@ -1,16 +1,23 @@
 {
-  "auth": {
-    "statechatclient9edccc14": {
-      "service": "Cognito",
-      "providerPlugin": "awscloudformation",
-      "dependsOn": [],
-      "customAuth": false
+    "auth": {
+        "statechatclient9edccc14": {
+            "service": "Cognito",
+            "providerPlugin": "awscloudformation",
+            "dependsOn": [],
+            "customAuth": false
+        }
+    },
+    "storage": {
+        "stateChatBucket": {
+            "service": "S3",
+            "providerPlugin": "awscloudformation"
+        }
+    },
+    "hosting": {
+        "amplifyhosting": {
+            "service": "amplifyhosting",
+            "providerPlugin": "awscloudformation",
+            "type": "manual"
+        }
     }
-  },
-  "storage": {
-    "stateChatBucket": {
-      "service": "S3",
-      "providerPlugin": "awscloudformation"
-    }
-  }
 }

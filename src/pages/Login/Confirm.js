@@ -94,7 +94,7 @@ export default function ConfirmSignUp({ username, password, setSignedIn }) {
                     })
                       .then(() => {
                         setSignedIn(currentUser);
-                        navigate('/home');
+                        navigate('/');
                       })
                       .catch((error) => console.log(error));
                   }

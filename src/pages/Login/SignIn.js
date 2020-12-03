@@ -120,7 +120,7 @@ export default function SignIn({ setSignedIn }) {
                     //   dispatch(setSignedIn(user));
 
                     setSignedIn(user);
-                    navigate('/home');
+                    navigate('/');
                   } catch (error) {
                     console.log('error sigining in', error);
                   }

@@ -12,7 +12,7 @@ import NotificationPage from '../pages/NotificationPage';
 export default function PrivateRoutes({ signedIn, setSignedIn }) {
   return (
     <Router>
-      <HomePage path="/home" signedIn={signedIn} />
+      <HomePage path="/" signedIn={signedIn} />
       <StatePage path="/state/:state" signedIn={signedIn} />
       <PostPage path="/post/:postId" signedIn={signedIn} />
       <CreatePostPage path="/create" signedIn={signedIn} />
