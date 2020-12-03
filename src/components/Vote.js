@@ -15,7 +15,7 @@ export default function Vote({ signedIn, post, isLiked, setIsLiked }) {
     (async function () {
       try {
         const upVotesResp = await Axios.get(
-          'http://localhost:4000/get-num-votes',
+          'https://dkum2vv7yc.execute-api.us-east-1.amazonaws.com/dev/get-num-votes',
           {
             params: {
               postId: post.postId,
@@ -26,7 +26,7 @@ export default function Vote({ signedIn, post, isLiked, setIsLiked }) {
         setUpVotes(upVotesResp.data.votes);
 
         const downVotesResp = await Axios.get(
-          'http://localhost:4000/get-num-votes',
+          'https://dkum2vv7yc.execute-api.us-east-1.amazonaws.com/dev/get-num-votes',
           {
             params: {
               postId: post.postId,
@@ -47,9 +47,12 @@ export default function Vote({ signedIn, post, isLiked, setIsLiked }) {
   async function deleteVote() {
     try {
       const token = signedIn.signInUserSession.idToken.jwtToken;
-      await Axios.delete('http://localhost:4000/delete-vote', {
-        params: { token, postId: post.postId },
-      });
+      await Axios.delete(
+        'https://dkum2vv7yc.execute-api.us-east-1.amazonaws.com/dev/delete-vote',
+        {
+          params: { token, postId: post.postId },
+        },
+      );
       setIsLiked(undefined);
       // window.alert('vote was deleted');
     } catch (error) {
@@ -62,21 +65,27 @@ export default function Vote({ signedIn, post, isLiked, setIsLiked }) {
       const token = signedIn.signInUserSession.idToken.jwtToken;
       if (isLiked !== 1) {
         await deleteVote();
-        await Axios.post('http://localhost:4000/vote', {
-          token,
-          postId: post.postId,
-          vote: 1,
-        });
+        await Axios.post(
+          'https://dkum2vv7yc.execute-api.us-east-1.amazonaws.com/dev/vote',
+          {
+            token,
+            postId: post.postId,
+            vote: 1,
+          },
+        );
         if (isLiked !== undefined) {
           setDownVotes(downVotes - 1);
         }
         setUpVotes(upVotes + 1);
         setIsLiked(1);
-        await Axios.post('http://localhost:4000/create-notification', {
-          token,
-          userFor: post.creator,
-          message: `${signedIn.username} has upvoted your post titled: ${post.title}`,
-        });
+        await Axios.post(
+          'https://dkum2vv7yc.execute-api.us-east-1.amazonaws.com/dev/create-notification',
+          {
+            token,
+            userFor: post.creator,
+            message: `${signedIn.username} has upvoted your post titled: ${post.title}`,
+          },
+        );
         // window.alert('post was liked');
       } //if post is not voted on or disliked then upvote
       else {
@@ -93,21 +102,27 @@ export default function Vote({ signedIn, post, isLiked, setIsLiked }) {
       const token = signedIn.signInUserSession.idToken.jwtToken;
       if (isLiked !== 0) {
         await deleteVote();
-        await Axios.post('http://localhost:4000/vote', {
-          token,
-          postId: post.postId,
-          vote: 0,
-        });
+        await Axios.post(
+          'https://dkum2vv7yc.execute-api.us-east-1.amazonaws.com/dev/vote',
+          {
+            token,
+            postId: post.postId,
+            vote: 0,
+          },
+        );
         if (isLiked !== undefined) {
           setUpVotes(upVotes - 1);
         }
         setIsLiked(0);
         setDownVotes(downVotes + 1);
-        await Axios.post('http://localhost:4000/create-notification', {
-          token,
-          userFor: post.creator,
-          message: `${signedIn.username} has downvoted your post titled: ${post.title}`,
-        });
+        await Axios.post(
+          'https://dkum2vv7yc.execute-api.us-east-1.amazonaws.com/dev/create-notification',
+          {
+            token,
+            userFor: post.creator,
+            message: `${signedIn.username} has downvoted your post titled: ${post.title}`,
+          },
+        );
 
         // window.alert('post was deleted');
       } //if post is not voted on or disliked then upvote

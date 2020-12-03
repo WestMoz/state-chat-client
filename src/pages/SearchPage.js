@@ -13,10 +13,13 @@ export default function SearchPage({ search, signedIn }) {
     (async function () {
       try {
         const token = signedIn.signInUserSession.idToken.jwtToken;
-        const searchResp = await Axios.post('http://localhost:4000/search', {
-          token,
-          search,
-        });
+        const searchResp = await Axios.post(
+          'https://dkum2vv7yc.execute-api.us-east-1.amazonaws.com/dev/search',
+          {
+            token,
+            search,
+          },
+        );
         setPosts(searchResp.data);
       } catch (error) {
         console.log(error);

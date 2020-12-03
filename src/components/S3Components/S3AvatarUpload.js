@@ -11,10 +11,13 @@ export default function S3AvatarUpload({ signedIn, setRefresh, refresh }) {
   async function updateAvatar(avatarPath) {
     try {
       const token = signedIn.signInUserSession.idToken.jwtToken;
-      const resp = await Axios.put('http://localhost:4000/update-avatar', {
-        token,
-        avatarPath,
-      });
+      const resp = await Axios.put(
+        'https://dkum2vv7yc.execute-api.us-east-1.amazonaws.com/dev/update-avatar',
+        {
+          token,
+          avatarPath,
+        },
+      );
       console.log('SUCCESS UPLOAD', resp);
       setRefresh(!refresh);
     } catch (error) {
@@ -39,8 +42,6 @@ export default function S3AvatarUpload({ signedIn, setRefresh, refresh }) {
     uploadImage(e.target.files[0]);
   }
 
-  console.log('file object', filename);
-
   return (
     <div className="s3-avatar-main">
       <div className="s3-upload-icon">
@@ -55,8 +56,6 @@ export default function S3AvatarUpload({ signedIn, setRefresh, refresh }) {
         accept="image/png"
         onChange={(evt) => onChange(evt)}
       />
-
-      {/* <button onClick={() => uploadImage()}>Upload</button> */}
     </div>
   );
 }

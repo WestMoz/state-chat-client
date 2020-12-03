@@ -9,11 +9,6 @@ export default function PostPage({ signedIn, postId }) {
     <div className="main">
       <div className="left">
         <ViewPost postId={postId} signedIn={signedIn} />
-        {/* <Post />
-        <CreateComment signedIn={signedIn} postId={postId} />
-        <Comment />
-        <Comment />
-        <Comment /> */}
       </div>
       <div className="right">
         <LiveChat signedIn={signedIn} />

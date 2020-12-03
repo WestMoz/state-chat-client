@@ -22,11 +22,6 @@ export default function LiveChat({ signedIn }) {
     subscribeKey: 'sub-c-b20074f0-1f81-11eb-aa70-46ca21c7ec50',
     uuid: signedIn.username,
   });
-  // const pubnub = new PubNub({
-  //   publishKey: 'pub-c-ee4b9d5f-e464-404d-b4a9-66df43f5903a',
-  //   subscribeKey: 'sub-c-2dcb98f4-1f81-11eb-b558-be5397d4d556',
-  //   uuid: signedIn.username,
-  // });
   //will change uuid based on user signed in
 
   // React.useEffect(() => {
@@ -48,6 +43,7 @@ export default function LiveChat({ signedIn }) {
   //     },
   //   );
   // }, []);
+  //USE EFFECT CAUSES SOME SORT OF MEMORY LEAK
 
   const sendMessage = (message) => {
     pubnub.publish(
@@ -62,10 +58,8 @@ export default function LiveChat({ signedIn }) {
   return (
     <PubNubProvider client={pubnub}>
       <div
-        // className="App"
         style={{
           height: '70%',
-          // border: '1px solid green',
           boxSizing: 'border-box',
         }}
       >
@@ -77,7 +71,6 @@ export default function LiveChat({ signedIn }) {
                   addMessage([...messages, messageEvent]);
                 },
               });
-              //can change this to add timestamp to message and user posted
 
               client.subscribe({ channels });
             }}
@@ -86,7 +79,6 @@ export default function LiveChat({ signedIn }) {
             style={{
               width: '100%',
               height: '100%',
-              // border: '1px solid black',
             }}
           >
             <div
@@ -142,7 +134,6 @@ export default function LiveChat({ signedIn }) {
                 type="text"
                 style={{
                   borderRadius: '5px',
-                  // flexGrow: 1,
                   width: '70%',
                   fontSize: '16px',
                 }}
@@ -152,7 +143,6 @@ export default function LiveChat({ signedIn }) {
               />
               <button
                 style={{
-                  // backgroundColor: 'blue',
                   color: 'white',
                   borderRadius: '5px',
                   fontSize: '16px',

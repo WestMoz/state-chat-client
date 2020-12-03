@@ -12,7 +12,7 @@ export default function StatePage({ state, signedIn }) {
     (async function () {
       try {
         const stateResp = await Axios.get(
-          'http://localhost:4000/get-state-posts-ranked',
+          'https://dkum2vv7yc.execute-api.us-east-1.amazonaws.com/dev/get-state-posts-ranked',
           {
             params: {
               state,

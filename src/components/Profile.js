@@ -13,7 +13,7 @@ export default function Profile({ signedIn, user }) {
       try {
         const token = signedIn.signInUserSession.idToken.jwtToken;
         const avatarResponse = await Axios.get(
-          'http://localhost:4000/get-avatar-url',
+          'https://dkum2vv7yc.execute-api.us-east-1.amazonaws.com/dev/get-avatar-url',
           {
             params: {
               username: user,
@@ -24,7 +24,7 @@ export default function Profile({ signedIn, user }) {
 
         if (user !== signedIn.username) {
           const followResp = await Axios.get(
-            'http://localhost:4000/get-is-followed',
+            'https://dkum2vv7yc.execute-api.us-east-1.amazonaws.com/dev/get-is-followed',
             {
               params: {
                 followedBy: signedIn.username,
@@ -44,16 +44,22 @@ export default function Profile({ signedIn, user }) {
   async function follow() {
     try {
       const token = signedIn.signInUserSession.idToken.jwtToken;
-      await Axios.post('http://localhost:4000/follow', {
-        token,
-        user,
-      });
+      await Axios.post(
+        'https://dkum2vv7yc.execute-api.us-east-1.amazonaws.com/dev/follow',
+        {
+          token,
+          user,
+        },
+      );
       setIsFollowed(true);
-      await Axios.post('http://localhost:4000/create-notification', {
-        token,
-        userFor: user,
-        message: `${signedIn.username} has started following you`,
-      });
+      await Axios.post(
+        'https://dkum2vv7yc.execute-api.us-east-1.amazonaws.com/dev/create-notification',
+        {
+          token,
+          userFor: user,
+          message: `${signedIn.username} has started following you`,
+        },
+      );
     } catch (error) {
       console.log(error);
     }
@@ -62,16 +68,22 @@ export default function Profile({ signedIn, user }) {
   async function unfollow() {
     try {
       const token = signedIn.signInUserSession.idToken.jwtToken;
-      await Axios.put('http://localhost:4000/unfollow', {
-        token,
-        user,
-      });
+      await Axios.put(
+        'https://dkum2vv7yc.execute-api.us-east-1.amazonaws.com/dev/unfollow',
+        {
+          token,
+          user,
+        },
+      );
       setIsFollowed(false);
-      await Axios.post('http://localhost:4000/create-notification', {
-        token,
-        userFor: user,
-        message: `${signedIn.username} has unfollowed you`,
-      });
+      await Axios.post(
+        'https://dkum2vv7yc.execute-api.us-east-1.amazonaws.com/dev/create-notification',
+        {
+          token,
+          userFor: user,
+          message: `${signedIn.username} has unfollowed you`,
+        },
+      );
     } catch (error) {
       console.log(error);
     }

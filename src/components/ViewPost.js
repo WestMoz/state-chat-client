@@ -20,7 +20,7 @@ export default function ViewPost({ signedIn, postId }) {
       try {
         const token = signedIn.signInUserSession.idToken.jwtToken;
         const postById = await Axios.get(
-          'http://localhost:4000/get-post-by-id',
+          'https://dkum2vv7yc.execute-api.us-east-1.amazonaws.com/dev/get-post-by-id',
           {
             params: {
               postId,
@@ -29,19 +29,22 @@ export default function ViewPost({ signedIn, postId }) {
         );
         setPost(postById.data);
 
-        const liked = await Axios.get('http://localhost:4000/get-is-liked', {
-          params: {
-            username: signedIn.username,
-            postId,
+        const liked = await Axios.get(
+          'https://dkum2vv7yc.execute-api.us-east-1.amazonaws.com/dev/get-is-liked',
+          {
+            params: {
+              username: signedIn.username,
+              postId,
+            },
           },
-        });
+        );
         console.log(liked.data);
         if (liked.data) {
           setIsLiked(liked.data.vote);
         }
 
         const commentsResp = await Axios.get(
-          'http://localhost:4000/get-comments-by-id',
+          'https://dkum2vv7yc.execute-api.us-east-1.amazonaws.com/dev/get-comments-by-id',
           {
             params: {
               postId,
@@ -58,11 +61,14 @@ export default function ViewPost({ signedIn, postId }) {
   }, [newComment]);
 
   async function getImage(post) {
-    const imageResp = await Axios.get('http://localhost:4000/get-s3-image', {
-      params: {
-        path: post.image,
+    const imageResp = await Axios.get(
+      'https://dkum2vv7yc.execute-api.us-east-1.amazonaws.com/dev/get-s3-image',
+      {
+        params: {
+          path: post.image,
+        },
       },
-    });
+    );
     setImageUrl(imageResp.data);
   }
 

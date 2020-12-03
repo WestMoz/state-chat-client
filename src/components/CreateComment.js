@@ -15,18 +15,22 @@ export default function CreateComment({
       const token = signedIn.signInUserSession.idToken.jwtToken;
       const comment = e.target.elements.comment.value;
 
-      await Axios.post('http://localhost:4000/create-comment', {
-        token,
-        postId,
-        comment,
-      });
-      await Axios.post('http://localhost:4000/create-notification', {
-        token,
-        userFor: post.creator,
-        message: `${signedIn.username} has commented on your post titled: ${post.title}`,
-      });
-      // console.log(response);
-      // window.alert('comment succesfully created');
+      await Axios.post(
+        'https://dkum2vv7yc.execute-api.us-east-1.amazonaws.com/dev/create-comment',
+        {
+          token,
+          postId,
+          comment,
+        },
+      );
+      await Axios.post(
+        'https://dkum2vv7yc.execute-api.us-east-1.amazonaws.com/dev/create-notification',
+        {
+          token,
+          userFor: post.creator,
+          message: `${signedIn.username} has commented on your post titled: ${post.title}`,
+        },
+      );
       setNewComment(!newComment);
     } catch (error) {
       console.log(error);

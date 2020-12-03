@@ -18,7 +18,7 @@ export default function NotificationPage({ signedIn }) {
       try {
         const token = signedIn.signInUserSession.idToken.jwtToken;
         const notificationsResp = await Axios.get(
-          'http://localhost:4000/get-notifications',
+          'https://dkum2vv7yc.execute-api.us-east-1.amazonaws.com/dev/get-notifications',
           { params: { username: signedIn.username } },
         );
         setNotifications(notificationsResp.data);
@@ -45,10 +45,13 @@ export default function NotificationPage({ signedIn }) {
   async function markSeen(notification) {
     try {
       const token = signedIn.signInUserSession.idToken.jwtToken;
-      await Axios.put('http://localhost:4000/mark-seen', {
-        token,
-        notificationId: notification.notificationId,
-      });
+      await Axios.put(
+        'https://dkum2vv7yc.execute-api.us-east-1.amazonaws.com/dev/mark-seen',
+        {
+          token,
+          notificationId: notification.notificationId,
+        },
+      );
       setRefresh(!refresh);
     } catch (error) {
       console.log(error);

@@ -36,9 +36,6 @@ export default function S3PostImage({ signedIn, setImagePath }) {
         accept="image/png"
         onChange={(evt) => onChange(evt)}
       />
-      {/* <button type="button" onClick={() => uploadImage()}>
-        Upload
-      </button> */}
     </div>
   );
 }

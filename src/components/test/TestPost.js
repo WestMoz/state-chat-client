@@ -17,24 +17,29 @@ export default function Post({ user, post, signedIn, refresh, setRefresh }) {
   React.useEffect(() => {
     (async function () {
       const postId = post.postId;
-      const num = await Axios.get('http://localhost:4000/get-num-comments', {
-        params: {
-          postId,
+      const num = await Axios.get(
+        'https://dkum2vv7yc.execute-api.us-east-1.amazonaws.com/dev/get-num-comments',
+        {
+          params: {
+            postId,
+          },
         },
-      });
+      );
       setNumComments(num.data.count);
 
-      const liked = await Axios.get('http://localhost:4000/get-is-liked', {
-        params: { username: signedIn.username, postId },
-      });
-      // console.log(liked.data);
+      const liked = await Axios.get(
+        'https://dkum2vv7yc.execute-api.us-east-1.amazonaws.com/dev/get-is-liked',
+        {
+          params: { username: signedIn.username, postId },
+        },
+      );
       if (liked.data) {
         setIsLiked(liked.data.vote);
       }
 
       if (post.image) {
         const imageResp = await Axios.get(
-          'http://localhost:4000/get-s3-image',
+          'https://dkum2vv7yc.execute-api.us-east-1.amazonaws.com/dev/get-s3-image',
           {
             params: {
               path: post.image,
@@ -107,7 +112,6 @@ export default function Post({ user, post, signedIn, refresh, setRefresh }) {
         ) : (
           <></>
         )}
-        {/* onclick will be broken until i pass a real post object */}
       </div>
     </div>
   );

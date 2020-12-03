@@ -15,7 +15,7 @@ export default function HomePage({ signedIn }) {
     (async function () {
       try {
         const trendingResp = await Axios.get(
-          'http://localhost:4000/get-trending-posts',
+          'https://dkum2vv7yc.execute-api.us-east-1.amazonaws.com/dev/get-trending-posts',
         );
         setTrending(trendingResp.data);
       } catch (error) {

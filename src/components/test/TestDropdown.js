@@ -23,7 +23,6 @@ const TestDropdown = ({ setCategory }) => (
     selection
     options={stateOptions}
     onChange={(e, data) => {
-      // console.log('in on change', data);
       setCategory(data.value);
     }}
   />

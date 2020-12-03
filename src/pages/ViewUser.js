@@ -4,8 +4,6 @@ import TestPost from '../components/test/TestPost';
 import Profile from '../components/Profile';
 import '../styles/viewuser.css';
 import Following from '../components/Following';
-import ToggleButton from '@material-ui/lab/ToggleButton';
-import ToggleButtonGroup from '@material-ui/lab/ToggleButtonGroup';
 
 export default function ViewUser({ user, signedIn }) {
   const [userPosts, setUserPosts] = React.useState(undefined);
@@ -16,7 +14,7 @@ export default function ViewUser({ user, signedIn }) {
       console.log('in use effect');
       try {
         const posts = await Axios.get(
-          'http://localhost:4000/get-user-posts-ranked',
+          'https://dkum2vv7yc.execute-api.us-east-1.amazonaws.com/dev/get-user-posts-ranked',
           {
             params: {
               creator: user,
@@ -33,25 +31,19 @@ export default function ViewUser({ user, signedIn }) {
 
   function sortNew() {
     setUserPosts([...userPosts].sort((a, b) => b.timestamp - a.timestamp));
-    // setRefresh(!refresh);
   }
 
   function sortOld() {
     setUserPosts([...userPosts].sort((a, b) => a.timestamp - b.timestamp));
-    // setRefresh(!refresh);
   }
 
   function sortTop() {
     setUserPosts([...userPosts].sort((a, b) => b.totalCount - a.totalCount));
-    // setRefresh(!refresh);
   }
 
   return (
     <div className="user-main">
       <div className="user-left">
-        {/* <button onClick={() => sortTop()}>Top</button>
-        <button onClick={() => sortNew()}>Newest</button>
-        <button onClick={() => sortOld()}>Oldest</button> */}
         <div class="btn-group" role="group" aria-label="Basic example">
           <button
             type="button"

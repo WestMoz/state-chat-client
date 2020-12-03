@@ -14,21 +14,22 @@ export default function CreatePost({ signedIn, category, setCategory }) {
       const token = signedIn.signInUserSession.idToken.jwtToken;
       const title = e.target.elements.title.value;
       const content = e.target.elements.content.value;
-      // const state = category;
-      //NEED TO ADD DROP DOWN FOR SELECTING CATEGORY TO POST IN
       console.log(category);
       if (!title || !content || !category) {
         window.alert('missing required fields');
         return;
       }
 
-      const response = await Axios.post('http://localhost:4000/create-post', {
-        token,
-        title,
-        content,
-        category,
-        image: imagePath,
-      });
+      const response = await Axios.post(
+        'https://dkum2vv7yc.execute-api.us-east-1.amazonaws.com/dev/create-post',
+        {
+          token,
+          title,
+          content,
+          category,
+          image: imagePath,
+        },
+      );
       console.log(response);
       window.alert('post succesfully created');
       navigate(`/user/${signedIn.username}`);
@@ -62,7 +63,6 @@ export default function CreatePost({ signedIn, category, setCategory }) {
           <button type="reset" class="btn btn-warning">
             Cancel
           </button>
-          {/* not sure what type cancel needs to be to not submit form */}
           <button type="submit" class="btn btn-primary">
             Post
           </button>
