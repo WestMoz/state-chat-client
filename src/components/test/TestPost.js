@@ -90,7 +90,7 @@ export default function Post({ user, post, signedIn, refresh, setRefresh }) {
 
         {post.image && (
           <div style={{ display: 'flex', justifyContent: 'center' }}>
-            <img className="post-image" src={imageUrl} alt="post image" />
+            <img className="post-image" src={imageUrl} alt={post.title} />
           </div>
         )}
       </div>

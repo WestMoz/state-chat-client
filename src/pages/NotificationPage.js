@@ -2,7 +2,6 @@ import Axios from 'axios';
 import React from 'react';
 import LiveChat from '../components/LiveChat';
 import '../styles/notification.css';
-import MailOutlineIcon from '@material-ui/icons/MailOutline';
 import DraftsIcon from '@material-ui/icons/Drafts';
 import MarkunreadIcon from '@material-ui/icons/Markunread';
 import Tooltip from '@material-ui/core/Tooltip';
@@ -16,7 +15,6 @@ export default function NotificationPage({ signedIn }) {
   React.useEffect(() => {
     (async function () {
       try {
-        const token = signedIn.signInUserSession.idToken.jwtToken;
         const notificationsResp = await Axios.get(
           'https://dkum2vv7yc.execute-api.us-east-1.amazonaws.com/dev/get-notifications',
           { params: { username: signedIn.username } },

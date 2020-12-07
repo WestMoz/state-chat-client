@@ -11,7 +11,6 @@ export default function Profile({ signedIn, user }) {
   React.useEffect(() => {
     (async function () {
       try {
-        const token = signedIn.signInUserSession.idToken.jwtToken;
         const avatarResponse = await Axios.get(
           'https://dkum2vv7yc.execute-api.us-east-1.amazonaws.com/dev/get-avatar-url',
           {

@@ -1,7 +1,5 @@
 import Axios from 'axios';
 import React from 'react';
-import Post from '../components/Post';
-import StatsBar from '../components/StatsBar';
 import TestPost from '../components/test/TestPost';
 import '../styles/layout.css';
 import LiveChat from '../components/LiveChat';

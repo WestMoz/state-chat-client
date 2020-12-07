@@ -6,7 +6,7 @@ import PhotoCameraIcon from '@material-ui/icons/PhotoCamera';
 import '../../styles/s3avatar.css';
 
 export default function S3AvatarUpload({ signedIn, setRefresh, refresh }) {
-  const [filename, setFilename] = React.useState(undefined);
+  // const [filename, setFilename] = React.useState(undefined);
 
   async function updateAvatar(avatarPath) {
     try {
@@ -38,7 +38,7 @@ export default function S3AvatarUpload({ signedIn, setRefresh, refresh }) {
   }
 
   async function onChange(e) {
-    setFilename(e.target.files[0]);
+    // setFilename(e.target.files[0]);
     uploadImage(e.target.files[0]);
   }
 

@@ -1,6 +1,4 @@
 import React from 'react';
-import StatsBar from '../components/StatsBar';
-import Post from '../components/Post';
 import '../styles/layout.css';
 import Axios from 'axios';
 import TestPost from '../components/test/TestPost';

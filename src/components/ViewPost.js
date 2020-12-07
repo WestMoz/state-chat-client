@@ -1,8 +1,6 @@
-import { Create } from '@material-ui/icons';
 import React from 'react';
 import Comment from './Comment';
 import CreateComment from './CreateComment';
-import Post from './Post';
 import '../styles/viewpost.css';
 import Vote from './Vote';
 import { navigate } from '@reach/router';
@@ -16,9 +14,9 @@ export default function ViewPost({ signedIn, postId }) {
   const [newComment, setNewComment] = React.useState(false);
 
   React.useEffect(() => {
+    // eslint-disable-next-line
     (async function () {
       try {
-        const token = signedIn.signInUserSession.idToken.jwtToken;
         const postById = await Axios.get(
           'https://dkum2vv7yc.execute-api.us-east-1.amazonaws.com/dev/get-post-by-id',
           {
@@ -114,7 +112,7 @@ export default function ViewPost({ signedIn, postId }) {
                     justifyContent: 'center',
                   }}
                 >
-                  <img className="post-image" src={imageUrl} alt="post image" />
+                  <img className="post-image" src={imageUrl} alt={post.title} />
                 </div>
               )}
             </div>

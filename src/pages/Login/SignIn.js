@@ -3,13 +3,10 @@ import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import TextField from '@material-ui/core/TextField';
-import FormControlLabel from '@material-ui/core/FormControlLabel';
-import Checkbox from '@material-ui/core/Checkbox';
 import Link from '@material-ui/core/Link';
 import Paper from '@material-ui/core/Paper';
 import Box from '@material-ui/core/Box';
 import Grid from '@material-ui/core/Grid';
-import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import { Auth } from 'aws-amplify';
@@ -102,9 +99,6 @@ export default function SignIn({ setSignedIn }) {
         >
           <div className={classes.paper}>
             <Avatar className={classes.avatar}>State Chat</Avatar>
-            {/* <Typography component="h1" variant="h5">
-              Sign in
-            </Typography> */}
             <form
               className={classes.form}
               noValidate
@@ -117,8 +111,6 @@ export default function SignIn({ setSignedIn }) {
                     const user = await Auth.signIn(username, password);
                     console.log(user);
                     console.log(user.signInUserSession.idToken.jwtToken);
-                    //   dispatch(setSignedIn(user));
-
                     setSignedIn(user);
                     navigate('/');
                   } catch (error) {

@@ -1,5 +1,4 @@
 import React from 'react';
-import StatsBar from '../components/StatsBar';
 import '../styles/layout.css';
 import ViewPost from '../components/ViewPost';
 import LiveChat from '../components/LiveChat';

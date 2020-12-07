@@ -8,7 +8,6 @@ import {
   Geographies,
   Geography,
   Marker,
-  Annotation,
 } from 'react-simple-maps';
 
 import allStates from '../data/allstates.json';
@@ -31,12 +30,11 @@ const offsets = {
 
 const MapChart = ({ signedIn }) => {
   const [maxActivity, setMaxActivity] = React.useState(undefined);
-  const [statesActivity, setStatesActivity] = React.useState([]);
+  // const [statesActivity, setStatesActivity] = React.useState([]);
   const [activityObj, setActivityObj] = React.useState({});
 
   React.useEffect(() => {
     (async function () {
-      const token = signedIn.signInUserSession.idToken.jwtToken;
       try {
         const maxResp = await Axios.get(
           'https://dkum2vv7yc.execute-api.us-east-1.amazonaws.com/dev/get-max-activity',
@@ -46,7 +44,7 @@ const MapChart = ({ signedIn }) => {
         const statesActivityResp = await Axios.get(
           'https://dkum2vv7yc.execute-api.us-east-1.amazonaws.com/dev/get-state-activity',
         );
-        setStatesActivity(statesActivityResp.data);
+        // setStatesActivity(statesActivityResp.data);
         const tempActivity = {};
         statesActivityResp.data.map((state) => {
           tempActivity[state.category] = state.totalActivity;
@@ -69,14 +67,14 @@ const MapChart = ({ signedIn }) => {
     return activityObj[state] / maxActivity + 0.1;
   }
 
-  function containsState(stateName) {
-    console.log('in contains state', stateName);
-    statesActivity.map((state) => {
-      console.log(state.category === stateName);
-      if (state.category === stateName) return true;
-    });
-    return false;
-  }
+  // function containsState(stateName) {
+  //   console.log('in contains state', stateName);
+  //   statesActivity.map((state) => {
+  //     console.log(state.category === stateName);
+  //     if (state.category === stateName) return true;
+  //   });
+  //   return false;
+  // }
 
   return (
     <ComposableMap

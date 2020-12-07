@@ -1,11 +1,9 @@
 import React from 'react';
 import MapChart from '../components/MapChart';
-import Post from '../components/Post';
 import '../styles/home.css';
 import TestPost from '../components/test/TestPost';
 import Axios from 'axios';
 import LiveChat from '../components/LiveChat';
-import Following from '../components/Following';
 
 //STATS PAGE TO DISPLAY SPECIFIC STATS
 //USER STATS ex: NUMBER OF POSTS/COMMENTS
@@ -23,8 +21,6 @@ export default function HomePage({ signedIn }) {
       }
     })();
   }, []);
-  // console.log(posts);
-  // console.log(trending);
 
   return (
     <div className="home-main">
@@ -33,7 +29,6 @@ export default function HomePage({ signedIn }) {
           <MapChart signedIn={signedIn} />
         </div>
         <div className="home-title">Trending Posts</div>
-        {/* <CreatePost signedIn={signedIn} /> */}
         {trending &&
           trending.map((post) => (
             <TestPost key={post.postId} post={post} signedIn={signedIn} />
