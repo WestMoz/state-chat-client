@@ -109,8 +109,6 @@ export default function SignIn({ setSignedIn }) {
                 (async function () {
                   try {
                     const user = await Auth.signIn(username, password);
-                    console.log(user);
-                    console.log(user.signInUserSession.idToken.jwtToken);
                     setSignedIn(user);
                     navigate('/');
                   } catch (error) {

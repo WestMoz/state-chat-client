@@ -77,10 +77,8 @@ export default function ConfirmSignUp({ username, password, setSignedIn }) {
                   const resp = await Auth.confirmSignUp(username, code);
                   if (resp === 'SUCCESS') {
                     const currentUser = await Auth.signIn(username, password);
-                    console.log(currentUser);
                     const idToken =
                       currentUser.signInUserSession.idToken.jwtToken;
-                    console.log(idToken);
                     await Axios.post('http://localhost:4000/create-user', {
                       token: idToken,
                       state: '',

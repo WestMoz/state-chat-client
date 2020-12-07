@@ -70,8 +70,6 @@ export default function SignUp({ setUsername, setPassword }) {
             noValidate
             onSubmit={(e) => {
               e.preventDefault();
-              console.log(e.target.elements.email);
-              console.log(e.target.elements);
 
               const username = e.target.elements.username.value;
               const password = e.target.elements.password.value;
@@ -85,7 +83,6 @@ export default function SignUp({ setUsername, setPassword }) {
                       email,
                     },
                   });
-                  console.log(user);
                   setUsername(username);
                   setPassword(password);
                   navigate('/confirm');

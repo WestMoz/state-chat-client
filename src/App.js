@@ -30,7 +30,6 @@ function App() {
       ) : (
         <PublicRoutes setSignedIn={setSignedIn} />
       )}
-      {/* <MapChart></MapChart> */}
     </div>
   );
 }
