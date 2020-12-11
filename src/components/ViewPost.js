@@ -5,6 +5,8 @@ import '../styles/viewpost.css';
 import Vote from './Vote';
 import { navigate } from '@reach/router';
 import Axios from 'axios';
+import CircularProgress from '@material-ui/core/CircularProgress';
+import LinearProgress from '@material-ui/core/LinearProgress';
 
 export default function ViewPost({ signedIn, postId }) {
   const [post, setPost] = React.useState(undefined);
@@ -12,6 +14,7 @@ export default function ViewPost({ signedIn, postId }) {
   const [comments, setComments] = React.useState(undefined);
   const [imageUrl, setImageUrl] = React.useState(undefined);
   const [newComment, setNewComment] = React.useState(false);
+  const [loading, setLoading] = React.useState(true);
 
   React.useEffect(() => {
     // eslint-disable-next-line
@@ -52,6 +55,7 @@ export default function ViewPost({ signedIn, postId }) {
         setComments(commentsResp.data);
 
         await getImage(postById.data);
+        setLoading(false);
       } catch (error) {
         console.log(error);
       }
@@ -75,64 +79,76 @@ export default function ViewPost({ signedIn, postId }) {
   console.log(signedIn);
   return (
     <>
-      {post && (
-        <div className="view-main">
-          <div className="view-top">
-            <div>
-              <Vote
-                post={post}
-                signedIn={signedIn}
-                isLiked={isLiked}
-                setIsLiked={setIsLiked}
-              />
-            </div>
-            <div className="view-titles">
-              <div style={{ display: 'flex' }}>
-                <div
-                  className="posted-by"
-                  onClick={() => navigate(`/user/${post.creator}`)}
-                >
-                  Posted by {post.creator}
-                </div>
+      {loading ? (
+        <LinearProgress></LinearProgress>
+      ) : (
+        <React.Fragment>
+          {post && (
+            <div className="view-main">
+              <div className="view-top">
                 <div>
-                  {new Date(Math.floor(post.timestamp)).toLocaleDateString()}
+                  <Vote
+                    post={post}
+                    signedIn={signedIn}
+                    isLiked={isLiked}
+                    setIsLiked={setIsLiked}
+                  />
+                </div>
+                <div className="view-titles">
+                  <div style={{ display: 'flex' }}>
+                    <div
+                      className="posted-by"
+                      onClick={() => navigate(`/user/${post.creator}`)}
+                    >
+                      Posted by {post.creator}
+                    </div>
+                    <div>
+                      {new Date(
+                        Math.floor(post.timestamp),
+                      ).toLocaleDateString()}
+                    </div>
+                  </div>
+                  <div>{post.category}</div>
                 </div>
               </div>
-              <div>{post.category}</div>
-            </div>
-          </div>
-          <div className="view-mid">
-            <div className="view-post">
-              <p className="text-title">{post.title}</p>
-              <p className="text-content">{post.content}</p>
-              {post.image && (
-                <div
-                  style={{
-                    display: 'flex',
-                    justifyContent: 'center',
-                  }}
-                >
-                  <img className="post-image" src={imageUrl} alt={post.title} />
+              <div className="view-mid">
+                <div className="view-post">
+                  <p className="text-title">{post.title}</p>
+                  <p className="text-content">{post.content}</p>
+                  {post.image && (
+                    <div
+                      style={{
+                        display: 'flex',
+                        justifyContent: 'center',
+                      }}
+                    >
+                      <img
+                        className="post-image"
+                        src={imageUrl}
+                        alt={post.title}
+                      />
+                    </div>
+                  )}
                 </div>
-              )}
+                <div>
+                  <CreateComment
+                    newComment={newComment}
+                    setNewComment={setNewComment}
+                    postId={post.postId}
+                    signedIn={signedIn}
+                    post={post}
+                  />
+                </div>
+              </div>
+              <div className="view-bottom">
+                {comments &&
+                  [...comments]
+                    .reverse()
+                    .map((comment) => <Comment comment={comment} />)}
+              </div>
             </div>
-            <div>
-              <CreateComment
-                newComment={newComment}
-                setNewComment={setNewComment}
-                postId={post.postId}
-                signedIn={signedIn}
-                post={post}
-              />
-            </div>
-          </div>
-          <div className="view-bottom">
-            {comments &&
-              [...comments]
-                .reverse()
-                .map((comment) => <Comment comment={comment} />)}
-          </div>
-        </div>
+          )}
+        </React.Fragment>
       )}
     </>
   );

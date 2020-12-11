@@ -3,9 +3,11 @@ import '../styles/layout.css';
 import Axios from 'axios';
 import TestPost from '../components/test/TestPost';
 import LiveChat from '../components/LiveChat';
+import LinearProgress from '@material-ui/core/LinearProgress';
 
 export default function StatePage({ state, signedIn }) {
   const [posts, setPosts] = React.useState(undefined);
+  const [loading, setLoading] = React.useState(true);
   React.useEffect(() => {
     (async function () {
       try {
@@ -18,6 +20,7 @@ export default function StatePage({ state, signedIn }) {
           },
         );
         setPosts(stateResp.data);
+        setLoading(false);
       } catch (error) {
         console.log(error);
       }
@@ -65,14 +68,20 @@ export default function StatePage({ state, signedIn }) {
             </button>
           </div>
         </div>
-        {posts && posts.length > 0 ? (
-          posts.map((post) => (
-            <TestPost post={post} signedIn={signedIn} key={post.postId} />
-          ))
+        {loading ? (
+          <LinearProgress></LinearProgress>
         ) : (
-          <div style={{ fontSize: '16px', textAlign: 'center' }}>
-            No posts for this state...
-          </div>
+          <React.Fragment>
+            {posts && posts.length > 0 ? (
+              posts.map((post) => (
+                <TestPost post={post} signedIn={signedIn} key={post.postId} />
+              ))
+            ) : (
+              <div style={{ fontSize: '16px', textAlign: 'center' }}>
+                No posts for this state...
+              </div>
+            )}
+          </React.Fragment>
         )}
       </div>
       <div className="right">

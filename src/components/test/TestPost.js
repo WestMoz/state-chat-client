@@ -87,7 +87,6 @@ export default function Post({ user, post, signedIn, refresh, setRefresh }) {
       <div className="post-mid-cont">
         <p className="text-title">{post.title}</p>
         <p className="text-content">{post.content}</p>
-
         {post.image && (
           <div style={{ display: 'flex', justifyContent: 'center' }}>
             <img className="post-image" src={imageUrl} alt={post.title} />

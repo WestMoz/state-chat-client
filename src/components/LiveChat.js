@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import PubNub from 'pubnub';
 import { PubNubProvider, PubNubConsumer } from 'pubnub-react';
 import '../styles/livechat.css';
+require('dotenv').config();
 
 // const pubnub = new PubNub({
 //   publishKey: process.env.publishKey,
@@ -12,6 +13,7 @@ import '../styles/livechat.css';
 
 const channels = ['stateChatGlobal'];
 //might set channel to channel create between two users
+console.log(process.env.PUBLISH_KEY);
 
 export default function LiveChat({ signedIn }) {
   const [messages, addMessage] = useState([]);
@@ -45,6 +47,8 @@ export default function LiveChat({ signedIn }) {
   // }, []);
   //USE EFFECT CAUSES SOME SORT OF MEMORY LEAK
 
+  console.log(messages);
+
   const sendMessage = (message) => {
     pubnub.publish(
       {
@@ -53,7 +57,7 @@ export default function LiveChat({ signedIn }) {
       },
       () => setMessage(''),
     );
-    // addMessage(message);
+    // addMessage([message, ...messages]);
   };
   return (
     <PubNubProvider client={pubnub}>

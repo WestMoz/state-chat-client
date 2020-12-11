@@ -19,7 +19,7 @@ export default function PrivateRoutes({ signedIn, setSignedIn }) {
       <ViewUser path="/user/:user" signedIn={signedIn} />
       <SearchPage path="/search/:search" signedIn={signedIn} />
       <NotificationPage path="/notifications" signedIn={signedIn} />
-      <NotFound default />
+      <NotFound default signedIn={signedIn} />
     </Router>
   );
 }

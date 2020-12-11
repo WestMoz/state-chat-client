@@ -2,6 +2,7 @@ import React from 'react';
 import SignIn from '../pages/Login/SignIn';
 import SignUp from '../pages/Login/SignUp';
 import Confirm from '../pages/Login/Confirm';
+import NotFound from '../pages/NotFound';
 import { Router } from '@reach/router';
 
 export default function PublicRoutes({ setSignedIn }) {
@@ -21,6 +22,7 @@ export default function PublicRoutes({ setSignedIn }) {
         setSignedIn={setSignedIn}
         path="/confirm"
       />
+      <NotFound default />
     </Router>
   );
 }
