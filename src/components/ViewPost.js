@@ -144,7 +144,9 @@ export default function ViewPost({ signedIn, postId }) {
                 {comments &&
                   [...comments]
                     .reverse()
-                    .map((comment) => <Comment comment={comment} />)}
+                    .map((comment, commentIndex) => (
+                      <Comment comment={comment} key={commentIndex} />
+                    ))}
               </div>
             </div>
           )}

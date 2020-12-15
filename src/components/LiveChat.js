@@ -62,6 +62,7 @@ export default function LiveChat({ signedIn }) {
   return (
     <PubNubProvider client={pubnub}>
       <div
+        className="chat-main"
         style={{
           height: '70%',
           boxSizing: 'border-box',

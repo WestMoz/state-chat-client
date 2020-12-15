@@ -1,3 +1,9 @@
+/* @media screen and (max-width: 800px) {
+  .chat-main {
+    display: none;
+  }
+} */
+
 .myMessage {
   /* display: inline-block; */
   /* float: right; */

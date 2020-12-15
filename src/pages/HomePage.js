@@ -5,6 +5,8 @@ import TestPost from '../components/test/TestPost';
 import Axios from 'axios';
 import LiveChat from '../components/LiveChat';
 import LinearProgress from '@material-ui/core/LinearProgress';
+import LiveChatTest from '../components/test/LiveChatTest';
+import NewLiveChat from '../components/test/NewLiveChat';
 
 //STATS PAGE TO DISPLAY SPECIFIC STATS
 //USER STATS ex: NUMBER OF POSTS/COMMENTS
@@ -44,7 +46,9 @@ export default function HomePage({ signedIn }) {
         )}
       </div>
       <div className="home-right">
-        <LiveChat signedIn={signedIn} />
+        {/* <LiveChat signedIn={signedIn} /> */}
+        {/* <LiveChatTest /> */}
+        <NewLiveChat signedIn={signedIn} />
       </div>
     </div>
   );
