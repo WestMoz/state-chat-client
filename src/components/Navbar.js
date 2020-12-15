@@ -41,7 +41,7 @@ export default function Navbar({ signedIn, setSignedIn, navRefresh }) {
         console.log(error);
       }
     })();
-  }, []);
+  }, [navRefresh]);
   console.log('NEW NOTIFICATIONS:', newNotifs);
   return (
     <div className="nav-main">
@@ -107,7 +107,6 @@ export default function Navbar({ signedIn, setSignedIn, navRefresh }) {
         </div>
 
         <img
-          // src="https://bignokh.files.wordpress.com/2017/02/19c76c9bfacab70a3b9379f3fadc5323.png"
           src={avatarUrl}
           alt="avatar"
           height="80%"
@@ -115,7 +114,6 @@ export default function Navbar({ signedIn, setSignedIn, navRefresh }) {
             borderRadius: '10px',
             backgroundColor: 'lightcoral',
             border: '1px solid white',
-            // padding: '4px',
           }}
         ></img>
       </div>

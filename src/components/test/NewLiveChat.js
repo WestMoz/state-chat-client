@@ -1,6 +1,6 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import PubNub from 'pubnub';
-import { PubNubProvider, PubNubConsumer } from 'pubnub-react';
+import { PubNubProvider } from 'pubnub-react';
 import '../../styles/livechat.css';
 import ChatDisplay from './ChatDisplay';
 require('dotenv').config();
@@ -12,7 +12,7 @@ require('dotenv').config();
 // });
 //will change uuid based on user signed in
 
-const channels = ['stateChatGlobal'];
+// const channels = ['stateChatGlobal'];
 //might set channel to channel create between two users
 
 export default function LiveChat({ signedIn }) {

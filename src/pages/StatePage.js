@@ -25,7 +25,7 @@ export default function StatePage({ state, signedIn }) {
         console.log(error);
       }
     })();
-  }, []);
+  });
 
   function sortNew() {
     setPosts([...posts].sort((a, b) => b.timestamp - a.timestamp));

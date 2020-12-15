@@ -49,7 +49,7 @@ export default function Post({ user, post, signedIn, refresh, setRefresh }) {
         setImageUrl(imageResp.data);
       }
     })();
-  }, []);
+  });
 
   return (
     <div

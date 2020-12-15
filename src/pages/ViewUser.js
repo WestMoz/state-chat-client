@@ -4,10 +4,12 @@ import TestPost from '../components/test/TestPost';
 import Profile from '../components/Profile';
 import '../styles/viewuser.css';
 import Following from '../components/Following';
+import LinearProgress from '@material-ui/core/LinearProgress';
 
 export default function ViewUser({ user, signedIn }) {
   const [userPosts, setUserPosts] = React.useState(undefined);
   const [refresh, setRefresh] = React.useState(false);
+  const [loading, setLoading] = React.useState(true);
 
   React.useEffect(() => {
     (async function () {
@@ -21,8 +23,8 @@ export default function ViewUser({ user, signedIn }) {
             },
           },
         );
-
-        setUserPosts(posts.data);
+        if (posts.data.length > 0) setUserPosts(posts.data);
+        setLoading(false);
       } catch (error) {
         console.log(error);
       }
@@ -67,7 +69,12 @@ export default function ViewUser({ user, signedIn }) {
             Oldest
           </button>
         </div>
-        {userPosts &&
+        {loading ? (
+          <LinearProgress></LinearProgress>
+        ) : (
+          <React.Fragment></React.Fragment>
+        )}
+        {userPosts ? (
           userPosts.map((post) => (
             <TestPost
               user={user}
@@ -77,7 +84,10 @@ export default function ViewUser({ user, signedIn }) {
               setRefresh={setRefresh}
               key={post.postId}
             />
-          ))}
+          ))
+        ) : (
+          <div>This user has not created any posts...</div>
+        )}
       </div>
       <div className="user-right">
         <Profile signedIn={signedIn} user={user} />

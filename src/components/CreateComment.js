@@ -1,6 +1,7 @@
 import React from 'react';
 import Axios from 'axios';
 import '../styles/createcomment.css';
+import SuccessSnackBar from '../components/notifications/SuccessSnackBar';
 
 export default function CreateComment({
   postId,
@@ -9,20 +10,27 @@ export default function CreateComment({
   setNewComment,
   post,
 }) {
+  const [comment, setComment] = React.useState('');
+  const [message, setMessage] = React.useState(undefined);
+
   async function submitComment(e) {
     e.preventDefault();
     try {
       const token = signedIn.signInUserSession.idToken.jwtToken;
       const comment = e.target.elements.comment.value;
 
-      await Axios.post(
+      Axios.post(
         'https://dkum2vv7yc.execute-api.us-east-1.amazonaws.com/dev/create-comment',
         {
           token,
           postId,
           comment,
         },
-      );
+      ).then(() => {
+        setNewComment(!newComment);
+        setComment('');
+        setMessage('Comment created!');
+      });
       await Axios.post(
         'https://dkum2vv7yc.execute-api.us-east-1.amazonaws.com/dev/create-notification',
         {
@@ -31,7 +39,6 @@ export default function CreateComment({
           message: `${signedIn.username} has commented on your post titled: ${post.title}`,
         },
       );
-      setNewComment(!newComment);
     } catch (error) {
       console.log(error);
     }
@@ -49,6 +56,8 @@ export default function CreateComment({
             cols="40"
             rows="5"
             placeholder="What are your thoughts?"
+            value={comment}
+            onChange={(e) => setComment(e.target.value)}
           ></textarea>
         </div>
         <div className="comment-create-bot">
@@ -61,6 +70,11 @@ export default function CreateComment({
           </button>
         </div>
       </div>
+      {message ? (
+        <SuccessSnackBar message={message}></SuccessSnackBar>
+      ) : (
+        <React.Fragment></React.Fragment>
+      )}
     </form>
   );
 }
